@@ -141,7 +141,13 @@ while not run_exhausted:
             payload = {'sequence':sequence}
             r = requests.post(ONECODEX_SEARCH_HTML, payload, auth=auth, timeout=timeout)
             if r.status_code != GOOD_ONECODEX_STATUS:
-                continue
+                if r.status_code == 400:
+                    sys.exit('The One Codex API key was not provided')
+                elif r.status_code == 401:
+                    sys.exit('The One Codex API key provided was invalid')
+                else:
+                  continue
+
             result = json.loads(r.text)
             tax_id = result['tax_id']
             sequences_read += 1
