@@ -103,12 +103,12 @@ def start_log(metrichor_command):
     logger.close()
 
 
-def end_log():
+def end_log(run_time):
 
     # Write to log file after running command
     logger = open(LOG_FILE, 'a+')
     logger.write("Completed Metrichor transfer at %s\n" % time.strftime("%c"))
-    logger.write("Metrichor completed in %d\n" % (END_TIME - START_TIME))
+    logger.write("Metrichor completed in %d\n" % run_time)
     logger.close()
 
 
@@ -147,7 +147,6 @@ def run_metrichor():
     metrichor_command_options.append("--inputfolder %s" % READS_DIRECTORY)
     metrichor_command_options.append("--workflow %s" % WORKFLOW)
     metrichor_command_options.append("--fastq")
-    metrichor_command_options.append("--qconcat")
 
     # Complete the metrichor command
     metrichor_command = "metrichor-cli %s 2>> %s" % (' '.join(metrichor_command_options), LOG_FILE)
@@ -162,7 +161,7 @@ def run_metrichor():
     if run_time < PREMATURE_RUNTIME:
         error_log(metrichor_command)
     else:
-        end_log()
+        end_log(run_time)
 
 
 def main():

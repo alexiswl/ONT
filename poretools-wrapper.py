@@ -46,7 +46,7 @@ def get_commandline_params():
 
     parser = argparse.ArgumentParser(description=help_descriptor)
 
-    parser.add_argument('--version', action='version', version="%(prog)s %s" % str(version))
+    parser.add_argument('--version', action='version', version="%%(prog)s %s" % str(version))
     parser.add_argument("--run_name", nargs='?', dest="RUN_NAME", type=str,
                         help="This is the run name you wish to be present on all the files.",
                         required=True)
@@ -219,7 +219,7 @@ def still_writing(filename):
 def run_poretools_fastq():
     old_fast5_files = check_completion_file()
     new_pass_files = [PASS_DIRECTORY + fast5_file for fast5_file in os.listdir(PASS_DIRECTORY)
-                     if PASS_DIRECTORY + fast5_file not in old_fast5_files]
+                      if PASS_DIRECTORY + fast5_file not in old_fast5_files]
 
     # Run the set of poretools commands on the new fast5 files
     logger = open(LOG_FILE, 'a+')
@@ -296,7 +296,8 @@ def run_poretools_wrapper():
         # Is latest file still being written to? Could be multiple files, generates recursive loop.
         while True:
             latest_fast5_file = new_fast5_files[len(new_fast5_files)-1]
-            if not still_writing(latest_fast5_file): break
+            if not still_writing(latest_fast5_file):
+                break
             print("Latest fast5 file still being written to. Removing file from set of fasta files")
             new_fast5_files.remove(latest_fast5_file)
             if len(new_fast5_files) == 0:
@@ -310,7 +311,6 @@ def run_poretools_wrapper():
 
         run_poretools_fastq()
         run_poretools_metrics()
-
 
     print "No fast5 files downloaded from metrichor in the last %d seconds\n" % WATCH
     print "Exiting\n"
@@ -328,7 +328,8 @@ def split_reads_by_attribute(new_fast5_files):
         datasets['hairpin_summary_dataset'] = '/Analyses/Hairpin_Split_000/Summary'
 
     for fast5_file in new_fast5_files:
-        if not os.path.isfile(fast5_file): continue
+        if not os.path.isfile(fast5_file):
+            continue
         # Check to ensure that the file is not corrupt.
         try:
             f = h5py.File(fast5_file, 'r')

@@ -27,6 +27,7 @@ KRONA_DIRECTORY = ""
 
 # Declare global miscellaneous
 version = 1.1
+THREAD_COUNT = 0
 THREAD_COUNT_DEFAULT = 4
 DATE_PREFIX = time.strftime("%Y_%m_%d")
 START_TIME = time.time()
@@ -218,7 +219,8 @@ def kraken_wrapper():
         completion_h = open(COMPLETION_FILE, 'a+')
         for fasta_file in completed_fasta_files:
             fasta_files_old.append(fasta_file)
-            completion_h.write(fasta_file + "\n")
+            completion_h.write(fasta_file)
+            completion_h.write("\n")
         completion_h.close()
 
 
