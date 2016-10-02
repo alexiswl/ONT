@@ -127,13 +127,13 @@ def set_directories():
     if not os.path.isdir(ONECODEX_OUTPUT_DIRECTORY):
         os.mkdir(ONECODEX_OUTPUT_DIRECTORY)
 
-    SUMMARY_DIRECTORY = ONECODEX_DIRECTORY + "summary"
+    SUMMARY_DIRECTORY = ONECODEX_DIRECTORY + "summary/"
     if not os.path.isdir(SUMMARY_DIRECTORY):
         os.mkdir(SUMMARY_DIRECTORY)
 
     TAXA_DIRECTORY = ONECODEX_DIRECTORY + "taxa/"
     if not os.path.isdir(TAXA_DIRECTORY):
-        os.mkdir(ONECODEX_OUTPUT_DIRECTORY)
+        os.mkdir(TAXA_DIRECTORY)
 
     KRONA_DIRECTORY = ONECODEX_DIRECTORY + "krona/"
     if not os.path.isdir(KRONA_DIRECTORY):
@@ -327,6 +327,9 @@ def main():
     # Set the arguments from the commandline
     set_commandline_params(args)
 
+    # Set directories:
+    set_directories()
+    
     # Start log
     start_log()
 
