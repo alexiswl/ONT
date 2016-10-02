@@ -284,7 +284,7 @@ def run_nanonet(fast5_files):
                               (THREAD_COUNT, tmp_nanonet_directory, fasta_file, LOG_FILE)
             os.system(nanonet_command)
             for fast5_file in os.listdir(tmp_nanonet_directory):
-                shutil.move(tmp_nanonet_directory + fast5_file , READS_DIRECTORY)
+                shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
             os.rmdir(tmp_nanonet_directory)
             tmp_nanonet_directory = "%s%s/" % (READS_DIRECTORY, get_time())
             fasta_file = "%s%s_1D_%s.fasta" % (FASTA_DIRECTORY, RUN_NAME, get_time())
@@ -297,6 +297,8 @@ def run_nanonet(fast5_files):
         nanonet_command = "nanonetcall --jobs %d %s 1> %s 2>> %s" % \
                           (THREAD_COUNT, tmp_nanonet_directory, fasta_file, LOG_FILE)
         os.system(nanonet_command)
+        for fast5_file in os.listdir(tmp_nanonet_directory):
+            shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
         os.rmdir(tmp_nanonet_directory)
 
 
