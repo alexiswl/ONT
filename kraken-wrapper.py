@@ -44,7 +44,7 @@ def get_commandline_params():
 
     parser = argparse.ArgumentParser(description=help_descriptor)
 
-    parser.add_argument('--version', action='version', version="%(prog)s %s" % str(version))
+    parser.add_argument('--version', action='version', version="%%(prog)s %s" % str(version))
     parser.add_argument("--run_name", nargs='?', dest="RUN_NAME", type=str,
                         help="What name would you like to place into the Krona html files.",
                         required=True)

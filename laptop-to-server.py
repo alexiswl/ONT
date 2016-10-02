@@ -20,9 +20,9 @@ DUMP_DIRECTORY = ""
 LOGFILE = ""
 
 # Declare Global Miscellaneous
+version = 1.1
 RUN_NAME = ""
 WATCH = 0
-VERSION = "%(prog)s 1.1"
 WATCH_DEFAULT = 800
 INVALID_SYMBOLS = "~`!@#$%^&*()-+={}[]:>;',</?*-+"
 DATE_SUFFIX = time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -38,7 +38,7 @@ def get_commandline_params():
 
     parser = argparse.ArgumentParser(description=help_descriptor)
 
-    parser.add_argument('--version', action='version', version=VERSION)
+    parser.add_argument('--version', action='version', version="%%(prog)s %s" % str(version))
     parser.add_argument("--run_name", nargs='?', dest="RUN_NAME", type=str,
                         help="This is a required argument. What is the name of your run as they appear on the fast5 " +
                              "files? User_Date_FlowcellID_MinIONID_sequencing_run_<RUNNAME>_5DigitBarcode_Channel_Read",

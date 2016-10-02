@@ -24,7 +24,7 @@ KRONA_DIRECTORY = ""
 version = 1.1
 RUN_NAME = ""
 WATCH = 0
-LOG_FILE = ""
+LOGFILE = ""
 WATCH_DEFAULT = 800
 DATE = time.strftime("%Y_%m_%d")
 COMPLETION_FILE = ""
@@ -52,7 +52,7 @@ def get_commandline_params():
                       "<RUN_DIRECTORY>/one_codex"
 
     parser = argparse.ArgumentParser(description=help_descriptor)
-    parser.add_argument('--version', action='version', version="%(prog)s %s" % str(version))
+    parser.add_argument('--version', action='version', version="%%(prog)s %s" % str(version))
     parser.add_argument("--run_name", nargs='?', dest="RUN_NAME", type=str,
                         help="What do you want the tab delimited file to be called.?",
                         required=True)
@@ -232,7 +232,7 @@ def run_onecodex(fasta_sequences, onecodex_file):
                 warning_message = "Onecodex has timed out. Check connection."
                 print warning_message
             else:
-                logger = open(LOG_FILE, 'a+')
+                logger = open(LOGFILE, 'a+')
                 logger.write("Unknown error %s" % r.status_code)
                 logger.close()
         result = json.loads(r.text)

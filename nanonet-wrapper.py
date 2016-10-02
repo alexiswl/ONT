@@ -40,7 +40,7 @@ def get_commandline_params():
 
     parser = argparse.ArgumentParser(description=help_descriptor)
 
-    parser.add_argument('--version', action='version', version="%(prog)s %s" % str(version))
+    parser.add_argument('--version', action='version', version="%%(prog)s %s" % str(version))
     parser.add_argument("--run_name", nargs='?', dest="RUN_NAME", type=str,
                         help="This is the run name you wish to be present on all the fasta files.",
                         required=True)
