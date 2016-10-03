@@ -100,8 +100,8 @@
       <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="324" column="6" selection-start-line="324" selection-start-column="6" selection-end-line="324" selection-end-column="6" />
+            <state relative-caret-position="431">
+              <caret line="313" column="64" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -452,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1475455978836</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Start time to a global variable">
+      <created>1475456244813</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1475456244813</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -497,7 +504,8 @@
     <MESSAGE value="Adjusted line separators and fixed bug when printing version number." />
     <MESSAGE value="Fixed some hard-coded variables.&#10;" />
     <MESSAGE value="Glitch in producing yield read plot vs base plot Also adjusted file names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Glitch in producing yield read plot vs base plot Also adjusted file names" />
+    <MESSAGE value="Start time to a global variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start time to a global variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -769,8 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="324" column="6" selection-start-line="324" selection-start-column="6" selection-end-line="324" selection-end-column="6" />
+        <state relative-caret-position="431">
+          <caret line="313" column="64" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
           <folding />
         </state>
       </provider>

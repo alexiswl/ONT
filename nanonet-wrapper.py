@@ -306,6 +306,7 @@ def start_log():
     logger = open(LOG_FILE, 'a+')
     logger.write("Commencing nanonet wrapper at %s\n" % time.strftime("%c"))
 
+
 def end_log():
     end_time = time.time()
     logger = open(LOG_FILE, 'a+')
@@ -314,12 +315,23 @@ def end_log():
 
 
 def main():
+    # Get command line arguments
     args = get_commandline_params()
+
+    # Set command line variables and create directories
     set_commandline_variables(args)
     set_directories()
+
+    # Check no invalid symbols in the run name
     check_valid_symbols(RUN_NAME)
+
+    # Initial write to log
     start_log()
+
+    # Run nanonet
     run_nanonet_wrapper()
+
+    # Run finished or timed out. Finish log
     end_log()
 
 main()
