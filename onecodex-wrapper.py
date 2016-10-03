@@ -7,7 +7,7 @@ import json
 import argparse
 import time
 import sys
-from ete2 import NCBITaxa
+from ete3 import NCBITaxa
 
 ncbi = NCBITaxa()
 
