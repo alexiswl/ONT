@@ -243,8 +243,8 @@ def run_poretools_fastq():
 
 
 def run_poretools_metrics():
-    yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + "pass_reads.yield_plot.png"
-    yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + "pass_bases.yield_plot.png"
+    yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".pass_reads.yield_plot.png"
+    yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".pass_bases.yield_plot.png"
     hist_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".hist_plot.png"
     stats_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".stats.txt"
     stats_file_tmp = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".stats.txt.tmp"
@@ -256,7 +256,7 @@ def run_poretools_metrics():
 
     yield_base_command_options = ["yield_plot"]
     yield_base_command_options.append("--saveas %s" % yield_bases_file)
-    yield_base_command_options.append("--plot-type %s" % "reads")
+    yield_base_command_options.append("--plot-type %s" % "basesK")
     yield_base_command = "poretools %s %s 2>> %s" % (' '.join(yield_base_command_options), PASS_DIRECTORY, LOG_FILE)
 
     hist_command_options = ["hist"]
