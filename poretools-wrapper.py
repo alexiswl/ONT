@@ -321,7 +321,7 @@ def split_reads_by_attribute(new_fast5_files):
     datasets = {}
     datasets['basecall_1D_summary_dataset'] = '/Analyses/Basecall_1D_000/Summary'
     datasets['event_detection_dataset'] = '/Analyses/EventDetection_000/Summary'
-    datasets['calibration_dataset'] = '/Analyses/Calibration_Strand_000/Summary'
+    datasets['calibration_summary_dataset'] = '/Analyses/Calibration_Strand_000/Summary'
     if IS_1D:
         datasets['segment_linear_dataset'] = '/Analyses/Segment_Linear_000/Summary'
     else:
@@ -374,12 +374,9 @@ def split_reads_by_attribute(new_fast5_files):
                 elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "Exception thrown":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["2D_failed_quality_filters"]))
-                elif f[datasets['calibration_dataset']].attrs.values()[0] != "Workflow successful":
-                    print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
-                    os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
-                elif f[datasets['calibration_dataset']].attrs.values()[0] == "Workflow successful":
-                        print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
-                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
+                elif f[datasets['calibration_summary_dataset']].attrs.values()[0] \
+                        == "Calibration strand detected":
+                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
                 else:
                     # 2D Workflow was successful!!
                     if f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] != "Workflow successful":
