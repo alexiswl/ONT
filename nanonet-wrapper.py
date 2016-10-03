@@ -32,6 +32,7 @@ LOG_FILE = ""
 READS_PER_FASTA = 100
 START_TIME = time.time()
 
+
 def get_commandline_params():
     help_descriptor = "This is a comprehensive script which copies files from the dump folder." + \
                       "These are then placed in a temporary directory and read by nanonet which produces a " + \
