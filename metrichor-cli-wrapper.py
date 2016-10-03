@@ -26,7 +26,8 @@ START_TIME = ""
 END_TIME = ""
 RUN_NAME = ""
 WORKFLOW = ""
-WORKFLOW_CODES = {"2D_Basecalling": 1025, "WIMP_2D": 1042, "WIMP_1D": 1046, "2D_Basecalling_human_exome": 842}
+WORKFLOW_CODES = {"2D_Basecalling": 1025, "WIMP_2D": 1042, "WIMP_1D": 1046, "2D_Basecalling_human_exome": 842,
+                  "1D_Basecalling": 1024}
 DATE_PREFIX = str(time.strftime("%Y-%m-%d"))
 PREMATURE_RUNTIME = 1000  # seconds, if metrichor breaks before 20 minutes is up, you've probably got an error!
 

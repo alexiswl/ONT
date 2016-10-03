@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metrichor-cli-wrapper.py" afterPath="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +50,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="342" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="275" column="12" selection-start-line="275" selection-start-column="12" selection-end-line="275" selection-end-column="12" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -72,7 +72,7 @@
       <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1422">
+            <state relative-caret-position="-1167">
               <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
               <folding />
             </state>
@@ -82,18 +82,18 @@
       <file leaf-file-name="summarise_kraken_output.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/summarise_kraken_output.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="metrichor-cli-wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="metrichor-cli-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -109,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="382" column="113" selection-start-line="382" selection-start-column="113" selection-end-line="382" selection-end-column="113" />
+            <state relative-caret-position="1998">
+              <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -152,15 +152,15 @@
         <option value="$PROJECT_DIR$/summarise_kraken_output.R" />
         <option value="$PROJECT_DIR$/summarise_onecodex_output.R" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
-        <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
         <option value="Z:/scripts/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
+        <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1293" />
-    <option name="y" value="213" />
+    <option name="x" value="80" />
+    <option name="y" value="119" />
     <option name="width" value="1240" />
     <option name="height" value="765" />
   </component>
@@ -512,11 +512,25 @@
       <option name="project" value="LOCAL" />
       <updated>1475464188366</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fixed key error in split function&#10;">
+      <created>1475468870900</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1475468870900</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Reversed calibration and failed dataset files, sometimes calibration set not present if file failed quality.">
+      <created>1475469972070</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1475469972070</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1293" y="213" width="1240" height="765" extended-state="0" />
+    <frame x="80" y="119" width="1240" height="765" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13153595" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -565,7 +579,9 @@
     <MESSAGE value="Calibration strand coding fix" />
     <MESSAGE value="Removed fastq option for Metrichor cli wrapper as it does not deal well with corrupted files. Use my poretools-wrapper to extract the fastq instead." />
     <MESSAGE value="Rearranged calibration and failed dataset checker, this way failed calibration files are placed in the calibration folder rather than the failed quality folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged calibration and failed dataset checker, this way failed calibration files are placed in the calibration folder rather than the failed quality folder" />
+    <MESSAGE value="fixed key error in split function&#10;" />
+    <MESSAGE value="Reversed calibration and failed dataset files, sometimes calibration set not present if file failed quality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reversed calibration and failed dataset files, sometimes calibration set not present if file failed quality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -785,34 +801,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/summarise_kraken_output.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/summarise_onecodex_output.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1422">
-          <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -833,13 +825,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
+    <entry file="file://Z:/scripts/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="342" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="325">
+          <caret line="383" column="66" selection-start-line="383" selection-start-column="66" selection-end-line="383" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -851,18 +841,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/scripts/poretools-wrapper.py">
+    <entry file="file://$PROJECT_DIR$/summarise_kraken_output.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="383" column="66" selection-start-line="383" selection-start-column="66" selection-end-line="383" selection-end-column="66" />
+        <state relative-caret-position="255">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1167">
+          <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="275" column="12" selection-start-line="275" selection-start-column="12" selection-end-line="275" selection-end-column="12" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="382" column="113" selection-start-line="382" selection-start-column="113" selection-end-line="382" selection-end-column="113" />
+        <state relative-caret-position="1998">
+          <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
           <folding />
         </state>
       </provider>
