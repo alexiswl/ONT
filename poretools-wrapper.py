@@ -382,7 +382,7 @@ def split_reads_by_attribute(new_fast5_files):
                     if f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] != "Workflow successful":
                         print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                         os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                    elif f[datasets['calibration_dataset']].attrs.values()[0] != "Workflow successful":
+                    elif f[datasets['calibration_summary_dataset']].attrs.values()[0] != "Workflow successful":
                         print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                         os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                     else:
