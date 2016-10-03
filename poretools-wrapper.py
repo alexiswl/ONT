@@ -371,12 +371,12 @@ def split_reads_by_attribute(new_fast5_files):
                 elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "Exception thrown":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                elif f[datasets['calibration_summary_dataset']].attrs.values()[0] \
-                        == "Calibration strand detected":
-                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
                 elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "2D basecall failed quality filters":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["2D_failed_quality_filters"]))
+                elif f[datasets['calibration_summary_dataset']].attrs.values()[0] \
+                        == "Calibration strand detected":
+                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
                 else:
                     # 2D Workflow was successful!!
                     if f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] != "Workflow successful":
