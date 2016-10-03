@@ -146,7 +146,6 @@ def run_metrichor():
     metrichor_command_options.append("--apikey $MET_APIKEY")
     metrichor_command_options.append("--inputfolder %s" % READS_DIRECTORY)
     metrichor_command_options.append("--workflow %s" % WORKFLOW)
-    metrichor_command_options.append("--fastq")
 
     # Complete the metrichor command
     metrichor_command = "metrichor-cli %s 2>> %s" % (' '.join(metrichor_command_options), LOG_FILE)
