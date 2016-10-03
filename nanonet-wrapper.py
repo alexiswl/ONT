@@ -30,7 +30,7 @@ RUN_NAME = ""
 DATE_PREFIX = str(time.strftime("%Y-%m-%d"))
 LOG_FILE = ""
 READS_PER_FASTA = 100
-
+START_TIME = time.time()
 
 def get_commandline_params():
     help_descriptor = "This is a comprehensive script which copies files from the dump folder." + \
@@ -305,15 +305,12 @@ def run_nanonet(fast5_files):
 def start_log():
     logger = open(LOG_FILE, 'a+')
     logger.write("Commencing nanonet wrapper at %s\n" % time.strftime("%c"))
-    start_time = time.time()
-    return start_time
 
-
-def end_log(start_time):
+def end_log():
     end_time = time.time()
     logger = open(LOG_FILE, 'a+')
     logger.write("Complete nanonet wrapper at %s\n" % time.strftime("%c"))
-    logger.write("Total running time %s" % str(end_time - start_time))
+    logger.write("Total running time %s" % str(end_time - START_TIME))
 
 
 def main():
@@ -321,8 +318,8 @@ def main():
     set_commandline_variables(args)
     set_directories()
     check_valid_symbols(RUN_NAME)
-    start_time = start_log()
+    start_log()
     run_nanonet_wrapper()
-    end_log(start_time)
+    end_log()
 
 main()
