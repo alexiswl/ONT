@@ -257,7 +257,7 @@ def run_poretools_metrics():
 
     yield_base_command_options = ["yield_plot"]
     yield_base_command_options.append("--saveas %s" % yield_bases_file)
-    yield_base_command_options.append("--plot-type %s" % "bases")
+    yield_base_command_options.append("--plot-type %s" % "basepairs")
     yield_base_command = "poretools %s %s 2>> %s" % (' '.join(yield_base_command_options), PASS_DIRECTORY, LOG_FILE)
 
     hist_command_options = ["hist"]
