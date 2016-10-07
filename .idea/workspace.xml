@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metaphlan_run.py" afterPath="$PROJECT_DIR$/metaphlan_run.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -480,7 +479,13 @@
       <option name="project" value="LOCAL" />
       <updated>1475817933481</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Created a basic metaphlan_run.py to the package.">
+      <created>1475822636241</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1475822636241</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
