@@ -21,7 +21,29 @@ metaphlan_classify_command_options.append("--blastout")
 metaphlan_classify_command = "metaphlan.py %s %s %s" % (' '.join(metaphlan_classify_command_options),
                                                         fastq_file, classify_output)
 
-# Step 22 GraPhlAn visualisation of single and multiple samples
+# Step 2 GraPhlAn visualisation of single and multiple samples
+# Part 1 Metaphlan to Graphlan
+tree_file = classify_output + ".tree.txt"
+annot_file = classify_output + ".annot.txt"
 
+meta_to_graph_command_options = []
+meta_to_graph_command_options.append("--tree_file %s" % tree_file)
+meta_to_graph_command_options.append("--annot_file %s" % annot_file)
 
-if not os.path.isdir()
+meta_to_graph_command = "metaphlan2graphlan.py %s %s" % (' '.join(meta_to_graph_command_options), classify_output)
+
+# Part 2 Graphlan annotation
+xml_file = classify_output + ".xml"
+graphlan_annotation_command_options = []
+graphlan_annotation_command_options.append("--annot %s" % annot_file)
+graphlan_annotation_command_options.append("%s" % tree_file)
+
+graphlan_annotation_command = "graphlan_annotate.py %s %s" % \
+                              (' '.join(graphlan_annotation_command_options), xml_file)
+
+# Part 3 Graphlan output
+output_png = classify_output + ".png"
+graphlan_command_options = []
+graphlan_command_options.append("--dpi 200")
+graphlan_command_options.append("%s" % xml_file)
+graphlan_command = "graphlan.py %s %s" % (' '.join(graphlan_command_options), output_png)
