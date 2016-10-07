@@ -185,7 +185,8 @@ def onecodex_wrapper():
         patience_counter = 0
         while len(fasta_files) == 0:
             fasta_files = [FASTA_DIRECTORY + filename for filename in os.listdir(FASTA_DIRECTORY)
-                           if filename.endswith((".fa", ".fasta", ".fna")) and filename not in fasta_files_old]
+                           if filename.endswith((".fa", ".fasta", ".fna")) and
+                           FASTA_DIRECTORY + filename not in fasta_files_old]
             if len(fasta_files) != 0:
                 break
             # Important to transfer the oldest files first.

@@ -30,8 +30,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="188" column="77" selection-start-line="188" selection-start-column="77" selection-end-line="188" selection-end-column="77" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -105,8 +105,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
-    <option name="y" value="262" />
+    <option name="x" value="1315" />
+    <option name="y" value="103" />
     <option name="width" value="1240" />
     <option name="height" value="740" />
   </component>
@@ -532,11 +532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475809870718</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database.">
+      <created>1475814131573</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1475814131573</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="262" width="1240" height="740" extended-state="0" />
+    <frame x="1315" y="103" width="1240" height="740" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13144758" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -591,7 +598,8 @@
     <MESSAGE value="Invalid choice on yield plot has been fixed.&#10;" />
     <MESSAGE value="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement." />
     <MESSAGE value="Suppress warnings on lsof so that output always returns an int" />
-    <option name="LAST_COMMIT_MESSAGE" value="Suppress warnings on lsof so that output always returns an int" />
+    <MESSAGE value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -907,6 +915,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="286" column="32" selection-start-line="286" selection-start-column="32" selection-end-line="286" selection-end-column="32" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -927,20 +945,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="286" column="32" selection-start-line="286" selection-start-column="32" selection-end-line="286" selection-end-column="32" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="188" column="77" selection-start-line="188" selection-start-column="77" selection-end-line="188" selection-end-column="77" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>
