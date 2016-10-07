@@ -6,7 +6,7 @@ import argparse
 import sys
 import commands
 
-from ete2 import NCBITaxa
+from ete3 import NCBITaxa
 ncbi = NCBITaxa()
 
 
