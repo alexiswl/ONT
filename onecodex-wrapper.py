@@ -219,7 +219,14 @@ def run_onecodex(fasta_sequences, onecodex_file):
     for fasta_sequence in fasta_sequences:
         name, sequence = fasta_sequence.id, str(fasta_sequence.seq)
         payload = {'sequence': sequence}
-        r = requests.post(ONECODEX_SEARCH_HTML, payload, auth=AUTH, timeout=TIMEOUT)
+        try:
+            r = requests.post(ONECODEX_SEARCH_HTML, payload, auth=AUTH, timeout=TIMEOUT)
+        except requests.exceptions.ConnectionError:
+            print "Connection error!"
+            print "This is the culprit read %s" % fasta_sequence
+        except requests.exceptions.SSLError:
+            print "SSL Error"
+            print "This is the culprit read %s" % fasta_sequence
         if r.status_code != ONECODEX_DICT['Good']:
             if r.status_code == ONECODEX_DICT['No api key']:
                 error_message = "No api key has been provided. Please define your" + \
