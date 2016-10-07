@@ -265,12 +265,15 @@ def run_taxa(summary_file, taxa_file):
     with open(summary_file, "r") as f:
         # Convert tax_ids to lineage
         for line in f:
-            line = line.rstrip()
-            tax_id, freq = line.split("\t")
-            lineage = ncbi.get_lineage(tax_id)
-            names = ncbi.get_taxid_translator(lineage)
-            lineage_names = [names[taxid] for taxid in lineage]
-            taxa_file_h.write(freq + "\t" + "\t".join(lineage_names[1:]) + "\n")
+            try:
+                line = line.rstrip()
+                tax_id, freq = line.split("\t")
+                lineage = ncbi.get_lineage(tax_id)
+                names = ncbi.get_taxid_translator(lineage)
+                lineage_names = [names[taxid] for taxid in lineage]
+                taxa_file_h.write(freq + "\t" + "\t".join(lineage_names[1:]) + "\n")
+            except ValueError:
+                print "Error classifying tax_id %s." % tax_id
     taxa_file_h.close()
 
 
