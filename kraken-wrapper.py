@@ -239,7 +239,7 @@ def run_kraken_pipeline(fasta_files):
     # Use lsof | grep latest fasta file to see if the last file is currently being written to.
     # If so, remove it from the group.
     latest_fasta_file = fasta_files[len(fasta_files)-1]
-    lsof_command = "lsof | grep %s | wc -l" % latest_fasta_file
+    lsof_command = "lsof -w | grep %s | wc -l" % latest_fasta_file
 
     # Run the system command through the commands module so we can obtain the output of the command.
     lsof_status, lsof_output = commands.getstatusoutput(lsof_command)
