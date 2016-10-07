@@ -224,9 +224,11 @@ def run_onecodex(fasta_sequences, onecodex_file):
         except requests.exceptions.ConnectionError:
             print "Connection error!"
             print "This is the culprit read %s" % fasta_sequence
+            continue
         except requests.exceptions.SSLError:
             print "SSL Error"
             print "This is the culprit read %s" % fasta_sequence
+            continue
         if r.status_code != ONECODEX_DICT['Good']:
             if r.status_code == ONECODEX_DICT['No api key']:
                 error_message = "No api key has been provided. Please define your" + \

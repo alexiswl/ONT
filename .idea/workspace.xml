@@ -30,8 +30,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="228" column="64" selection-start-line="228" selection-start-column="64" selection-end-line="228" selection-end-column="64" />
+            <state relative-caret-position="255">
+              <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -103,8 +103,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1349" />
-    <option name="y" value="434" />
+    <option name="x" value="1302" />
+    <option name="y" value="228" />
     <option name="width" value="1240" />
     <option name="height" value="740" />
   </component>
@@ -491,11 +491,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475492107954</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement.">
+      <created>1475806206641</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1475806206641</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1349" y="434" width="1240" height="740" extended-state="0" />
+    <frame x="1302" y="228" width="1240" height="740" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13144758" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -895,8 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="228" column="64" selection-start-line="228" selection-start-column="64" selection-end-line="228" selection-end-column="64" />
+        <state relative-caret-position="255">
+          <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>
