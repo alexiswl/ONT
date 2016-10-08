@@ -30,8 +30,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="251" column="19" selection-start-line="251" selection-start-column="19" selection-end-line="251" selection-end-column="19" />
+            <state relative-caret-position="187">
+              <caret line="251" column="18" selection-start-line="251" selection-start-column="18" selection-end-line="251" selection-end-column="18" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -546,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1475814821701</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Catching a KeyError in the requests stage. Not sure what the problem is.">
+      <created>1475892815101</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1475892815101</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -607,7 +614,8 @@
     <MESSAGE value="Suppress warnings on lsof so that output always returns an int" />
     <MESSAGE value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
     <MESSAGE value="Fixed bug that didn't properly check the completion file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug that didn't properly check the completion file." />
+    <MESSAGE value="Catching a KeyError in the requests stage. Not sure what the problem is." />
+    <option name="LAST_COMMIT_MESSAGE" value="Catching a KeyError in the requests stage. Not sure what the problem is." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -955,8 +963,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="251" column="19" selection-start-line="251" selection-start-column="19" selection-end-line="251" selection-end-column="19" />
+        <state relative-caret-position="187">
+          <caret line="251" column="18" selection-start-line="251" selection-start-column="18" selection-end-line="251" selection-end-column="18" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>

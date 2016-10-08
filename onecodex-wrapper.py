@@ -248,8 +248,8 @@ def run_onecodex(fasta_sequences, onecodex_file):
         result = json.loads(r.text)
         try:
             tax_id = result['tax_id']
-        except: KeyError
-            print  "Unknown error. Skipping read."
+        except KeyError:
+            print "Unknown error. Skipping read. %s" % name
         SEQUENCES_READ += 1
         if tax_id != 0:
             SEQUENCES_CLASSIFIED += 1
