@@ -16,6 +16,7 @@ metaphlan_classify_command_options = []
 metaphlan_classify_command_options.append("--blastdb blastdb/mpa")
 metaphlan_classify_command_options.append("--nproc 5")
 metaphlan_classify_command_options.append("--blastout")
+metaphlan_classify_command_options.append("--inputtype fastq")
 metaphlan_classify_command = "metaphlan.py %s %s %s" % (' '.join(metaphlan_classify_command_options),
                                                         fastq_file, classify_output)
 os.system(metaphlan_classify_command)
