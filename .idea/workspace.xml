@@ -42,8 +42,8 @@
       <file leaf-file-name="metaphlan_run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/metaphlan_run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+            <state relative-caret-position="850">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,11 +76,21 @@
       <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="320" column="42" selection-start-line="320" selection-start-column="42" selection-end-line="320" selection-end-column="42" />
+            <state relative-caret-position="539">
+              <caret line="305" column="35" selection-start-line="305" selection-start-column="35" selection-end-line="305" selection-end-column="35" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metrichor-cli-setpaths.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metrichor-cli-setpaths.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,15 +119,15 @@
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
         <option value="Z:/scripts/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
-        <option value="$PROJECT_DIR$/kraken-wrapper.py" />
         <option value="$PROJECT_DIR$/onecodex-wrapper.py" />
+        <option value="$PROJECT_DIR$/kraken-wrapper.py" />
         <option value="$PROJECT_DIR$/metaphlan_run.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="51" />
-    <option name="y" value="46" />
+    <option name="x" value="46" />
+    <option name="y" value="22" />
     <option name="width" value="1240" />
     <option name="height" value="740" />
   </component>
@@ -585,11 +595,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475894985824</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Added input type to metaphlan run">
+      <created>1475895234569</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1475895234569</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="46" width="1240" height="740" extended-state="0" />
+    <frame x="46" y="22" width="1240" height="740" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13144758" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -665,7 +682,8 @@
     <MESSAGE value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
     <MESSAGE value="Fixed bug that didn't properly check the completion file." />
     <MESSAGE value="Catching a KeyError in the requests stage. Not sure what the problem is." />
-    <option name="LAST_COMMIT_MESSAGE" value="Catching a KeyError in the requests stage. Not sure what the problem is." />
+    <MESSAGE value="Added input type to metaphlan run" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added input type to metaphlan run" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -918,13 +936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metrichor-cli-setpaths.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1001,16 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="320" column="42" selection-start-line="320" selection-start-column="42" selection-end-line="320" selection-end-column="42" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1021,10 +1022,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="305" column="35" selection-start-line="305" selection-start-column="35" selection-end-line="305" selection-end-column="35" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrichor-cli-setpaths.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/metaphlan_run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+        <state relative-caret-position="850">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
