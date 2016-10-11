@@ -12,7 +12,7 @@ datasets['segment_linear_dataset'] = '/Analyses/Segment_Linear_000/Summary'
 datasets['basecall_2D_summary_dataset'] = '/Analyses/Basecall_2D_000/Summary'
 datasets['hairpin_summary_dataset'] = '/Analyses/Hairpin_Split_000/Summary'
 
-main_folder = "/data/Bioinfo/bioinfo-proj-alexis/2016_08_16_E_COLI_R9/"
+main_folder = "/data/Bioinfo/bioinfo-proj-alexis/2016_08_16_E_COLI_R9/reads/downloads/fail/"
 folders = [name for name in os.listdir(main_folder) if os.path.isdir(os.path.join(main_folder, name))]
 
 for folder in folders:
