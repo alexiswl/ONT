@@ -1,4 +1,4 @@
-#!/usr/bin/python env
+#!/usr/bin/env python
 
 import h5py
 import os
@@ -19,7 +19,7 @@ for folder in folders:
     folder_file = folder + "breakdown.txt"
     folder_file_h = open(folder_file, "w+")
 
-    for fast5_file in os.listdir(folder):
+    for fast5_file in os.listdir(os.path.join(main_folder, folder)):
         if not os.path.isfile(fast5_file) or not fast5_file.endswith(".fast5"):
             continue
         # Check to ensure that the file is not corrupt.
