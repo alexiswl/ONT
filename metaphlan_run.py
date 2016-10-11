@@ -15,11 +15,11 @@ if not os.path.isdir(metaphlan_directory):
 
 metaphlan_classify_command_options = []
 metaphlan_classify_command_options.append("--nproc 5")
-metaphlan_classify_command_options.append("--input_type fastq")
+metaphlan_classify_command_options.append("--input_type multifastq")
 metaphlan_classify_command_options.append("--blastdb blastdb/mpa")
 
 metaphlan_classify_command = "metaphlan.py %s %s > %s" % (' '.join(metaphlan_classify_command_options),
-                                                          fastq_file, run_name)
+                                                          fastq_file, classified_output)
 os.system(metaphlan_classify_command)
 # Step 2 GraPhlAn visualisation of single and multiple samples
 # Part 1 Metaphlan to Graphlan
@@ -29,7 +29,7 @@ annot_file = run_name + ".annot.txt"
 meta_to_graph_command_options = []
 meta_to_graph_command_options.append("--tree_file %s" % tree_file)
 meta_to_graph_command_options.append("--annot_file %s" % annot_file)
-meta_to_graph_command = "metaphlan2graphlan.py %s %s" % (' '.join(meta_to_graph_command_options), run_name)
+meta_to_graph_command = "metaphlan2graphlan.py %s %s" % (' '.join(meta_to_graph_command_options), classified_output)
 os.system(meta_to_graph_command)
 
 # Part 2 Graphlan annotation
