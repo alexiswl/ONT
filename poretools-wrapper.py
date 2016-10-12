@@ -381,9 +381,7 @@ def split_reads_by_attribute(new_fast5_files):
                 elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall could not be performed":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_basecall_not_performed"]))
-                elif f[DATASETS['calibration_summary_dataset']].attrs.values()[0] \
-                        == "Calibration strand detected":
-                    os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
+                elif check_calibration_strand(fast5_file, f):
                     detected_calibration_strand(fast5_file, f)
                 elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "2D basecall could not be performed":
@@ -408,6 +406,16 @@ def split_reads_by_attribute(new_fast5_files):
             os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
         except KeyError:
             os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
+
+
+def check_calibration_strand(fast5_file, f):
+    try:
+        if f[DATASETS['calibration_summary_dataset']].attrs.values()[0] == \
+                "Calibration strand detected":
+            return True
+        return False
+    except KeyError:
+        return False
 
 
 def detected_calibration_strand(fast5_file, f):
