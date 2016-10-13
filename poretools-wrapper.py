@@ -22,7 +22,9 @@ FASTQ_DIRECTORY = ""
 PORETOOLS_DIRECTORY = ""
 LOG_DIRECTORY = ""
 FAIL_DIRECTORY = ""
+DATASETS = {}
 FAIL_SUB_FOLDERS = {}
+CALIBRATION_SUB_FOLDERS = {}
 PASS_DIRECTORY = ""
 
 # Declare global files
@@ -147,16 +149,23 @@ def set_directories():
 
     fail_sub_folders = ('Corrupted_files', 'No_template_data', 'Unknown_error', '1D_basecall_not_performed',
                         'Calibration_strand_detected')
+    calibration_sub_folders = ('Passed_quality',)
     if IS_1D:
         fail_sub_folders = fail_sub_folders + ('1D_failed_quality_filters',)
+        calibration_sub_folders += ('1D_failed_quality_filters',)
     else:
-        fail_sub_folders = fail_sub_folders + ('No_complement_data', '2D_basecall_not_performed',
-                                               '2D_failed_quality_filters')
+        fail_sub_folders += ('No_complement_data', '2D_basecall_not_performed', '2D_failed_quality_filters')
+        calibration_sub_folders += ('2D_basecall_not_performed', '2D_failed_quality_filters')
 
     for folder in fail_sub_folders:
         FAIL_SUB_FOLDERS[folder] = FAIL_DIRECTORY + folder + "/"
         if not os.path.isdir(FAIL_SUB_FOLDERS[folder]):
             os.mkdir(FAIL_SUB_FOLDERS[folder])
+
+    for folder in calibration_sub_folders:
+        CALIBRATION_SUB_FOLDERS[folder] = FAIL_SUB_FOLDERS['Calibration_strand_detected'] + folder + "/"
+        if not os.path.isdir(CALIBRATION_SUB_FOLDERS[folder]):
+            os.mkdir(CALIBRATION_SUB_FOLDERS[folder])
 
 
 def check_valid_symbols(string):
@@ -179,6 +188,18 @@ def check_completion_file():
             line = line.rstrip()
             old_fast5_files.append(line)
     return old_fast5_files
+
+
+def set_datasets():
+    global DATASETS
+    DATASETS['basecall_1D_summary_dataset'] = '/Analyses/Basecall_1D_000/Summary'
+    DATASETS['event_detection_dataset'] = '/Analyses/EventDetection_000/Summary'
+    DATASETS['calibration_summary_dataset'] = '/Analyses/Calibration_Strand_000/Summary'
+    if IS_1D:
+        DATASETS['segment_linear_dataset'] = '/Analyses/Segment_Linear_000/Summary'
+    else:
+        DATASETS['basecall_2D_summary_dataset'] = '/Analyses/Basecall_2D_000/Summary'
+        DATASETS['hairpin_summary_dataset'] = '/Analyses/Hairpin_Split_000/Summary'
 
 
 def get_new_fast5_files():
@@ -296,7 +317,7 @@ def run_poretools_wrapper():
 
         # Is latest file still being written to? Could be multiple files, generates recursive loop.
         while True:
-            latest_fast5_file = new_fast5_files[len(new_fast5_files)-1]
+            latest_fast5_file = new_fast5_files[len(new_fast5_files) - 1]
             if not still_writing(latest_fast5_file):
                 break
             print("Latest fast5 file still being written to. Removing file from set of fasta files")
@@ -318,16 +339,6 @@ def run_poretools_wrapper():
 
 
 def split_reads_by_attribute(new_fast5_files):
-    datasets = {}
-    datasets['basecall_1D_summary_dataset'] = '/Analyses/Basecall_1D_000/Summary'
-    datasets['event_detection_dataset'] = '/Analyses/EventDetection_000/Summary'
-    datasets['calibration_summary_dataset'] = '/Analyses/Calibration_Strand_000/Summary'
-    if IS_1D:
-        datasets['segment_linear_dataset'] = '/Analyses/Segment_Linear_000/Summary'
-    else:
-        datasets['basecall_2D_summary_dataset'] = '/Analyses/Basecall_2D_000/Summary'
-        datasets['hairpin_summary_dataset'] = '/Analyses/Hairpin_Split_000/Summary'
-
     for fast5_file in new_fast5_files:
         if not os.path.isfile(fast5_file):
             continue
@@ -340,49 +351,53 @@ def split_reads_by_attribute(new_fast5_files):
         # File not corrupt, move to folders accordingly.
         try:
             if IS_1D:
-                if f[datasets['segment_linear_dataset']].attrs.values()[0] \
+                if f[DATASETS['segment_linear_dataset']].attrs.values()[0] \
                         == "No template data found":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["No_template_data"]))
-                elif f[datasets['basecall_1D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall could not be performed":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_basecall_not_performed"]))
-                elif f[datasets['basecall_1D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall failed quality filters":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_failed_quality_filters"]))
                 else:
-                    # 1D Workflow was successful!
-                    if not f[datasets['basecall_1D_summary_dataset']].attrs.values()[0] == "Workflow successful":
-                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                    else:
-                        os.system("mv %s %s" % (fast5_file, PASS_DIRECTORY))
+                    try:
+                        if f[DATASETS['calibration_summary_dataset']].attrs.values()[0] \
+                                == "Calibration_strand_detected":
+                            detected_calibration_strand(fast5_file, f)
+                    except KeyError:  # No calibration strand detected.
+                        # 1D Workflow was successful!
+                        if not f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] == "Workflow successful":
+                            os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
+                        else:
+                            os.system("mv %s %s" % (fast5_file, PASS_DIRECTORY))
             else:
-                if f[datasets['hairpin_summary_dataset']].attrs.values()[0] \
+                if f[DATASETS['hairpin_summary_dataset']].attrs.values()[0] \
                         == "No template data found":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["No_template_data"]))
-                elif f[datasets['basecall_1D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "No complement data found":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["No_complement_data"]))
-                elif f[datasets['basecall_1D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall could not be performed":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_basecall_not_performed"]))
-                elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
+                elif check_calibration_strand(fast5_file, f):
+                    detected_calibration_strand(fast5_file, f)
+                elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "2D basecall could not be performed":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["2D_basecall_not_performed"]))
-                elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "Exception thrown":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                elif f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] \
+                elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "2D basecall failed quality filters":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["2D_failed_quality_filters"]))
-                elif f[datasets['calibration_summary_dataset']].attrs.values()[0] \
-                        == "Calibration strand detected":
-                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Calibration_strand_detected"]))
                 else:
                     # 2D Workflow was successful!!
-                    if f[datasets['basecall_2D_summary_dataset']].attrs.values()[0] != "Workflow successful":
+                    if f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] != "Workflow successful":
                         print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                         os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                    elif f[datasets['calibration_summary_dataset']].attrs.values()[0] != "Workflow successful":
+                    elif f[DATASETS['calibration_summary_dataset']].attrs.values()[0] != "Workflow successful":
                         print("Unknown error, moving %s to %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                         os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
                     else:
@@ -390,7 +405,38 @@ def split_reads_by_attribute(new_fast5_files):
         except IndexError:
             os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
         except KeyError:
-            os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
+            os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
+
+
+def check_calibration_strand(fast5_file, f):
+    try:
+        if f[DATASETS['calibration_summary_dataset']].attrs.values()[0] == \
+                "Calibration strand detected":
+            return True
+        return False
+    except KeyError:
+        return False
+
+
+def detected_calibration_strand(fast5_file, f):
+    if IS_1D:
+        if f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
+                == "1D_failed_quality_filters":
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["1D_failed_quality_filters"]))
+        else:
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["Passed_quality"]))
+    else:
+        if f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
+                == "2D basecall could not be performed":
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["2D_basecall_not_performed"]))
+        elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
+                == "Exception thrown":
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["Unknown_error"]))
+        elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
+                == "2D basecall failed quality filters":
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["2D_failed_quality_filters"]))
+        else:
+            os.system("mv %s %s" % (fast5_file, CALIBRATION_SUB_FOLDERS["Passed_quality"]))
 
 
 def main():
@@ -408,11 +454,15 @@ def main():
     # Check for invalid symbols in run_name
     check_valid_symbols(RUN_NAME)
 
+    # Set the datasets based on run type
+    set_datasets()
+
     # Run poretools
     if not POST_SPLIT:
         run_poretools_wrapper()
     else:
         run_poretools_fastq()
         run_poretools_metrics()
+
 
 main()
