@@ -21,6 +21,7 @@ DUMP_DIRECTORY = ""
 READS_DIRECTORY = ""
 FASTA_DIRECTORY = ""
 DOWNLOADS_DIRECTORY = ""
+FASTA_1D_SUBDIRECTORY = ""
 FASTA_2D_SUBDIRECTORIES = {}
 
 # Declare global miscellaneous
@@ -103,7 +104,7 @@ def check_valid_symbols(string):
 
 
 def set_directories():
-    global WORKING_DIRECTORY, DUMP_DIRECTORY, READS_DIRECTORY, FASTA_DIRECTORY
+    global WORKING_DIRECTORY, DUMP_DIRECTORY, READS_DIRECTORY, FASTA_DIRECTORY, FASTA_1D_SUBDIRECTORY
     global LOG_FILE, THREAD_COUNT, WATCH
     # Checking to see if working directory has been defined
     if not WORKING_DIRECTORY:
@@ -155,7 +156,10 @@ def set_directories():
         print(general_message)
 
     FASTA_DIRECTORY = os.path.abspath(FASTA_DIRECTORY) + "/"
-
+    if IS_1D:
+        FASTA_1D_SUBDIRECTORY = FASTA_DIRECTORY + "1D/"
+        if not os.path.isdir(FASTA_1D_SUBDIRECTORY):
+            os.mkdir(FASTA_1D_SUBDIRECTORY)
     if not IS_1D:
         set_2d_subdirectories()
 
@@ -289,10 +293,9 @@ def run_nanonet_wrapper():
 
 
 def run_nanonet(fast5_files):
-    # Create a tmp_directory to call fast5 files in
     two_d_prefix = "%s%s_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
     one_d_prefix = "%s%s_1D_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
-
+    # Create a tmp_directory to call fast5 files in
     # Run nanonet command on tmp_nanonet_directory
     tmp_nanonet_directory = "%s%s/" % (READS_DIRECTORY, get_time())
     os.mkdir(tmp_nanonet_directory)
@@ -332,18 +335,13 @@ def run_nanonet(fast5_files):
         for fast5_file in os.listdir(tmp_nanonet_directory):
             shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
         os.rmdir(tmp_nanonet_directory)
-    if not IS_1D:
-        split_fasta_by_type()
-
-
-def split_fasta_by_type():
-    for fastafile in os.listdir(FASTA_DIRECTORY):
-        if fastafile.endswith("2D.fasta"):
-            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['2D'])
-        elif fastafile.endswith("tmp.fasta"):
-            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['Template'])
-        else:
-            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['Complement'])
+    # Move fasta files to the respective sub directories.
+    if IS_1D:
+        shutil.move(FASTA_DIRECTORY + one_d_prefix + ".fasta", FASTA_1D_SUBDIRECTORY)
+    else:
+        shutil.move(FASTA_DIRECTORY + two_d_prefix + "2D.fasta", FASTA_2D_SUBDIRECTORIES['2D'])
+        shutil.move(FASTA_DIRECTORY + two_d_prefix + "tmp.fasta", FASTA_2D_SUBDIRECTORIES['Template'])
+        shutil.move(FASTA_DIRECTORY + two_d_prefix + "comp.fasta", FASTA_2D_SUBDIRECTORIES['Complement'])
 
 
 def start_log():
