@@ -21,7 +21,7 @@ DUMP_DIRECTORY = ""
 READS_DIRECTORY = ""
 FASTA_DIRECTORY = ""
 DOWNLOADS_DIRECTORY = ""
-FASTA_2D_SUBDIRECTORIES = ()
+FASTA_2D_SUBDIRECTORIES = {}
 
 # Declare global miscellaneous
 version = 1.1
@@ -182,7 +182,9 @@ def set_directories():
 
 def set_2d_subdirectories():
     global FASTA_2D_SUBDIRECTORIES
-    FASTA_2D_SUBDIRECTORIES = ('2D', 'Template', 'Complement')
+    FASTA_2D_SUBDIRECTORIES = {"2D": FASTA_DIRECTORY + "2D/", "Template": FASTA_DIRECTORY + "Template/",
+                               "Complement": FASTA_DIRECTORY + "Complement/"}
+
     for folder in FASTA_2D_SUBDIRECTORIES:
         if not os.path.isdir(FASTA_DIRECTORY + folder):
             os.mkdir(FASTA_DIRECTORY + folder)
@@ -330,6 +332,18 @@ def run_nanonet(fast5_files):
         for fast5_file in os.listdir(tmp_nanonet_directory):
             shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
         os.rmdir(tmp_nanonet_directory)
+    if not IS_1D:
+        split_fasta_by_type()
+
+
+def split_fasta_by_type():
+    for fastafile in os.listdir(FASTA_DIRECTORY):
+        if fastafile.endswith("2D.fasta"):
+            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['2D'])
+        elif fastafile.endswith("tmp.fasta"):
+            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['Template'])
+        else:
+            shutil.move(FASTA_DIRECTORY + fastafile, FASTA_2D_SUBDIRECTORIES['Complement'])
 
 
 def start_log():
