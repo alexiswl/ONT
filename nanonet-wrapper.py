@@ -21,6 +21,7 @@ DUMP_DIRECTORY = ""
 READS_DIRECTORY = ""
 FASTA_DIRECTORY = ""
 DOWNLOADS_DIRECTORY = ""
+FASTA_2D_SUBDIRECTORIES = ()
 
 # Declare global miscellaneous
 version = 1.1
@@ -31,6 +32,7 @@ DATE_PREFIX = str(time.strftime("%Y-%m-%d"))
 LOG_FILE = ""
 READS_PER_FASTA = 100
 START_TIME = time.time()
+IS_1D = False
 
 
 def get_commandline_params():
@@ -49,10 +51,11 @@ def get_commandline_params():
                         help="This is the main directory." +
                              "This directory is generally the parent directory of the dump folder." +
                              "If not specified, this is the current directory.")
+    parser.add_argument("--basecalling_type", nargs='?', dest="IS_1D", choices=('1D', '2D'),
+                        help="Which basecalling type would you like to use?")
     parser.add_argument("--dump_directory", nargs='?', dest="DUMP_DIRECTORY", type=str,
                         help="This is the directory which fast5 files are being placed in to." +
                              "If not specified, this will <working_directory>/dump")
-
     parser.add_argument("--reads_directory", nargs='?', dest="READS_DIRECTORY", type=str,
                         help="This is the directory in which the reads will be placed in to." +
                              "If not specified, will be a created within the working directory.")
@@ -73,7 +76,7 @@ def get_commandline_params():
 
 def set_commandline_variables(args):
     global WORKING_DIRECTORY, DOWNLOADS_DIRECTORY, DUMP_DIRECTORY, READS_DIRECTORY, FASTA_DIRECTORY
-    global RUN_NAME, WATCH, THREAD_COUNT, LOG_FILE
+    global RUN_NAME, WATCH, THREAD_COUNT, LOG_FILE, IS_1D
     RUN_NAME = args.RUN_NAME
     WORKING_DIRECTORY = args.WORKING_DIRECTORY
     DUMP_DIRECTORY = args.DUMP_DIRECTORY
@@ -82,6 +85,8 @@ def set_commandline_variables(args):
     THREAD_COUNT = args.THREAD_COUNT
     WATCH = args.WATCH
     LOG_FILE = args.LOG_FILE
+    if args.IS_1D == "1D":
+        IS_1D = True
 
 
 def get_time():
@@ -148,7 +153,11 @@ def set_directories():
             os.makedirs(FASTA_DIRECTORY)
         general_message = "Fasta directory has not been specified. Using %s \n" % FASTA_DIRECTORY
         print(general_message)
+
     FASTA_DIRECTORY = os.path.abspath(FASTA_DIRECTORY) + "/"
+
+    if not IS_1D:
+        set_2d_subdirectories()
 
     if not THREAD_COUNT:
         THREAD_COUNT = THREAD_COUNT_DEFAULT
@@ -169,6 +178,14 @@ def set_directories():
         if not os.path.isdir(log_directory):
             os.mkdir(log_directory)
         LOG_FILE = log_directory + DATE_PREFIX + "_" + RUN_NAME + ".nanonet.log"
+
+
+def set_2d_subdirectories():
+    global FASTA_2D_SUBDIRECTORIES
+    FASTA_2D_SUBDIRECTORIES = ('2D', 'Template', 'Complement')
+    for folder in FASTA_2D_SUBDIRECTORIES:
+        if not os.path.isdir(FASTA_DIRECTORY + folder):
+            os.mkdir(FASTA_DIRECTORY + folder)
 
 
 def initialise_dictionary():
@@ -271,7 +288,8 @@ def run_nanonet_wrapper():
 
 def run_nanonet(fast5_files):
     # Create a tmp_directory to call fast5 files in
-    fasta_file = "%s%s_1D_%s.fasta" % (FASTA_DIRECTORY, RUN_NAME, get_time())
+    two_d_prefix = "%s%s_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
+    one_d_prefix = "%s%s_1D_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
 
     # Run nanonet command on tmp_nanonet_directory
     tmp_nanonet_directory = "%s%s/" % (READS_DIRECTORY, get_time())
@@ -281,23 +299,34 @@ def run_nanonet(fast5_files):
     for index, read in enumerate(fast5_files):
         shutil.copy2(DUMP_DIRECTORY + read, tmp_nanonet_directory)
         if (index+1) % READS_PER_FASTA == 0:
-            nanonet_command = "nanonetcall --jobs %d %s 1> %s 2>> %s" % \
-                              (THREAD_COUNT, tmp_nanonet_directory, fasta_file, LOG_FILE)
+            if IS_1D:
+                nanonet_command = "nanonetcall --jobs %d %s %s.fasta 2>> %s" % \
+                              (THREAD_COUNT, tmp_nanonet_directory, one_d_prefix, LOG_FILE)
+            else:
+                nanonet_command = "nanonet2d --jobs %d %s %s 2>> %s" % \
+                                  (THREAD_COUNT, tmp_nanonet_directory, two_d_prefix, LOG_FILE)
             os.system(nanonet_command)
+            # Now move the files to the reads folder and create another tmp directory
+            # if there are any files left.
             for fast5_file in os.listdir(tmp_nanonet_directory):
                 shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
             os.rmdir(tmp_nanonet_directory)
             tmp_nanonet_directory = "%s%s/" % (READS_DIRECTORY, get_time())
-            fasta_file = "%s%s_1D_%s.fasta" % (FASTA_DIRECTORY, RUN_NAME, get_time())
+            two_d_prefix = "%s%s_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
+            one_d_prefix = "%s%s_1D_%s" % (FASTA_DIRECTORY, RUN_NAME, get_time())
             if index != len(fast5_files) - 1:
                 os.mkdir(tmp_nanonet_directory)
-                fasta_file = "%s%s_1D_%s.fasta" % (FASTA_DIRECTORY, RUN_NAME, get_time())
 
     # Run nanonet command on remainder of files:
     if os.path.isdir(tmp_nanonet_directory):
-        nanonet_command = "nanonetcall --jobs %d %s 1> %s 2>> %s" % \
-                          (THREAD_COUNT, tmp_nanonet_directory, fasta_file, LOG_FILE)
+        if IS_1D:
+            nanonet_command = "nanonetcall --jobs %d %s %s.fasta 2>> %s" % \
+                          (THREAD_COUNT, tmp_nanonet_directory, one_d_prefix, LOG_FILE)
+        else:
+            nanonet_command = "nanonet2d --jobs %d %s %s 2>> %s" % \
+                              (THREAD_COUNT, tmp_nanonet_directory, two_d_prefix, LOG_FILE)
         os.system(nanonet_command)
+        # Move the files to the reads folder.
         for fast5_file in os.listdir(tmp_nanonet_directory):
             shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
         os.rmdir(tmp_nanonet_directory)
