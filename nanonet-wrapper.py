@@ -4,6 +4,7 @@ import time
 import shutil
 import argparse
 import sys
+import commands
 
 # This script is designed to copy fast5 files from the 'dump' folder.
 # Perform a rapid 1D analysis on the files using nanonet and then place them in the reads folder.
@@ -363,9 +364,15 @@ def start_log():
 
 def end_log():
     end_time = time.time()
+    sys_output, reads_processed_per_file = commands.getstatusoutput("grep ^Processed %s | cut -d ' ' -f 2" % LOG_FILE)
+    total_reads_processed = 0
+    reads_processed_as_array = reads_processed_per_file.split('\n')
+    for num in reads_processed_as_array:
+        total_reads_processed += num
     logger = open(LOG_FILE, 'a+')
     logger.write("Complete nanonet wrapper at %s\n" % time.strftime("%c"))
-    logger.write("Total running time %s" % str(end_time - START_TIME))
+    logger.write("Processed a total of %d reads.\n" % total_reads_processed)
+    logger.write("Total running time %d." % str(end_time - START_TIME))
 
 
 

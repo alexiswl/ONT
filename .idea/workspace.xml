@@ -4,7 +4,6 @@
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nanonet-wrapper.py" afterPath="$PROJECT_DIR$/nanonet-wrapper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,9 +42,11 @@
       <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="350" column="51" selection-start-line="350" selection-start-column="51" selection-end-line="350" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="119">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#22#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,8 +96,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2723">
-              <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+            <state relative-caret-position="-3602">
+              <caret line="254" column="20" selection-start-line="254" selection-start-column="20" selection-end-line="254" selection-end-column="20" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -731,7 +732,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477197486117</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Now moves fasta files into respective folders as soon as the fasta file has been completed for 2D runs.">
+      <created>1477207924946</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1477207924946</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -788,7 +796,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Detected glitch in poretools-wrapper that didn't detect the calibration strand.&#10;" />
     <MESSAGE value="Minor formatting fix." />
     <MESSAGE value="Calibration strand coding fix" />
     <MESSAGE value="Removed fastq option for Metrichor cli wrapper as it does not deal well with corrupted files. Use my poretools-wrapper to extract the fastq instead." />
@@ -813,7 +820,8 @@
     <MESSAGE value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
     <MESSAGE value="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis." />
     <MESSAGE value="Renamed to respect the output of poretools. 2D, fwd, rev for template and reverse strands." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed to respect the output of poretools. 2D, fwd, rev for template and reverse strands." />
+    <MESSAGE value="Now moves fasta files into respective folders as soon as the fasta file has been completed for 2D runs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now moves fasta files into respective folders as soon as the fasta file has been completed for 2D runs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1188,8 +1196,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2723">
-          <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+        <state relative-caret-position="-3602">
+          <caret line="254" column="20" selection-start-line="254" selection-start-column="20" selection-end-line="254" selection-end-column="20" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
@@ -1198,9 +1206,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="350" column="51" selection-start-line="350" selection-start-column="51" selection-end-line="350" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
