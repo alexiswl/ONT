@@ -27,8 +27,11 @@ FAIL_SUB_FOLDERS = {}
 CALIBRATION_SUB_FOLDERS = {}
 PASS_DIRECTORY = ""
 
+FASTQ_SUB_FOLDERS = {}
+SUBFOLDERS_2D = ('2D', 'fwd', 'rev')
+FASTQ_SUB_FOLDERS = ('pass', 'fail')
+
 # Declare global files
-FASTQ_FILE = ""
 LOG_FILE = ""
 COMPLETION_FILE = ""
 
@@ -59,9 +62,6 @@ def get_commandline_params():
     parser.add_argument("--downloads_directory", nargs='?', dest="DOWNLOADS_DIRECTORY", type=str,
                         help="This is the directory in which the reads will be placed in to." +
                              "If not specified, this will be <working_directory>/reads/downloads.")
-    parser.add_argument("--fastq_file", nargs="?", dest="FASTQ_FILE", type=str,
-                        help="This is the file you wish to parse your fastq file into. If not defined it will be:" +
-                             "<working_directory>/<fastq>/<RUN_NAME>.fastq")
     parser.add_argument("--post_split", action='store_true', dest="POST_SPLIT",
                         help="Has metrichor finished and split your data in to pass and fail already?", default=False)
     parser.add_argument("--1D_run", action='store_true', dest="IS_1D", default=False,
@@ -82,7 +82,6 @@ def set_commandline_variables(args):
     RUN_NAME = args.RUN_NAME
     WORKING_DIRECTORY = args.WORKING_DIRECTORY
     DOWNLOADS_DIRECTORY = args.DOWNLOADS_DIRECTORY
-    FASTQ_FILE = args.FASTQ_FILE
     LOG_FILE = args.LOG_FILE
     WATCH = args.WATCH
     POST_SPLIT = args.POST_SPLIT
@@ -92,7 +91,7 @@ def set_commandline_variables(args):
 def set_directories():
     global WORKING_DIRECTORY, DOWNLOADS_DIRECTORY, FASTQ_DIRECTORY, LOG_DIRECTORY, PORETOOLS_DIRECTORY
     global PASS_DIRECTORY, FAIL_DIRECTORY
-    global FASTQ_FILE, LOG_FILE, WATCH, IS_1D
+    global FASTQ_FILE, LOG_FILE, WATCH, IS_1D, FASTQ_DICT
 
     if not WORKING_DIRECTORY:
         WORKING_DIRECTORY = WORKING_DIRECTORY_DEFAULT
@@ -117,12 +116,10 @@ def set_directories():
         print(general_message)
 
     FASTQ_DIRECTORY = WORKING_DIRECTORY + "fastq/"
-    if not FASTQ_FILE:
-        if not os.path.isdir(FASTQ_DIRECTORY):
-            os.makedirs(FASTQ_DIRECTORY)
-        FASTQ_FILE = FASTQ_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".fastq"
-        general_message = "Fastq file has not been specified. Using %s \n" % FASTQ_FILE
-        print(general_message)
+    if not os.path.isdir(FASTQ_DIRECTORY):
+        os.makedir(FASTQ_DIRECTORY)
+
+
 
     LOG_DIRECTORY = WORKING_DIRECTORY + "log/"
     if not LOG_FILE:
@@ -167,6 +164,12 @@ def set_directories():
         if not os.path.isdir(CALIBRATION_SUB_FOLDERS[folder]):
             os.mkdir(CALIBRATION_SUB_FOLDERS[folder])
 
+    for folder in FASTQ_SUB_FOLDERS:
+        if IS_1D:
+            FASTQ_SUB_FOLDERS[folder] = FASTQ_DIRECTORY + "1D/" + folder
+        else:
+            for subfolder in SUBFOLDERS_2D:
+                FASTQ_SUB_FOLDERS[folder,subfolder] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
 
 def check_valid_symbols(string):
     for s in string:
@@ -243,20 +246,41 @@ def run_poretools_fastq():
     new_pass_files = [PASS_DIRECTORY + fast5_file for fast5_file in os.listdir(PASS_DIRECTORY)
                       if PASS_DIRECTORY + fast5_file not in old_fast5_files]
 
+    new_fail_files = [FAIL_SUB_FOLDERS['2D_failed_quality_filters'] + fast5_file
+                      for fast5_file in os.listdir(FAIL_SUB_FOLDERS['2D_failed_quality_filters'])
+                      if FAIL_SUB_FOLDERS['2D_failed_quality_filters'] + fast5_file not in old_fast5_files]
+
     # Run the set of poretools commands on the new fast5 files
     logger = open(LOG_FILE, 'a+')
     logger.write("Commencing poretools on %d files.\n" % len(new_pass_files))
     logger.close()
-    for fast5_file in new_pass_files:
-        extract_fastq_options = ["fastq"]
-        extract_fastq_options.append("--type 2D")
-        extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
-                                (' '.join(extract_fastq_options), fast5_file, FASTQ_FILE, LOG_FILE)
-        os.system(extract_fastq_command)
+
+    # Run fastq on new pass files
+    for read_type in SUBFOLDERS_2D:
+        fastq_file = FASTQ_SUB_FOLDERS['pass'][read_type]
+        for fast5_file in new_pass_files:
+            extract_fastq_options = ["fastq"]
+            extract_fastq_options.append("--type %s" % read_type)
+            extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
+                                    (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
+            os.system(extract_fastq_command)
         old_fast5_files.append(fast5_file)
-        completion_file_h = open(COMPLETION_FILE, 'a+')
+
+    # Run fastq on new failed files:
+    for read_type in SUBFOLDERS_2D:
+        for fast5_file in new_fail_files:
+            fastq_file = FASTQ_SUB_FOLDERS['fail'][read_type]
+            extract_fastq_options = ["fastq"]
+            extract_fastq_options.append("--type %s" % read_type)
+            extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
+                                    (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
+            os.system(extract_fastq_command)
+        old_fast5_files.append(fast5_file)
+
+    completion_file_h = open(COMPLETION_FILE, 'a+')
+    for fast5_file in new_pass_files:
         completion_file_h.write(fast5_file + "\n")
-        completion_file_h.close()
+    completion_file_h.close()
 
     logger = open(LOG_FILE, 'a+')
     logger.write("Completed poretools on %d files.\n" % len(new_pass_files))
@@ -265,40 +289,44 @@ def run_poretools_fastq():
 
 
 def run_poretools_metrics():
-    yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".pass_reads.yield_plot.png"
-    yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".pass_bases.yield_plot.png"
-    hist_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".hist_plot.png"
-    stats_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".stats.txt"
-    stats_file_tmp = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".stats.txt.tmp"
+    directories_d = {'pass': PASS_DIRECTORY, 'fail': FAIL_DIRECTORY}
+    for porf, porf_directory in directories_d:
+        yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".yield_plot.png"
+        yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + "yield_plot.png"
+        hist_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".hist_plot.png"
+        stats_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".stats.txt"
+        stats_file_tmp = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".stats.txt.tmp"
 
-    yield_reads_command_options = ["yield_plot"]
-    yield_reads_command_options.append("--saveas %s" % yield_reads_file)
-    yield_reads_command_options.append("--plot-type %s" % "reads")
-    yield_reads_command = "poretools %s %s 2>> %s" % (' '.join(yield_reads_command_options), PASS_DIRECTORY, LOG_FILE)
+        yield_reads_command_options = ["yield_plot"]
+        yield_reads_command_options.append("--saveas %s" % yield_reads_file)
+        yield_reads_command_options.append("--plot-type %s" % "reads")
+        yield_reads_command = "poretools %s %s 2>> %s" % (' '.join(yield_reads_command_options),
+                                                          porf_directory, LOG_FILE)
 
-    yield_base_command_options = ["yield_plot"]
-    yield_base_command_options.append("--saveas %s" % yield_bases_file)
-    yield_base_command_options.append("--plot-type %s" % "basepairs")
-    yield_base_command = "poretools %s %s 2>> %s" % (' '.join(yield_base_command_options), PASS_DIRECTORY, LOG_FILE)
+        yield_base_command_options = ["yield_plot"]
+        yield_base_command_options.append("--saveas %s" % yield_bases_file)
+        yield_base_command_options.append("--plot-type %s" % "basepairs")
+        yield_base_command = "poretools %s %s 2>> %s" % (' '.join(yield_base_command_options),
+                                                         porf_directory, LOG_FILE)
 
-    hist_command_options = ["hist"]
-    hist_command_options.append("--saveas %s" % hist_file)
-    hist_command = "poretools %s %s 2>> %s" % (' '.join(hist_command_options), PASS_DIRECTORY, LOG_FILE)
+        hist_command_options = ["hist"]
+        hist_command_options.append("--saveas %s" % hist_file)
+        hist_command = "poretools %s %s 2>> %s" % (' '.join(hist_command_options), porf_directory, LOG_FILE)
 
-    os.system(yield_reads_command)
-    os.system(yield_base_command)
-    os.system(hist_command)
+        os.system(yield_reads_command)
+        os.system(yield_base_command)
+        os.system(hist_command)
 
-    # Export stats to stats file
-    read_types = ("all", "fwd", "rev", "2D")
-    for read_type in read_types:
-        stats_command = "poretools stats --type %s %s 1>> %s 2>> %s" % \
-                        (read_type, PASS_DIRECTORY, stats_file_tmp, LOG_FILE)
-        stats_file_h = open(stats_file_tmp, "a+")
-        stats_file_h.write(stats_command)
-        stats_file_h.close()
-        os.system(stats_command)
-    os.system("mv %s %s" % (stats_file_tmp, stats_file))
+        # Export stats to stats file
+        read_types = ("all", "fwd", "rev", "2D")
+        for read_type in read_types:
+            stats_command = "poretools stats --type %s %s 1>> %s 2>> %s" % \
+                            (read_type, porf_directory, stats_file_tmp, LOG_FILE)
+            stats_file_h = open(stats_file_tmp, "a+")
+            stats_file_h.write(stats_command)
+            stats_file_h.close()
+            os.system(stats_command)
+        os.system("mv %s %s" % (stats_file_tmp, stats_file))
 
 
 def run_poretools_wrapper():
