@@ -303,6 +303,7 @@ def run_nanonet(fast5_files):
         fasta_file = "%s%s_%s_%s_1D.fasta" % (DIR_1D, DATE_PREFIX, RUN_NAME, get_time())
     else:
         fasta_file_prefix = "%s%s_%s_%s" % (DIR_2D, DATE_PREFIX, RUN_NAME, get_time())
+
     # Run nanonet command on tmp_nanonet_directory
     tmp_nanonet_directory = "%s%s/" % (READS_DIRECTORY, get_time())
     os.mkdir(tmp_nanonet_directory)
@@ -368,6 +369,7 @@ def end_log():
     logger = open(LOG_FILE, 'a+')
     logger.write("Complete nanonet wrapper at %s\n" % time.strftime("%c"))
     logger.write("Total running time %s" % str(end_time - START_TIME))
+
 
 
 def main():
