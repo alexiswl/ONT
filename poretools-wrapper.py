@@ -10,7 +10,7 @@ import h5py
 # This script is designed to perform many of the functions used in poretools
 
 # Set defaults
-THREAD_COUNT_DEFAULT = 4  # number of cores when basecalling
+THREAD_COUNT_DEFAULT = 20  # number of cores when basecalling
 WATCH_DEFAULT = 800  # number of seconds of no new reads before exiting
 WORKING_DIRECTORY_DEFAULT = os.getcwd()
 INVALID_SYMBOLS = "~`!@#$%^&*()-+={}[]:>;',</?*-+"

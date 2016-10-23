@@ -324,7 +324,14 @@ def run_nanonet(fast5_files):
                     fasta_file = "%s%s_%s_%s_1D.fasta" % (DIR_1D, DATE_PREFIX, RUN_NAME, get_time())
                 else:
                     fasta_file_prefix = "%s%s_%s_%s" % (DIR_2D, DATE_PREFIX, RUN_NAME, get_time())
-
+            if not IS_1D:  # For a 2D run, move the fasta files into their respective folders.
+                for fasta_file_2d in os.listdir(DIR_2D):
+                    if fasta_file_2d.endswith("_2d.fasta"):
+                        shutil.move(DIR_2D + fasta_file_2d, DIR_2D_2D)
+                    if fasta_file_2d.endswith("_template.fasta"):
+                        shutil.move(DIR_2D + fasta_file_2d, DIR_2D_FWD)
+                    if fasta_file_2d.endswith("_complement.fasta"):
+                        shutil.move(DIR_2D + fasta_file_2d, DIR_2D_REV)
     # Run nanonet command on remainder of files:
     if os.path.isdir(tmp_nanonet_directory):
         if IS_1D:
@@ -340,13 +347,13 @@ def run_nanonet(fast5_files):
         os.rmdir(tmp_nanonet_directory)
 
     if not IS_1D: # For a 2D run, move the fasta files into their respective folders.
-        for fasta_file in os.listdir(DIR_2D):
-            if fasta_file.endswith("_2d.fasta"):
-                shutil.move(DIR_2D + fasta_file, DIR_2D_2D)
-            if fasta_file.endswith("_template.fasta"):
-                shutil.move(DIR_2D + fasta_file, DIR_2D_FWD)
-            if fasta_file.endswith("_complement.fasta"):
-                shutil.move(DIR_2D + fasta_file, DIR_2D_REV)
+        for fasta_file_2d in os.listdir(DIR_2D):
+            if fasta_file_2d.endswith("_2d.fasta"):
+                shutil.move(DIR_2D + fasta_file_2d, DIR_2D_2D)
+            if fasta_file_2d.endswith("_template.fasta"):
+                shutil.move(DIR_2D + fasta_file_2d, DIR_2D_FWD)
+            if fasta_file_2d.endswith("_complement.fasta"):
+                shutil.move(DIR_2D + fasta_file_2d, DIR_2D_REV)
 
 
 def start_log():
