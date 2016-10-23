@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nanonet-wrapper.py" afterPath="$PROJECT_DIR$/nanonet-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="26" selection-end-column="22" />
+            <state relative-caret-position="492">
+              <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -90,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3479">
-              <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
+            <state relative-caret-position="220">
+              <caret line="30" column="27" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="27" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -155,17 +156,17 @@
         <option value="$PROJECT_DIR$/metaphlan_run.py" />
         <option value="$PROJECT_DIR$/waterman_test.py" />
         <option value="$PROJECT_DIR$/hdf5_dataset_breakdown.py" />
-        <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
+        <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="147" />
-    <option name="y" value="42" />
+    <option name="x" value="-94" />
+    <option name="y" value="73" />
     <option name="width" value="1426" />
-    <option name="height" value="870" />
+    <option name="height" value="851" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -715,11 +716,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477196705933</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis.">
+      <created>1477196750459</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1477196750459</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="42" width="1426" height="870" extended-state="0" />
+    <frame x="-94" y="73" width="1426" height="851" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -772,7 +780,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added comments to main script.&#10;" />
     <MESSAGE value="CRLF to LF" />
     <MESSAGE value="Detected glitch in poretools-wrapper that didn't detect the calibration strand.&#10;" />
     <MESSAGE value="Minor formatting fix." />
@@ -797,7 +804,8 @@
     <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;(Actually works now).&#10;" />
     <MESSAGE value="Added 2D support for nanonet wrapper." />
     <MESSAGE value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
+    <MESSAGE value="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis." />
+    <option name="LAST_COMMIT_MESSAGE" value="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1126,16 +1134,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdf5_dataset_breakdown.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
-          <folding>
-            <element signature="e#23#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1148,14 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="26" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1178,13 +1168,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hdf5_dataset_breakdown.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+          <folding>
+            <element signature="e#23#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3479">
-          <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
+        <state relative-caret-position="220">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="27" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

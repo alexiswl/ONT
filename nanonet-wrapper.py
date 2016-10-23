@@ -23,8 +23,8 @@ FASTA_DIRECTORY = ""
 DIR_1D = ""
 DIR_2D = ""
 DIR_2D_2D = ""
-DIR_2D_TEMPLATE = ""
-DIR_2D_COMPLEMENT = ""
+DIR_2D_FWD = ""
+DIR_2D_REV = ""
 
 
 # Declare global miscellaneous
@@ -64,7 +64,7 @@ def get_commandline_params():
     parser.add_argument("--fasta_directory", nargs="?", dest="FASTA_DIRECTORY", type=str,
                         help="This is the directory in which fasta files will be placed in to." +
                              "If not specified, will be created within the working directory.")
-    parser.add_argument("--1D", nargs="?", action='store_true', dest="IS_1D",
+    parser.add_argument("--1D", action='store_true', dest="IS_1D",
                         help="1D only basecalling. Quite a bit faster.")
     parser.add_argument("--threads", nargs='?', dest="THREAD_COUNT", type=int,
                         help="Number of processors used during nanonet command. Defaults to 4.")
@@ -108,7 +108,7 @@ def check_valid_symbols(string):
 def set_directories():
     global WORKING_DIRECTORY, DUMP_DIRECTORY, READS_DIRECTORY, FASTA_DIRECTORY
     global LOG_FILE, THREAD_COUNT, WATCH
-    global DIR_1D, DIR_2D, DIR_2D_2D, DIR_2D_COMPLEMENT, DIR_2D_TEMPLATE
+    global DIR_1D, DIR_2D, DIR_2D_2D, DIR_2D_REV, DIR_2D_FWD
     # Checking to see if working directory has been defined
     if not WORKING_DIRECTORY:
         WORKING_DIRECTORY = WORKING_DIRECTORY_DEFAULT
@@ -170,13 +170,12 @@ def set_directories():
         DIR_2D_2D = DIR_2D + "2D/"
         if not os.path.isdir(DIR_2D_2D):
             os.mkdir(DIR_2D_2D)
-        DIR_2D_TEMPLATE = DIR_2D + "Template/"
-        if not os.path.isdir(DIR_2D_TEMPLATE):
-            os.mkdir(DIR_2D_TEMPLATE)
-        DIR_2D_COMPLEMENT = DIR_2D + "Complement/"
-        if not os.path.isdir(DIR_2D_COMPLEMENT):
-            os.mkdir(DIR_2D_COMPLEMENT)
-
+        DIR_2D_FWD = DIR_2D + "fwd/"
+        if not os.path.isdir(DIR_2D_FWD):
+            os.mkdir(DIR_2D_FWD)
+        DIR_2D_REV = DIR_2D + "rev/"
+        if not os.path.isdir(DIR_2D_REV):
+            os.mkdir(DIR_2D_REV)
 
     if not THREAD_COUNT:
         THREAD_COUNT = THREAD_COUNT_DEFAULT
@@ -219,18 +218,14 @@ def initialise_dictionary():
         channel = fast5_file.split('_')[-3]
         read = fast5_file.split('_')[-2]
         read_number = int(read.replace("read", ''))
-        if channel == "ch325":
-            print read, read_number, d[channel]
         if read_number > d[channel]:
-            if channel == "ch325":
-                print read, read_number, d[channel], "change"
             d[channel] = read_number
 
     # Metrichor may have taken some of these reads too!
     uploaded_directory = READS_DIRECTORY + "uploaded/"
-    fast5_files = [uploaded_directory + fast5_file for fast5_file in os.listdir(uploaded_directory)
-                   if fast5_file.endswith('.fast5')]
     if os.path.isdir(uploaded_directory):
+        fast5_files = [uploaded_directory + fast5_file for fast5_file in os.listdir(uploaded_directory)
+                       if fast5_file.endswith('.fast5')]
         for fast5_file in fast5_files:
             if not (os.path.isfile(fast5_file) and fast5_file.endswith('.fast5')):
                 print fast5_file
@@ -238,11 +233,7 @@ def initialise_dictionary():
             channel = fast5_file.split('_')[-3]
             read = fast5_file.split('_')[-2]
             read_number = int(read.replace("read", ''))
-            if channel == "ch325":
-                print read, read_number, d[channel]
             if read_number > d[channel]:
-                if channel == "ch325":
-                    print read, read_number, d[channel], "change_up"
                 d[channel] = read_number
 
     return d.copy()
@@ -253,7 +244,6 @@ def run_nanonet_wrapper():
     run_exhausted = False
     d = initialise_dictionary()
     update_d = d.copy()
-    print(d)
 
     logger = open(LOG_FILE, 'a+')
     logger.write("Completed initialising dictionary. Commencing nanonet.\n")
@@ -354,9 +344,9 @@ def run_nanonet(fast5_files):
             if fasta_file.endswith("_2d.fasta"):
                 shutil.move(DIR_2D + fasta_file, DIR_2D_2D)
             if fasta_file.endswith("_template.fasta"):
-                shutil.move(DIR_2D + fasta_file, DIR_2D_TEMPLATE)
+                shutil.move(DIR_2D + fasta_file, DIR_2D_FWD)
             if fasta_file.endswith("_complement.fasta"):
-                shutil.move(DIR_2D + fasta_file, DIR_2D_COMPLEMENT)
+                shutil.move(DIR_2D + fasta_file, DIR_2D_REV)
 
 
 def start_log():
