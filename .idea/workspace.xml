@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,7 +93,7 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
+            <state relative-caret-position="-3479">
               <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
@@ -709,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477191921838</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality).">
+      <created>1477196705933</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1477196705933</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -766,7 +772,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Start time to a global variable" />
     <MESSAGE value="Added comments to main script.&#10;" />
     <MESSAGE value="CRLF to LF" />
     <MESSAGE value="Detected glitch in poretools-wrapper that didn't detect the calibration strand.&#10;" />
@@ -791,7 +796,8 @@
     <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;&#10;" />
     <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;(Actually works now).&#10;" />
     <MESSAGE value="Added 2D support for nanonet wrapper." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 2D support for nanonet wrapper." />
+    <MESSAGE value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1174,7 +1180,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="-3479">
           <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
