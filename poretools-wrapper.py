@@ -336,17 +336,17 @@ def run_poretools_metrics():
 
 
 def split_fastq_by_readtype(porf, fastq_midfix):
-    fastq_file_all = FASTQ_SUB_FOLDERS[porf]['all'] + fastq_midfix + "all.fastq"
+    fastq_file_all = FASTQ_SUB_FOLDERS[porf]['all'] + fastq_midfix + ".all.fastq"
 
     # Get 2D fastq
     os.system("cat %s | awk '{if(NR%%12==1 || NR%%12==2 || NR%%12==3 || NR%%12==4) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + "2d.fastq")
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")
     # Get template fastq
     os.system("cat %s | awk '{if(NR%%12==5 || NR%%12==6 || NR%%12==7 || NR%%12==8) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + "fwd.fastq")
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")
     # Get complement fastq
     os.system("cat %s | awk '{if(NR%%12==9 || NR%%12==10 || NR%%12==11 || NR%%12==12) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + "rev.fastq")
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")
 
 
 def run_poretools_wrapper():
