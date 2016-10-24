@@ -29,6 +29,7 @@ DATE_SUFFIX = time.strftime("%Y-%m-%d-%H-%M-%S")
 DATE_PREFIX = time.strftime("%Y_%m_%d")
 START_TIME = time.time()
 
+
 def get_commandline_params():
     help_descriptor = "This is a script designed to remove fast5 files from a laptop onto a server." + \
                       "There is not currently any support for FTP or for scp commands. This script only" + \

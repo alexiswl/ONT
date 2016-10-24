@@ -347,7 +347,7 @@ def run_nanonet(fast5_files):
             shutil.move(tmp_nanonet_directory + fast5_file, READS_DIRECTORY)
         os.rmdir(tmp_nanonet_directory)
 
-    if not IS_1D: # For a 2D run, move the fasta files into their respective folders.
+    if not IS_1D:  # For a 2D run, move the fasta files into their respective folders.
         for fasta_file_2d in os.listdir(DIR_2D):
             if fasta_file_2d.endswith("_2d.fasta"):
                 shutil.move(DIR_2D + fasta_file_2d, DIR_2D_2D)
@@ -364,16 +364,16 @@ def start_log():
 
 def end_log():
     end_time = time.time()
-    sys_output, reads_processed_per_file = commands.getstatusoutput("grep ^Processed %s | cut -d ' ' -f 2" % LOG_FILE)
-    total_reads_processed = 0
-    reads_processed_as_array = reads_processed_per_file.split('\n')
-    for num in reads_processed_as_array:
-        total_reads_processed += num
+    if IS_1D:
+        sys_output, tot_reads = commands.getstatusoutput("grep ^Basecalled %s | cut -d ' ' -f 2 | "
+                                                         "awk '{sum += $0} END {print sum}'" % LOG_FILE)
+    else:
+        sys_output, tot_reads = commands.getstatusoutput("grep ^Processed %s | cut -d ' ' -f 2 | "
+                                                     "awk '{sum += $0} END {print sum}'" % LOG_FILE)
     logger = open(LOG_FILE, 'a+')
     logger.write("Complete nanonet wrapper at %s\n" % time.strftime("%c"))
-    logger.write("Processed a total of %d reads.\n" % total_reads_processed)
-    logger.write("Total running time %d." % str(end_time - START_TIME))
-
+    logger.write("Processed a total of %d reads.\n" % int(tot_reads))
+    logger.write("Total running time %d.\n" % str(end_time - START_TIME))
 
 
 def main():
