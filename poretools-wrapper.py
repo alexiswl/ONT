@@ -27,13 +27,14 @@ FAIL_SUB_FOLDERS = {}
 CALIBRATION_SUB_FOLDERS = {}
 PASS_DIRECTORY = ""
 
+PORF = ('pass', 'fail')  # Pass OR Fail
+PORF_FAST5_DIRECTORY = {}
 FASTQ_SUB_FOLDERS = {}
-SUBFOLDERS_2D = ('2D', 'fwd', 'rev')
-FASTQ_SUB_FOLDERS = ('pass', 'fail')
+SUBFOLDERS_2D = ('all', '2D', 'fwd', 'rev')
 
 # Declare global files
 LOG_FILE = ""
-COMPLETION_FILE = ""
+COMPLETION_FILE = {}
 
 # Declare global miscellaneous
 version = 1.1
@@ -77,7 +78,7 @@ def get_commandline_params():
 
 def set_commandline_variables(args):
     global WORKING_DIRECTORY, DOWNLOADS_DIRECTORY
-    global RUN_NAME, FASTQ_FILE, LOG_FILE, WATCH, POST_SPLIT, IS_1D
+    global RUN_NAME, LOG_FILE, WATCH, POST_SPLIT, IS_1D
 
     RUN_NAME = args.RUN_NAME
     WORKING_DIRECTORY = args.WORKING_DIRECTORY
@@ -90,8 +91,8 @@ def set_commandline_variables(args):
 
 def set_directories():
     global WORKING_DIRECTORY, DOWNLOADS_DIRECTORY, FASTQ_DIRECTORY, LOG_DIRECTORY, PORETOOLS_DIRECTORY
-    global PASS_DIRECTORY, FAIL_DIRECTORY
-    global FASTQ_FILE, LOG_FILE, WATCH, IS_1D, FASTQ_DICT
+    global PASS_DIRECTORY, FAIL_DIRECTORY, PORF_FAST5_DIRECTORY
+    global LOG_FILE, WATCH, IS_1D
 
     if not WORKING_DIRECTORY:
         WORKING_DIRECTORY = WORKING_DIRECTORY_DEFAULT
@@ -117,9 +118,7 @@ def set_directories():
 
     FASTQ_DIRECTORY = WORKING_DIRECTORY + "fastq/"
     if not os.path.isdir(FASTQ_DIRECTORY):
-        os.makedir(FASTQ_DIRECTORY)
-
-
+        os.mkdir(FASTQ_DIRECTORY)
 
     LOG_DIRECTORY = WORKING_DIRECTORY + "log/"
     if not LOG_FILE:
@@ -169,7 +168,12 @@ def set_directories():
             FASTQ_SUB_FOLDERS[folder] = FASTQ_DIRECTORY + "1D/" + folder
         else:
             for subfolder in SUBFOLDERS_2D:
-                FASTQ_SUB_FOLDERS[folder,subfolder] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
+                FASTQ_SUB_FOLDERS[(folder, subfolder)] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
+    if IS_1D:
+        PORF_FAST5_DIRECTORY = {'pass': PASS_DIRECTORY, 'fail': FAIL_SUB_FOLDERS['1D_failed_quality_filters']}
+    else:
+        PORF_FAST5_DIRECTORY = {'pass': PASS_DIRECTORY, 'fail': FAIL_SUB_FOLDERS['2D_failed_quality_filters']}
+
 
 def check_valid_symbols(string):
     for s in string:
@@ -181,16 +185,18 @@ def check_valid_symbols(string):
 
 def check_completion_file():
     global COMPLETION_FILE
+    old_fast5_files = {}
+
     # In case we need to come back to running the file
-    COMPLETION_FILE = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + ".completion.txt"
-    if not os.path.isfile(COMPLETION_FILE):
-        os.system("touch %s" % COMPLETION_FILE)
-    old_fast5_files = []
-    with open(COMPLETION_FILE, "r") as f:
-        for line in f:
-            line = line.rstrip()
-            old_fast5_files.append(line)
-    return old_fast5_files
+    for porf in PORF:
+        COMPLETION_FILE[porf] = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + "." + porf + ".completion.txt"
+        if not os.path.isfile(COMPLETION_FILE[porf]):
+            os.system("touch %s" % COMPLETION_FILE[porf])
+        with open(COMPLETION_FILE[porf], "r") as f:
+            for line in f:
+                line = line.rstrip()
+                old_fast5_files[porf].append(line)
+    return old_fast5_files.copy()
 
 
 def set_datasets():
@@ -243,54 +249,54 @@ def still_writing(filename):
 
 def run_poretools_fastq():
     old_fast5_files = check_completion_file()
-    new_pass_files = [PASS_DIRECTORY + fast5_file for fast5_file in os.listdir(PASS_DIRECTORY)
-                      if PASS_DIRECTORY + fast5_file not in old_fast5_files]
+    new_fast5_files = {}
 
-    new_fail_files = [FAIL_SUB_FOLDERS['2D_failed_quality_filters'] + fast5_file
-                      for fast5_file in os.listdir(FAIL_SUB_FOLDERS['2D_failed_quality_filters'])
-                      if FAIL_SUB_FOLDERS['2D_failed_quality_filters'] + fast5_file not in old_fast5_files]
+    for porf, porf_fd in PORF_FAST5_DIRECTORY:
+        new_fast5_files[porf] = [porf_fd + fast5_file for fast5_file in os.listdir(porf_fd)
+                                 if porf_fd + fast5_file not in old_fast5_files[porf]]
 
-    # Run the set of poretools commands on the new fast5 files
-    logger = open(LOG_FILE, 'a+')
-    logger.write("Commencing poretools on %d files.\n" % len(new_pass_files))
-    logger.close()
+    for porf in PORF:
+        # Run the set of poretools commands on the new fast5 files
+        logger = open(LOG_FILE, 'a+')
+        logger.write("Extracting fastq from %d new files in the %s directory.\n"
+                     % (len(new_fast5_files[porf]), PORF_FAST5_DIRECTORY[porf]))
+        logger.close()
+        extract_fastq_options = ["fastq"]
+        if IS_1D:
+            fastq_file = FASTQ_SUB_FOLDERS[porf] + DATE_PREFIX + "_" + RUN_NAME + porf + ".fastq"
+            for fast5_file in new_fast5_files[porf]:
+                extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
+                                        (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
+                os.system(extract_fastq_command)
+                old_fast5_files[porf].append(fast5_file)
 
-    # Run fastq on new pass files
-    for read_type in SUBFOLDERS_2D:
-        fastq_file = FASTQ_SUB_FOLDERS['pass'][read_type]
-        for fast5_file in new_pass_files:
-            extract_fastq_options = ["fastq"]
-            extract_fastq_options.append("--type %s" % read_type)
-            extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
-                                    (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
-            os.system(extract_fastq_command)
-        old_fast5_files.append(fast5_file)
+        else:
+            fastq_midfix = DATE_PREFIX + "_" + RUN_NAME + "_" + porf
+            fastq_file_all = FASTQ_SUB_FOLDERS[porf, "all"] + "all.fastq"
+            for fast5_file in new_fast5_files[porf]:
+                extract_fastq_options.append("--type all")
+                extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
+                                    (' '.join(extract_fastq_options), fast5_file, fastq_file_all, LOG_FILE)
+                os.system(extract_fastq_command)
+                old_fast5_files[porf].append(fast5_file)
+            split_fastq_by_readtype(porf, fastq_midfix)
 
-    # Run fastq on new failed files:
-    for read_type in SUBFOLDERS_2D:
-        for fast5_file in new_fail_files:
-            fastq_file = FASTQ_SUB_FOLDERS['fail'][read_type]
-            extract_fastq_options = ["fastq"]
-            extract_fastq_options.append("--type %s" % read_type)
-            extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
-                                    (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
-            os.system(extract_fastq_command)
-        old_fast5_files.append(fast5_file)
+        completion_file_h = open(COMPLETION_FILE[porf], 'a+')
+        for fast5_file in new_fast5_files[porf]:
+            completion_file_h.write(fast5_file + "\n")
+        completion_file_h.close()
 
-    completion_file_h = open(COMPLETION_FILE, 'a+')
-    for fast5_file in new_pass_files:
-        completion_file_h.write(fast5_file + "\n")
-    completion_file_h.close()
-
-    logger = open(LOG_FILE, 'a+')
-    logger.write("Completed poretools on %d files.\n" % len(new_pass_files))
-    logger.write("Commencing stats on %s" % PASS_DIRECTORY)
-    logger.close()
+        logger = open(LOG_FILE, 'a+')
+        logger.write("Completed extracting fastq from %s directory, on %d files.\n" %
+                     (len(new_fast5_files[porf]), PORF_FAST5_DIRECTORY[porf]))
+        logger.close()
 
 
 def run_poretools_metrics():
-    directories_d = {'pass': PASS_DIRECTORY, 'fail': FAIL_DIRECTORY}
-    for porf, porf_directory in directories_d:
+    for porf, porf_directory in PORF_FAST5_DIRECTORY:
+        logger = open(LOG_FILE, 'a+')
+        logger.write("Commencing stats on %s" % porf_directory)
+        logger.close()
         yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".yield_plot.png"
         yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + "yield_plot.png"
         hist_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".hist_plot.png"
@@ -329,8 +335,22 @@ def run_poretools_metrics():
         os.system("mv %s %s" % (stats_file_tmp, stats_file))
 
 
+def split_fastq_by_readtype(porf, fastq_midfix):
+    fastq_file_all = FASTQ_SUB_FOLDERS[porf]['all'] + fastq_midfix + "all.fastq"
+
+    # Get 2D fastq
+    os.system("cat %s | awk '{if(NR%%12==1 || NR%%12==2 || NR%%12==3 || NR%%12==4) print;}' >> %s" %
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + "2d.fastq")
+    # Get template fastq
+    os.system("cat %s | awk '{if(NR%%12==5 || NR%%12==6 || NR%%12==7 || NR%%12==8) print;}' >> %s" %
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + "fwd.fastq")
+    # Get complement fastq
+    os.system("cat %s | awk '{if(NR%%12==9 || NR%%12==10 || NR%%12==11 || NR%%12==12) print;}' >> %s" %
+              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + "rev.fastq")
+
+
 def run_poretools_wrapper():
-    # While loop initialisers
+    # Initialise while loop
     run_exhausted = False
     while not run_exhausted:
         # Get new fast5 files
@@ -388,17 +408,13 @@ def split_reads_by_attribute(new_fast5_files):
                 elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall failed quality filters":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_failed_quality_filters"]))
+                elif check_calibration_strand(f):
+                     detected_calibration_strand(fast5_file, f)
                 else:
-                    try:
-                        if f[DATASETS['calibration_summary_dataset']].attrs.values()[0] \
-                                == "Calibration_strand_detected":
-                            detected_calibration_strand(fast5_file, f)
-                    except KeyError:  # No calibration strand detected.
-                        # 1D Workflow was successful!
-                        if not f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] == "Workflow successful":
-                            os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
-                        else:
-                            os.system("mv %s %s" % (fast5_file, PASS_DIRECTORY))
+                    if not f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] == "Workflow successful":
+                        os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
+                    else:
+                        os.system("mv %s %s" % (fast5_file, PASS_DIRECTORY))
             else:
                 if f[DATASETS['hairpin_summary_dataset']].attrs.values()[0] \
                         == "No template data found":
@@ -409,7 +425,7 @@ def split_reads_by_attribute(new_fast5_files):
                 elif f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] \
                         == "1D basecall could not be performed":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_basecall_not_performed"]))
-                elif check_calibration_strand(fast5_file, f):
+                elif check_calibration_strand(f):
                     detected_calibration_strand(fast5_file, f)
                 elif f[DATASETS['basecall_2D_summary_dataset']].attrs.values()[0] \
                         == "2D basecall could not be performed":
@@ -436,7 +452,7 @@ def split_reads_by_attribute(new_fast5_files):
             os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
 
 
-def check_calibration_strand(fast5_file, f):
+def check_calibration_strand(f):
     try:
         if f[DATASETS['calibration_summary_dataset']].attrs.values()[0] == \
                 "Calibration strand detected":
