@@ -164,12 +164,22 @@ def set_directories():
         if not os.path.isdir(CALIBRATION_SUB_FOLDERS[folder]):
             os.mkdir(CALIBRATION_SUB_FOLDERS[folder])
 
-    for folder in PORF:
+    for porf in PORF:
         if IS_1D:
-            FASTQ_SUB_FOLDERS[folder] = FASTQ_DIRECTORY + "1D/" + folder
+            FASTQ_SUB_FOLDERS[porf] = FASTQ_DIRECTORY + "1D/" + porf
+            try:
+                os.makedirs(FASTQ_SUB_FOLDERS[porf])
+            except OSError:
+                next
+
         else:
             for subfolder in SUBFOLDERS_2D:
-                FASTQ_SUB_FOLDERS[folder, subfolder] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
+                FASTQ_SUB_FOLDERS[porf, subfolder] = FASTQ_DIRECTORY + "2D/" + porf + "/" + subfolder + "/"
+                try:
+                    os.makedirs(FASTQ_SUB_FOLDERS[porf, subfolder])
+                except OSError:
+                    next
+
     if IS_1D:
         PORF_FAST5_DIRECTORY = {'pass': PASS_DIRECTORY, 'fail': FAIL_SUB_FOLDERS['1D_failed_quality_filters']}
     else:

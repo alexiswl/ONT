@@ -96,8 +96,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="391">
+              <caret line="170" column="50" selection-start-line="170" selection-start-column="50" selection-end-line="170" selection-end-column="50" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -416,13 +416,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fixed some hard-coded variables.&#10;">
-      <created>1475455366690</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1475455366690</updated>
     </task>
     <task id="LOCAL-00006" summary="Glitch in producing yield read plot vs base plot Also adjusted file names">
       <created>1475455690719</created>
@@ -760,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477298385181</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Turned old_fast5_file dict variable into a default dict so it can hand lists.">
+      <created>1477308359017</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1477308359017</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -817,7 +817,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 1D Basecalling to set of workflow options" />
     <MESSAGE value="Invalid choice on yield plot has been fixed.&#10;" />
     <MESSAGE value="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement." />
     <MESSAGE value="Suppress warnings on lsof so that output always returns an int" />
@@ -842,7 +841,8 @@
     <MESSAGE value="Fixed up syntax error regarding iterating through dictionaries." />
     <MESSAGE value="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype" />
     <MESSAGE value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
+    <MESSAGE value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
+    <option name="LAST_COMMIT_MESSAGE" value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1227,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+        <state relative-caret-position="391">
+          <caret line="170" column="50" selection-start-line="170" selection-start-column="50" selection-end-line="170" selection-end-column="50" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
