@@ -251,7 +251,7 @@ def run_poretools_fastq():
     old_fast5_files = check_completion_file()
     new_fast5_files = {}
 
-    for porf, porf_fd in PORF_FAST5_DIRECTORY:
+    for porf, porf_fd in PORF_FAST5_DIRECTORY.iteritems():
         new_fast5_files[porf] = [porf_fd + fast5_file for fast5_file in os.listdir(porf_fd)
                                  if porf_fd + fast5_file not in old_fast5_files[porf]]
 
@@ -293,7 +293,7 @@ def run_poretools_fastq():
 
 
 def run_poretools_metrics():
-    for porf, porf_directory in PORF_FAST5_DIRECTORY:
+    for porf, porf_directory in PORF_FAST5_DIRECTORY.iteritems():
         logger = open(LOG_FILE, 'a+')
         logger.write("Commencing stats on %s" % porf_directory)
         logger.close()
