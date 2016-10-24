@@ -283,7 +283,7 @@ def run_poretools_fastq():
 
         else:
             fastq_midfix = DATE_PREFIX + "_" + RUN_NAME + "_" + porf
-            fastq_file_all = FASTQ_SUB_FOLDERS[porf, "all"] + "all.fastq"
+            fastq_file_all = FASTQ_SUB_FOLDERS[porf, "all"] + fastq_midfix + ".all.fastq"
             for fast5_file in new_fast5_files[porf]:
                 extract_fastq_options.append("--type all")
                 extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
@@ -299,7 +299,7 @@ def run_poretools_fastq():
 
         logger = open(LOG_FILE, 'a+')
         logger.write("Completed extracting fastq from %s directory, on %d files.\n" %
-                     (len(new_fast5_files[porf]), PORF_FAST5_DIRECTORY[porf]))
+                     (PORF_FAST5_DIRECTORY[porf]), len(new_fast5_files[porf]))
         logger.close()
 
 
