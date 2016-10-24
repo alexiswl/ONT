@@ -96,8 +96,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="830">
-              <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
+            <state relative-caret-position="306">
+              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -165,8 +165,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="427" />
-    <option name="y" value="54" />
+    <option name="x" value="175" />
+    <option name="y" value="32" />
     <option name="width" value="1426" />
     <option name="height" value="936" />
   </component>
@@ -416,13 +416,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Adjusted line separators and fixed bug when printing version number.">
-      <created>1475377462568</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1475377462568</updated>
     </task>
     <task id="LOCAL-00005" summary="Fixed some hard-coded variables.&#10;">
       <created>1475455366690</created>
@@ -760,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477292750491</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Changes 2D to 2d ins SUBFOLDERS_2D global tuple.">
+      <created>1477298385181</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1477298385181</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="427" y="54" width="1426" height="936" extended-state="0" />
+    <frame x="175" y="32" width="1426" height="936" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -817,7 +817,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reversed calibration and failed dataset files, sometimes calibration set not present if file failed quality." />
     <MESSAGE value="Added 1D Basecalling to set of workflow options" />
     <MESSAGE value="Invalid choice on yield plot has been fixed.&#10;" />
     <MESSAGE value="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement." />
@@ -842,7 +841,8 @@
     <MESSAGE value="Added dot to between run name and read type in fastq files." />
     <MESSAGE value="Fixed up syntax error regarding iterating through dictionaries." />
     <MESSAGE value="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype" />
+    <MESSAGE value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1227,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
-          <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
+        <state relative-caret-position="306">
+          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>

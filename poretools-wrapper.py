@@ -6,6 +6,7 @@ import argparse
 import sys
 import commands
 import h5py
+from collections import defaultdict
 
 # This script is designed to perform many of the functions used in poretools
 
@@ -185,7 +186,7 @@ def check_valid_symbols(string):
 
 def check_completion_file():
     global COMPLETION_FILE
-    old_fast5_files = {}
+    old_fast5_files = defaultdict(list)
 
     # In case we need to come back to running the file
     for porf in PORF:
@@ -352,6 +353,7 @@ def split_fastq_by_readtype(porf, fastq_midfix):
 def run_poretools_wrapper():
     # Initialise while loop
     run_exhausted = False
+
     while not run_exhausted:
         # Get new fast5 files
         new_fast5_files, run_exhausted = get_new_fast5_files()
@@ -409,7 +411,7 @@ def split_reads_by_attribute(new_fast5_files):
                         == "1D basecall failed quality filters":
                     os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["1D_failed_quality_filters"]))
                 elif check_calibration_strand(f):
-                     detected_calibration_strand(fast5_file, f)
+                    detected_calibration_strand(fast5_file, f)
                 else:
                     if not f[DATASETS['basecall_1D_summary_dataset']].attrs.values()[0] == "Workflow successful":
                         os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Unknown_error"]))
