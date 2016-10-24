@@ -30,7 +30,7 @@ PASS_DIRECTORY = ""
 PORF = ('pass', 'fail')  # Pass OR Fail
 PORF_FAST5_DIRECTORY = {}
 FASTQ_SUB_FOLDERS = {}
-SUBFOLDERS_2D = ('all', '2D', 'fwd', 'rev')
+SUBFOLDERS_2D = ('all', '2d', 'fwd', 'rev')
 
 # Declare global files
 LOG_FILE = ""
