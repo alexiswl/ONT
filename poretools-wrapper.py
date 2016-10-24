@@ -170,7 +170,7 @@ def set_directories():
             try:
                 os.makedirs(FASTQ_SUB_FOLDERS[porf])
             except OSError:
-                next
+                pass
 
         else:
             for subfolder in SUBFOLDERS_2D:
@@ -178,7 +178,7 @@ def set_directories():
                 try:
                     os.makedirs(FASTQ_SUB_FOLDERS[porf, subfolder])
                 except OSError:
-                    next
+                    pass
 
     if IS_1D:
         PORF_FAST5_DIRECTORY = {'pass': PASS_DIRECTORY, 'fail': FAIL_SUB_FOLDERS['1D_failed_quality_filters']}

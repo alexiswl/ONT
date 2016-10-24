@@ -32,6 +32,7 @@ START_TIME = time.time()
 SEQUENCES_READ = 0
 SEQUENCES_CLASSIFIED = 0
 READ_COUNTER = 0
+IS_1D=False
 
 # One Codex admin stuff - Need to export ONECODEX_API_KEY in environment
 ONECODEX_SEARCH_HTML = "https://app.onecodex.com/api/v0/search"
@@ -61,7 +62,8 @@ def get_commandline_params():
                         required=True)
     parser.add_argument("--fasta_directory", nargs="?", dest="FASTA_DIRECTORY", type=str,
                         help="This is the directory in which fasta files are placed in to.")
-
+    parser.add_argument("--IS_1D", action='store_true', dest="IS_1D", default=False,
+                        help="Fasta directory is split between 1D and 2D reads. Did nanonet use 1D or 2D nanonet call?")
     parser.add_argument("--watch", nargs='?', dest="WATCH", type=int,
                         help="The time (seconds) allowed with no new fasta files" +
                              "entering the fasta directory before exiting the script. Default set at 800")
@@ -74,13 +76,13 @@ def get_commandline_params():
 
 def set_commandline_params(args):
     global RUN_NAME, RUN_DIRECTORY, FASTA_DIRECTORY
-    global WATCH, LOGFILE
+    global WATCH, LOGFILE, IS_1D
     RUN_NAME = args.RUN_NAME
     RUN_DIRECTORY = args.RUN_DIRECTORY
     FASTA_DIRECTORY = args.FASTA_DIRECTORY
     WATCH = args.WATCH
     LOGFILE = args.LOGFILE
-
+    IS_1D = args.IS_1D
 
 def set_directories():
     global RUN_DIRECTORY, FASTA_DIRECTORY, WATCH, LOGFILE, SUMMARY_DIRECTORY
@@ -98,7 +100,11 @@ def set_directories():
             error_message = "Error: cannot locate or find fasta directory %s" % FASTA_DIRECTORY
             sys.exit(error_message)
     if not FASTA_DIRECTORY:
-        FASTA_DIRECTORY = RUN_DIRECTORY + "fasta"
+        FASTA_DIRECTORY = RUN_DIRECTORY + "fasta/"
+        if IS_1D:
+            FASTA_DIRECTORY += "1D/"
+        else:
+            FASTA_DIRECTORY += "2D/"
     FASTA_DIRECTORY = os.path.abspath(FASTA_DIRECTORY) + "/"
 
     if not WATCH:
