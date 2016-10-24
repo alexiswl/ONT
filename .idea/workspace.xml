@@ -96,8 +96,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+            <state relative-caret-position="334">
+              <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -165,8 +165,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="180" />
-    <option name="y" value="69" />
+    <option name="x" value="80" />
+    <option name="y" value="122" />
     <option name="width" value="1426" />
     <option name="height" value="719" />
   </component>
@@ -416,13 +416,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated README.md to version 1.1&#10;">
-      <created>1475369213925</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1475369213925</updated>
     </task>
     <task id="LOCAL-00003" summary="Renamed a few scripts, added poretools-wrapper.">
       <created>1475371124738</created>
@@ -760,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477291119425</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fixed up syntax error regarding iterating through dictionaries.">
+      <created>1477291598675</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1477291598675</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="180" y="69" width="1426" height="719" extended-state="0" />
+    <frame x="80" y="122" width="1426" height="719" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -817,7 +817,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rearranged calibration and failed dataset checker, this way failed calibration files are placed in the calibration folder rather than the failed quality folder" />
     <MESSAGE value="fixed key error in split function&#10;" />
     <MESSAGE value="Reversed calibration and failed dataset files, sometimes calibration set not present if file failed quality." />
     <MESSAGE value="Added 1D Basecalling to set of workflow options" />
@@ -842,7 +841,8 @@
     <MESSAGE value="Log file now prints out the total number of reads processed." />
     <MESSAGE value="Fixed bug for end log for printing total number of reads analysed in completion log." />
     <MESSAGE value="Added dot to between run name and read type in fastq files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dot to between run name and read type in fastq files." />
+    <MESSAGE value="Fixed up syntax error regarding iterating through dictionaries." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed up syntax error regarding iterating through dictionaries." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1227,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+        <state relative-caret-position="334">
+          <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>

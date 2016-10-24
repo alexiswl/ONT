@@ -163,12 +163,12 @@ def set_directories():
         if not os.path.isdir(CALIBRATION_SUB_FOLDERS[folder]):
             os.mkdir(CALIBRATION_SUB_FOLDERS[folder])
 
-    for folder in FASTQ_SUB_FOLDERS:
+    for folder in PORF:
         if IS_1D:
             FASTQ_SUB_FOLDERS[folder] = FASTQ_DIRECTORY + "1D/" + folder
         else:
             for subfolder in SUBFOLDERS_2D:
-                FASTQ_SUB_FOLDERS[(folder, subfolder)] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
+                FASTQ_SUB_FOLDERS[folder, subfolder] = FASTQ_DIRECTORY + "2D/" + folder + "/" + subfolder + "/"
     if IS_1D:
         PORF_FAST5_DIRECTORY = {'pass': PASS_DIRECTORY, 'fail': FAIL_SUB_FOLDERS['1D_failed_quality_filters']}
     else:
@@ -336,17 +336,17 @@ def run_poretools_metrics():
 
 
 def split_fastq_by_readtype(porf, fastq_midfix):
-    fastq_file_all = FASTQ_SUB_FOLDERS[porf]['all'] + fastq_midfix + ".all.fastq"
+    fastq_file_all = FASTQ_SUB_FOLDERS[porf, 'all'] + fastq_midfix + ".all.fastq"
 
     # Get 2D fastq
-    os.system("cat %s | awk '{if(NR%%12==1 || NR%%12==2 || NR%%12==3 || NR%%12==4) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")
+    os.system(("cat %s | awk '{{if(NR{0}12==1 || NR{0}12==2 || NR{0}12==3 || NR{0}12==4) print;}}' >> %s" %
+               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
-    os.system("cat %s | awk '{if(NR%%12==5 || NR%%12==6 || NR%%12==7 || NR%%12==8) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")
+    os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
+               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
     # Get complement fastq
-    os.system("cat %s | awk '{if(NR%%12==9 || NR%%12==10 || NR%%12==11 || NR%%12==12) print;}' >> %s" %
-              fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")
+    os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==12) print;}}' >> %s" %
+               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
 
 
 def run_poretools_wrapper():
