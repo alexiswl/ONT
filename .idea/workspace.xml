@@ -4,7 +4,6 @@
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onecodex-wrapper.py" afterPath="$PROJECT_DIR$/onecodex-wrapper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
+            <state relative-caret-position="196">
+              <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -418,13 +417,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00009" summary="Start time to a global variable">
-      <created>1475456244813</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1475456244813</updated>
-    </task>
     <task id="LOCAL-00010" summary="Added comments to main script.&#10;">
       <created>1475456363874</created>
       <option name="number" value="00010" />
@@ -761,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477352080064</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Fixed bug in get_taxid_translator, adds fasta directory paths if not yet existent.">
+      <created>1477398042563</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1477398042563</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -818,7 +817,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
     <MESSAGE value="Fixed bug that didn't properly check the completion file." />
     <MESSAGE value="Catching a KeyError in the requests stage. Not sure what the problem is." />
     <MESSAGE value="Added input type to metaphlan run" />
@@ -843,7 +841,8 @@
     <MESSAGE value="Recursively add subdirectories to fastq folder." />
     <MESSAGE value="Error fix - update fastq output." />
     <MESSAGE value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
-    <option name="LAST_COMMIT_MESSAGE" value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
+    <MESSAGE value="Fixed bug in get_taxid_translator, adds fasta directory paths if not yet existent." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in get_taxid_translator, adds fasta directory paths if not yet existent." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1228,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
+        <state relative-caret-position="196">
+          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>

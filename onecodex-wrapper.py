@@ -62,7 +62,7 @@ def get_commandline_params():
                         required=True)
     parser.add_argument("--fasta_directory", nargs="?", dest="FASTA_DIRECTORY", type=str,
                         help="This is the directory in which fasta files are placed in to.")
-    parser.add_argument("--IS_1D", action='store_true', dest="IS_1D", default=False,
+    parser.add_argument("--1D", action='store_true', dest="IS_1D", default=False,
                         help="Fasta directory is split between 1D and 2D reads. Did nanonet use 1D or 2D nanonet call?")
     parser.add_argument("--watch", nargs='?', dest="WATCH", type=int,
                         help="The time (seconds) allowed with no new fasta files" +
