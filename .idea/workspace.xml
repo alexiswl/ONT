@@ -31,8 +31,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="332">
+              <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -43,8 +43,8 @@
       <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="313" column="39" selection-start-line="313" selection-start-column="39" selection-end-line="313" selection-end-column="39" />
+            <state relative-caret-position="708">
+              <caret line="388" column="0" selection-start-line="388" selection-start-column="0" selection-end-line="388" selection-end-column="0" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -97,8 +97,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1794">
-              <caret line="154" column="31" selection-start-line="154" selection-start-column="31" selection-end-line="154" selection-end-column="31" />
+            <state relative-caret-position="417">
+              <caret line="301" column="78" selection-start-line="301" selection-start-column="78" selection-end-line="301" selection-end-column="78" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -166,8 +166,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="175" />
-    <option name="y" value="32" />
+    <option name="x" value="34" />
+    <option name="y" value="47" />
     <option name="width" value="1426" />
     <option name="height" value="936" />
   </component>
@@ -417,13 +417,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Glitch in producing yield read plot vs base plot Also adjusted file names">
-      <created>1475455978836</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1475455978836</updated>
     </task>
     <task id="LOCAL-00009" summary="Start time to a global variable">
       <created>1475456244813</created>
@@ -761,11 +754,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477351194904</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories.">
+      <created>1477352080064</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1477352080064</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="175" y="32" width="1426" height="936" extended-state="0" />
+    <frame x="34" y="47" width="1426" height="936" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -818,7 +818,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Suppress warnings on lsof so that output always returns an int" />
     <MESSAGE value="Catches a value error for inconsistencies between onecodex's taxid database and the ncbi taxid database." />
     <MESSAGE value="Fixed bug that didn't properly check the completion file." />
     <MESSAGE value="Catching a KeyError in the requests stage. Not sure what the problem is." />
@@ -843,7 +842,8 @@
     <MESSAGE value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
     <MESSAGE value="Recursively add subdirectories to fastq folder." />
     <MESSAGE value="Error fix - update fastq output." />
-    <option name="LAST_COMMIT_MESSAGE" value="Error fix - update fastq output." />
+    <MESSAGE value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
+    <option name="LAST_COMMIT_MESSAGE" value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1180,12 +1180,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdf5_dataset_breakdown.py">
+    <entry file="file://$PROJECT_DIR$/metaphlan_run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+        <state relative-caret-position="323">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="301" column="78" selection-start-line="301" selection-start-column="78" selection-end-line="301" selection-end-column="78" />
           <folding>
-            <element signature="e#23#34#0" expanded="true" />
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1198,28 +1206,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metaphlan_run.py">
+    <entry file="file://$PROJECT_DIR$/hdf5_dataset_breakdown.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1794">
-          <caret line="154" column="31" selection-start-line="154" selection-start-column="31" selection-end-line="154" selection-end-column="31" />
+        <state relative-caret-position="255">
+          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
           <folding>
-            <element signature="e#23#32#0" expanded="true" />
+            <element signature="e#23#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="313" column="39" selection-start-line="313" selection-start-column="39" selection-end-line="313" selection-end-column="39" />
+        <state relative-caret-position="708">
+          <caret line="388" column="0" selection-start-line="388" selection-start-column="0" selection-end-line="388" selection-end-column="0" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>
@@ -1228,8 +1228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state relative-caret-position="332">
+          <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>

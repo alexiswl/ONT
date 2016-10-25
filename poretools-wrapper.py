@@ -299,7 +299,7 @@ def run_poretools_fastq():
 
         logger = open(LOG_FILE, 'a+')
         logger.write("Completed extracting fastq from %s directory, on %d files.\n" %
-                     (PORF_FAST5_DIRECTORY[porf]), len(new_fast5_files[porf]))
+                     (PORF_FAST5_DIRECTORY[porf], len(new_fast5_files[porf])))
         logger.close()
 
 

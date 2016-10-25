@@ -101,10 +101,14 @@ def set_directories():
             sys.exit(error_message)
     if not FASTA_DIRECTORY:
         FASTA_DIRECTORY = RUN_DIRECTORY + "fasta/"
+        if not os.path.isdir(FASTA_DIRECTORY):
+            os.mkdir(FASTA_DIRECTORY)
         if IS_1D:
             FASTA_DIRECTORY += "1D/"
         else:
             FASTA_DIRECTORY += "2D/"
+        if not os.path.isdir(FASTA_DIRECTORY):
+            os.mkdir(FASTA_DIRECTORY)
     FASTA_DIRECTORY = os.path.abspath(FASTA_DIRECTORY) + "/"
 
     if not WATCH:
@@ -279,7 +283,7 @@ def run_taxa(summary_file, taxa_file):
             try:
                 line = line.rstrip()
                 tax_id, freq = line.split("\t")
-                lineage = ncbi.get_lineage(tax_id)
+                lineage = ncbi.get_lineage([tax_id])
                 names = ncbi.get_taxid_translator(lineage)
                 lineage_names = [names[taxid] for taxid in lineage]
                 taxa_file_h.write(freq + "\t" + "\t".join(lineage_names[1:]) + "\n")
