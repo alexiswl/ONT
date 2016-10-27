@@ -42,7 +42,7 @@ TIMEOUT = 20
 
 # Declare ONECODEX STATUS
 ONECODEX_DICT = {'Good': 200, 'No api key': 400, 'Invalid api key': 401,
-                 'Timeout': 429}
+                 'Timeout': 429, 'Busy':503}
 
 
 def get_commandline_params():
@@ -251,6 +251,12 @@ def run_onecodex(fasta_sequences, onecodex_file):
             if r.status_code == ONECODEX_DICT['Timeout']:
                 warning_message = "Onecodex has timed out. Check connection."
                 print warning_message
+            if r.status_code == ONECODEX_DICT['Busy']:
+                warning_message = "Server overloaded."
+                print warning_message
+                sleeping_message = "Having a one minute nap."
+                print sleeping_message
+                time.sleep(60)
             else:
                 logger = open(LOGFILE, 'a+')
                 logger.write("Unknown error %s" % r.status_code)
