@@ -373,7 +373,7 @@ def end_log():
     logger = open(LOG_FILE, 'a+')
     logger.write("Complete nanonet wrapper at %s\n" % time.strftime("%c"))
     logger.write("Processed a total of %d reads.\n" % int(tot_reads))
-    logger.write("Total running time %d.\n" % str(end_time - START_TIME))
+    logger.write("Total running time %s.\n" % str(end_time - START_TIME))
 
 
 def main():
