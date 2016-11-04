@@ -294,6 +294,8 @@ def run_poretools_fastq():
                 os.system("cat %s >> %s" % (fastq_file_all_tmp, fastq_file_all))
                 old_fast5_files[porf].append(fast5_file)
             split_fastq_by_readtype(porf, fastq_midfix)
+            # remove tmp file from fastq
+            os.system("rm %s" % fastq_file_all_tmp)
 
         completion_file_h = open(COMPLETION_FILE[porf], 'a+')
         for fast5_file in new_fast5_files[porf]:
