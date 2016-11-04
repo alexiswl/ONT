@@ -126,8 +126,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="359" column="35" selection-start-line="359" selection-start-column="35" selection-end-line="359" selection-end-column="35" />
+            <state relative-caret-position="363">
+              <caret line="415" column="17" selection-start-line="415" selection-start-column="17" selection-end-line="415" selection-end-column="17" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -175,8 +175,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="97" />
-    <option name="y" value="43" />
+    <option name="x" value="-142" />
+    <option name="y" value="57" />
     <option name="width" value="1426" />
     <option name="height" value="897" />
   </component>
@@ -426,13 +426,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Calibration strand coding fix">
-      <created>1475458342430</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1475458342430</updated>
     </task>
     <task id="LOCAL-00015" summary="Removed fastq option for Metrichor cli wrapper as it does not deal well with corrupted files. Use my poretools-wrapper to extract the fastq instead.">
       <created>1475459989734</created>
@@ -770,11 +763,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478136736035</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Fixed major bug that would over concatentate fastq files.">
+      <created>1478245423801</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1478245423802</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="97" y="43" width="1426" height="897" extended-state="0" />
+    <frame x="-142" y="57" width="1426" height="897" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -827,7 +827,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added waterman test, checking to see the difference between fasta files in nanonet call and metrichor pass reads." />
     <MESSAGE value="Added hdf5 dataset breakdown folder." />
     <MESSAGE value="Updated waterman_test file to an executible script." />
     <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;&#10;" />
@@ -852,7 +851,8 @@
     <MESSAGE value="Change back to str not array for get_lineage function.&#10;" />
     <MESSAGE value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
     <MESSAGE value="End log bug fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="End log bug fix." />
+    <MESSAGE value="Fixed major bug that would over concatentate fastq files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed major bug that would over concatentate fastq files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1235,8 +1235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="359" column="35" selection-start-line="359" selection-start-column="35" selection-end-line="359" selection-end-column="35" />
+        <state relative-caret-position="363">
+          <caret line="415" column="17" selection-start-line="415" selection-start-column="17" selection-end-line="415" selection-end-column="17" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
