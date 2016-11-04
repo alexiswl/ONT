@@ -291,8 +291,8 @@ def run_poretools_fastq():
                                     (' '.join(extract_fastq_options), fast5_file, fastq_file_all_tmp, LOG_FILE)
                 os.system(extract_fastq_command)
                 # Add tmp file to general fastq
-                os.system("cat %s >> %s" % (fastq_file_all_tmp, fastq_file_all))
                 old_fast5_files[porf].append(fast5_file)
+            os.system("cat %s >> %s" % (fastq_file_all_tmp, fastq_file_all))
             split_fastq_by_readtype(porf, fastq_midfix)
             # remove tmp file from fastq
             os.system("rm %s" % fastq_file_all_tmp)
