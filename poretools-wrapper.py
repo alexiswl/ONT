@@ -284,11 +284,14 @@ def run_poretools_fastq():
         else:
             fastq_midfix = DATE_PREFIX + "_" + RUN_NAME + "_" + porf
             fastq_file_all = FASTQ_SUB_FOLDERS[porf, "all"] + fastq_midfix + ".all.fastq"
+            fastq_file_all_tmp = fastq_file_all + ".tmp"
             for fast5_file in new_fast5_files[porf]:
                 extract_fastq_options.append("--type all")
                 extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
-                                    (' '.join(extract_fastq_options), fast5_file, fastq_file_all, LOG_FILE)
+                                    (' '.join(extract_fastq_options), fast5_file, fastq_file_all_tmp, LOG_FILE)
                 os.system(extract_fastq_command)
+                # Add tmp file to general fastq
+                os.system("cat %s >> %s" % (fastq_file_all_tmp, fastq_file_all))
                 old_fast5_files[porf].append(fast5_file)
             split_fastq_by_readtype(porf, fastq_midfix)
 
@@ -347,17 +350,17 @@ def run_poretools_metrics():
 
 
 def split_fastq_by_readtype(porf, fastq_midfix):
-    fastq_file_all = FASTQ_SUB_FOLDERS[porf, 'all'] + fastq_midfix + ".all.fastq"
+    fastq_file_all_tmp = FASTQ_SUB_FOLDERS[porf, 'all'] + fastq_midfix + ".all.fastq" + ".tmp"
 
     # Get 2D fastq
     os.system(("cat %s | awk '{{if(NR{0}12==1 || NR{0}12==2 || NR{0}12==3 || NR{0}12==4) print;}}' >> %s" %
-               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
     os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
-               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
     # Get complement fastq
     os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==12) print;}}' >> %s" %
-               (fastq_file_all, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
 
 
 def run_poretools_wrapper():

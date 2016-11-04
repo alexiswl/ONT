@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nanonet-wrapper.py" afterPath="$PROJECT_DIR$/nanonet-wrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="356" column="63" selection-start-line="356" selection-start-column="63" selection-end-line="356" selection-end-column="63" />
+            <state relative-caret-position="455">
+              <caret line="378" column="11" selection-start-line="378" selection-start-column="11" selection-end-line="378" selection-end-column="11" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -91,6 +91,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="metrichor-cli-wrapper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hdf5_dataset_breakdown.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdf5_dataset_breakdown.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,24 +123,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" column="76" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="76" />
+            <state relative-caret-position="465">
+              <caret line="359" column="35" selection-start-line="359" selection-start-column="35" selection-end-line="359" selection-end-column="35" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -168,15 +168,15 @@
         <option value="$PROJECT_DIR$/hdf5_dataset_breakdown.py" />
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
         <option value="$PROJECT_DIR$/laptop-to-server.py" />
-        <option value="$PROJECT_DIR$/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/onecodex-wrapper.py" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
+        <option value="$PROJECT_DIR$/poretools-wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="193" />
-    <option name="y" value="35" />
+    <option name="x" value="97" />
+    <option name="y" value="43" />
     <option name="width" value="1426" />
     <option name="height" value="897" />
   </component>
@@ -426,13 +426,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Minor formatting fix.">
-      <created>1475457864965</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1475457864965</updated>
     </task>
     <task id="LOCAL-00014" summary="Calibration strand coding fix">
       <created>1475458342430</created>
@@ -770,11 +763,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477560233293</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="End log bug fix.">
+      <created>1478136736035</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1478136736035</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="193" y="35" width="1426" height="897" extended-state="0" />
+    <frame x="97" y="43" width="1426" height="897" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -827,7 +827,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hard coded some directories to debug on data. Will convert to wrapper later in the week." />
     <MESSAGE value="Added waterman test, checking to see the difference between fasta files in nanonet call and metrichor pass reads." />
     <MESSAGE value="Added hdf5 dataset breakdown folder." />
     <MESSAGE value="Updated waterman_test file to an executible script." />
@@ -852,7 +851,8 @@
     <MESSAGE value="--IS_1D to --1D for consistency with other running scripts." />
     <MESSAGE value="Change back to str not array for get_lineage function.&#10;" />
     <MESSAGE value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
+    <MESSAGE value="End log bug fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="End log bug fix." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1155,23 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="76" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="76" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1214,14 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/summarise_onecodex_output.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -1234,10 +1209,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="356" column="63" selection-start-line="356" selection-start-column="63" selection-end-line="356" selection-end-column="63" />
+        <state relative-caret-position="455">
+          <caret line="378" column="11" selection-start-line="378" selection-start-column="11" selection-end-line="378" selection-end-column="11" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/summarise_onecodex_output.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="359" column="35" selection-start-line="359" selection-start-column="35" selection-end-line="359" selection-end-column="35" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
