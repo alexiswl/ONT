@@ -317,17 +317,10 @@ def run_poretools_metrics():
         logger = open(LOG_FILE, 'a+')
         logger.write("Commencing stats on %s" % porf_directory)
         logger.close()
-        yield_reads_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".yield_plot.png"
-        yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + "yield_plot.png"
+        yield_bases_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".yield_plot.png"
         hist_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".hist_plot.png"
         stats_file = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".stats.txt"
         stats_file_tmp = PORETOOLS_DIRECTORY + DATE_PREFIX + "_" + RUN_NAME + porf + ".stats.txt.tmp"
-
-        yield_reads_command_options = ["yield_plot"]
-        yield_reads_command_options.append("--saveas %s" % yield_reads_file)
-        yield_reads_command_options.append("--plot-type %s" % "reads")
-        yield_reads_command = "poretools %s %s 2>> %s" % (' '.join(yield_reads_command_options),
-                                                          porf_directory, LOG_FILE)
 
         yield_base_command_options = ["yield_plot"]
         yield_base_command_options.append("--saveas %s" % yield_bases_file)
@@ -339,7 +332,6 @@ def run_poretools_metrics():
         hist_command_options.append("--saveas %s" % hist_file)
         hist_command = "poretools %s %s 2>> %s" % (' '.join(hist_command_options), porf_directory, LOG_FILE)
 
-        os.system(yield_reads_command)
         os.system(yield_base_command)
         os.system(hist_command)
 
@@ -363,10 +355,10 @@ def split_fastq_by_readtype(porf, fastq_midfix):
                (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
     os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".rev.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
     # Get complement fastq
     os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==12) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".fwd.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
 
 
 def run_poretools_wrapper():
