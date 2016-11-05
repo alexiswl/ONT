@@ -267,6 +267,9 @@ def run_poretools_fastq():
                                  if porf_fd + fast5_file not in old_fast5_files[porf]]
 
     for porf in PORF:
+        if len(new_fast5_files[porf]) == 0:
+            continue
+
         # Run the set of poretools commands on the new fast5 files
         logger = open(LOG_FILE, 'a+')
         logger.write("Extracting fastq from %d new files in the %s directory.\n"
@@ -285,13 +288,13 @@ def run_poretools_fastq():
             fastq_midfix = DATE_PREFIX + "_" + RUN_NAME + "_" + porf
             fastq_file_all = FASTQ_SUB_FOLDERS[porf, "all"] + fastq_midfix + ".all.fastq"
             fastq_file_all_tmp = fastq_file_all + ".tmp"
+            extract_fastq_options.append("--type all")
             for fast5_file in new_fast5_files[porf]:
-                extract_fastq_options.append("--type all")
                 extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
                                     (' '.join(extract_fastq_options), fast5_file, fastq_file_all_tmp, LOG_FILE)
                 os.system(extract_fastq_command)
-                # Add tmp file to general fastq
                 old_fast5_files[porf].append(fast5_file)
+            # Add tmp file to general fastq
             os.system("cat %s >> %s" % (fastq_file_all_tmp, fastq_file_all))
             split_fastq_by_readtype(porf, fastq_midfix)
             # remove tmp file from fastq
@@ -301,6 +304,7 @@ def run_poretools_fastq():
         for fast5_file in new_fast5_files[porf]:
             completion_file_h.write(fast5_file + "\n")
         completion_file_h.close()
+
 
         logger = open(LOG_FILE, 'a+')
         logger.write("Completed extracting fastq from %s directory, on %d files.\n" %
@@ -359,10 +363,10 @@ def split_fastq_by_readtype(porf, fastq_midfix):
                (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
     os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".rev.fastq")).format('%'))
     # Get complement fastq
     os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==12) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".fwd.fastq")).format('%'))
 
 
 def run_poretools_wrapper():
