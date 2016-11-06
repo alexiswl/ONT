@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
+    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="Uploading the first component of the full waterman test.">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/needleman_test.py" afterPath="$PROJECT_DIR$/full_waterman_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/needleman_test.py" afterPath="$PROJECT_DIR$/needleman_test.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="needleman_test.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/needleman_test.py">
+      <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="163" column="30" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -174,6 +174,7 @@
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/needleman_test.py" />
+        <option value="$PROJECT_DIR$/full_waterman_test.py" />
       </list>
     </option>
   </component>
@@ -433,13 +434,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Invalid choice on yield plot has been fixed.&#10;">
-      <created>1475486348991</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1475486348991</updated>
     </task>
     <task id="LOCAL-00021" summary="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement.">
       <created>1475492107954</created>
@@ -777,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478327172753</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Uploading the first component of the full waterman test.">
+      <created>1478393579036</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1478393579036</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -834,7 +835,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;&#10;" />
     <MESSAGE value="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;(Actually works now).&#10;" />
     <MESSAGE value="Added 2D support for nanonet wrapper." />
     <MESSAGE value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
@@ -859,7 +859,8 @@
     <MESSAGE value="Fixed major bug that would over concatentate fastq files." />
     <MESSAGE value="Files that may not be corrupted are sometimes moved to the corrupted folder. Added a condition that gives a file one chance to produce an IOerror before being move to the corrupted folder." />
     <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
+    <MESSAGE value="Uploading the first component of the full waterman test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Uploading the first component of the full waterman test." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1245,10 +1246,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/needleman_test.py">
+    <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="163" column="30" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>

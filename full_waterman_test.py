@@ -107,13 +107,13 @@ os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["rev"] + ".tmp", nanonetc
 # Determine overall similarity between nanonetcall files
 fasta_file_combinations = itertools.combinations(nanonetcall_fasta_files_sorted.values(), 2)
 
-needleman_folder = main_directory + "needleman/"
-if not os.path.isdir(needleman_folder):
-    os.mkdir(needleman_folder)
+waterman_folder = main_directory + "waterman/"
+if not os.path.isdir(waterman_folder):
+    os.mkdir(waterman_folder)
 
-# Now run the needleman aligner three times (for each different combination)
+# Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
-    combo_directory = needleman_folder + fasta_file_1 + "_" + fasta_file_2
+    combo_directory = waterman_folder + fasta_file_1 + "_" + fasta_file_2
     if not os.path.isdir(combo_directory):
         os.mkdir(combo_directory)
     fasta_1_handle = open(fasta_file_1, "rU")
@@ -132,7 +132,7 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle.close()
         b_output_handle.close()
 
-        outfile = needleman_folder + "needleman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+        outfile = waterman_folder + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
         command = "needle -asequence %s -bsequence %s -outfile %s" % (afile, bfile, outfile)
         os.system("rm %s %s" % (afile, bfile))
 
@@ -155,23 +155,23 @@ for fast5_file in os.listdir(_2d_failed_quality_directory):
 for fast5_file in os.listdir(_2d_not_performed):
     _2d_not_performed_files.append(fast5_file)
 
-needleman_pass_folder = needleman_folder + "pass/"
-if not os.listdir(needleman_pass_folder):
-    os.mkdir(needleman_pass_folder)
-needleman_failed_quality_folder = needleman_folder + "failed_quality/"
-if not os.listdir(needleman_failed_quality_folder):
-    os.mkdir(needleman_failed_quality_folder)
-needleman_not_performed_folder = needleman_folder + "not_performed"
-if not os.listdir(needleman_not_performed_folder):
-    os.mkdir(needleman_not_performed_folder)
+waterman_pass_folder = waterman_folder + "pass/"
+if not os.listdir(waterman_pass_folder):
+    os.mkdir(waterman_pass_folder)
+waterman_failed_quality_folder = waterman_folder + "failed_quality/"
+if not os.listdir(waterman_failed_quality_folder):
+    os.mkdir(waterman_failed_quality_folder)
+waterman_not_performed_folder = waterman_folder + "not_performed"
+if not os.listdir(waterman_not_performed_folder):
+    os.mkdir(waterman_not_performed_folder)
 
-for needleman_file in os.listdir(needleman_folder):
-    if needleman_file in pass_files:
-        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_pass_folder))
-    if needleman_file in _2d_failed_files:
-        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_failed_quality_folder))
-    if needleman_file in _2d_failed_files:
-        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_not_performed_folder))
+for waterman_file in os.listdir(waterman_folder):
+    if waterman_file in pass_files:
+        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_pass_folder))
+    if waterman_file in _2d_failed_files:
+        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_failed_quality_folder))
+    if waterman_file in _2d_failed_files:
+        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_not_performed_folder))
 
 
 """
