@@ -168,7 +168,7 @@ def set_directories():
         DIR_2D = FASTA_DIRECTORY + "2D/"
         if not os.path.isdir(DIR_2D):
             os.mkdir(DIR_2D)
-        DIR_2D_2D = DIR_2D + "2D/"
+        DIR_2D_2D = DIR_2D + "2d/"
         if not os.path.isdir(DIR_2D_2D):
             os.mkdir(DIR_2D_2D)
         DIR_2D_FWD = DIR_2D + "fwd/"
