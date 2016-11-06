@@ -133,7 +133,8 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         b_output_handle.close()
 
         outfile = waterman_folder + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
-        command = "needle -asequence %s -bsequence %s -outfile %s" % (afile, bfile, outfile)
+        command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
+                  (afile, bfile, outfile)
         os.system("rm %s %s" % (afile, bfile))
 
 

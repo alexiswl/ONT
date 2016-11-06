@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nanonet-wrapper.py" afterPath="$PROJECT_DIR$/nanonet-wrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/full_waterman_test.py" afterPath="$PROJECT_DIR$/full_waterman_test.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="315" column="38" selection-start-line="315" selection-start-column="38" selection-end-line="315" selection-end-column="38" />
+            <state relative-caret-position="-1335">
+              <caret line="169" column="28" selection-start-line="169" selection-start-column="28" selection-end-line="169" selection-end-column="28" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -84,8 +84,8 @@
       <file leaf-file-name="waterman_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state relative-caret-position="513">
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="125" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -93,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+            <state relative-caret-position="-2015">
+              <caret line="39" column="52" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -173,8 +173,8 @@
         <option value="$PROJECT_DIR$/onecodex-wrapper.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/needleman_test.py" />
-        <option value="$PROJECT_DIR$/full_waterman_test.py" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
+        <option value="$PROJECT_DIR$/full_waterman_test.py" />
       </list>
     </option>
   </component>
@@ -434,13 +434,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement.">
-      <created>1475807041768</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1475807041768</updated>
     </task>
     <task id="LOCAL-00024" summary="Found very slow running time with the get_lineage function. Upgrading to ete3 from ete2 to check improvement.">
       <created>1475809422142</created>
@@ -778,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478395136381</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Adjusted nanonet subdirectory names">
+      <created>1478395441130</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1478395441130</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -835,7 +835,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 2D support for nanonet wrapper." />
     <MESSAGE value="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality)." />
     <MESSAGE value="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis." />
     <MESSAGE value="Renamed to respect the output of poretools. 2D, fwd, rev for template and reverse strands." />
@@ -860,7 +859,8 @@
     <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
     <MESSAGE value="Uploading the first component of the full waterman test." />
     <MESSAGE value="Going to do a waterman test, not needleman test!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Going to do a waterman test, not needleman test!" />
+    <MESSAGE value="Adjusted nanonet subdirectory names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted nanonet subdirectory names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1208,16 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/waterman_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laptop-to-server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -1236,22 +1226,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
+    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+        <state relative-caret-position="-1335">
+          <caret line="169" column="28" selection-start-line="169" selection-start-column="28" selection-end-line="169" selection-end-column="28" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/waterman_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="125" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
+    <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="315" column="38" selection-start-line="315" selection-start-column="38" selection-end-line="315" selection-end-column="38" />
+        <state relative-caret-position="-2015">
+          <caret line="39" column="52" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#23#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
