@@ -15,7 +15,7 @@ import itertools
 # 3. Does the nanonet2d read differ much from the metrichor 2d read?
 # 4. Does the nanonet 1D read differ much from the metrihor 1D read?
 
-main_directory = "/data/Bioinfo/bioinfo-proj-alexis/2016_08_16_E_COLI_R9/"
+main_directory = "/home/Lucatta/foo/"
 
 fasta_directory = main_directory + "fasta/"
 fasta_directory_2D = fasta_directory + "2D/2d/"
@@ -35,7 +35,7 @@ for type, folder in metrichor_folders.iteritems():
     os.system("cat %s* > %s" % (folder, concatenated_file))
     metrichor_fastq_files.update({type: concatenated_file})
 
-nanonetcall_folders = {"2D": fasta_directory_2D, "fwd": fasta_directory_fwd, "rev": fasta_directory_rev}
+nanonetcall_folders = {"2d": fasta_directory_2D, "fwd": fasta_directory_fwd, "rev": fasta_directory_rev}
 for type, folder in nanonetcall_folders.iteritems():
     concatenated_fasta_file = folder + "concatenated.fasta"
     os.system("cat %s* > %s" % (folder, concatenated_fasta_file))
