@@ -80,7 +80,7 @@ for type, fasta_file in nanonetcall_fasta_files.iteritems():
     input_handle.close()
     output_handle.close()
 
-# Remove files that are only present in the template or complement set:
+# Remove files that are present in only the template or complement set:
 _2d_id = []
 input_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
 for record in SeqIO.parse(input_handle, "fasta"):
@@ -98,7 +98,7 @@ output_handle = open(nanonetcall_fasta_files_sorted["rev"] + ".tmp", "w+")
 for record in SeqIO.parse(input_handle, "fasta"):
     if record.id in _2d_id:
         output_handle.write(">" + record.id + "\n")
-        output_handle.write(str(record.seq) + "\n")
+        output_handle.write(str(record.seq.reverse_complement()) + "\n")
 
 os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["fwd"] + ".tmp", nanonetcall_fasta_files_sorted["fwd"]))
 os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["rev"] + ".tmp", nanonetcall_fasta_files_sorted["rev"]))
@@ -128,7 +128,7 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle = open(afile, "w+")
         SeqIO.write(afasta, a_output_handle, "fasta")
         b_output_handle = open(bfile, "w+")
-        SeqIO.write(afasta, b_output_handle, "fasta")
+        SeqIO.write(bfasta, b_output_handle, "fasta")
         a_output_handle.close()
         b_output_handle.close()
 
@@ -155,9 +155,23 @@ for fast5_file in os.listdir(_2d_failed_quality_directory):
 for fast5_file in os.listdir(_2d_not_performed):
     _2d_not_performed_files.append(fast5_file)
 
-needleman_subdirectories = ('pass', 'fail', 'not_performed')
+needleman_pass_folder = needleman_folder + "pass/"
+if not os.listdir(needleman_pass_folder):
+    os.mkdir(needleman_pass_folder)
+needleman_failed_quality_folder = needleman_folder + "failed_quality/"
+if not os.listdir(needleman_failed_quality_folder):
+    os.mkdir(needleman_failed_quality_folder)
+needleman_not_performed_folder = needleman_folder + "not_performed"
+if not os.listdir(needleman_not_performed_folder):
+    os.mkdir(needleman_not_performed_folder)
 
 for needleman_file in os.listdir(needleman_folder):
+    if needleman_file in pass_files:
+        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_pass_folder))
+    if needleman_file in _2d_failed_files:
+        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_failed_quality_folder))
+    if needleman_file in _2d_failed_files:
+        os.system("mv %s%s %s" % (needleman_folder, needleman_file, needleman_not_performed_folder))
 
 
 """
