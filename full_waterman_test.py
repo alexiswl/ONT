@@ -170,7 +170,7 @@ for waterman_file in os.listdir(waterman_folder):
         os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_pass_folder))
     if waterman_file in _2d_failed_files:
         os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_failed_quality_folder))
-    if waterman_file in _2d_failed_files:
+    if waterman_file in _2d_not_performed_files:
         os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_not_performed_folder))
 
 
