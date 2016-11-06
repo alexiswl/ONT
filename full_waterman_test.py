@@ -4,6 +4,7 @@ from Bio import SeqIO
 from operator import attrgetter
 import os
 import itertools
+import commands
 
 # This is a function to test the differences between the reads coming down from metrichor against those
 # produced by nanonetcall. This is important to see the importance of whether it is important to send data to
@@ -15,7 +16,7 @@ import itertools
 # 3. Does the nanonet2d read differ much from the metrichor 2d read?
 # 4. Does the nanonet 1D read differ much from the metrihor 1D read?
 
-main_directory = "/home/Lucatta/foo/"
+main_directory = "/data/Bioinfo/bioinfo-proj-alexis/2016_08_16_E_COLI_R9/"
 
 fasta_directory = main_directory + "fasta/"
 fasta_directory_2D = fasta_directory + "2D/2d/"
@@ -111,6 +112,7 @@ os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["rev"] + ".tmp", nanonetc
 # Determine overall similarity between nanonetcall files
 fasta_file_combinations = itertools.combinations(nanonetcall_fasta_files_sorted.values(), 2)
 
+
 waterman_folder = main_directory + "waterman/"
 if not os.path.isdir(waterman_folder):
     os.mkdir(waterman_folder)
@@ -136,9 +138,10 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle.close()
         b_output_handle.close()
 
-        outfile = waterman_folder + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
-        command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
+        outfile = combo_directory + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+        water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                   (afile, bfile, outfile)
+        os.system(water_command)
         os.system("rm %s %s" % (afile, bfile))
 
 
@@ -152,13 +155,13 @@ _2d_failed_files = []
 _2d_not_performed_files = []
 
 for fast5_file in os.listdir(pass_directory):
-    pass_files.append(fast5_file)
+    pass_files.append(fast5_file.split("_")[-3] + "_" + fast5_file.split("_")[-2])
 
 for fast5_file in os.listdir(_2d_failed_quality_directory):
-    _2d_failed_files.append(fast5_file)
+    _2d_failed_files.append(fast5_file.split("_")[-3] + "_" + fast5_file.split("_")[-2])
 
 for fast5_file in os.listdir(_2d_not_performed):
-    _2d_not_performed_files.append(fast5_file)
+    _2d_not_performed_files.append(fast5_file.split("_")[-3] + "_" + fast5_file.split("_")[-2])
 
 waterman_pass_folder = waterman_folder + "pass/"
 if not os.listdir(waterman_pass_folder):
@@ -170,13 +173,23 @@ waterman_not_performed_folder = waterman_folder + "not_performed"
 if not os.listdir(waterman_not_performed_folder):
     os.mkdir(waterman_not_performed_folder)
 
-for waterman_file in os.listdir(waterman_folder):
-    if waterman_file in pass_files:
-        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_pass_folder))
-    if waterman_file in _2d_failed_files:
-        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_failed_quality_folder))
-    if waterman_file in _2d_not_performed_files:
-        os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_not_performed_folder))
+for sub_folder in os.listdir(waterman_folder):
+    for waterman_file in os.listdir(sub_folder):
+        if waterman_file in pass_files:
+            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_pass_folder))
+        if waterman_file in _2d_failed_files:
+            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_failed_quality_folder))
+        if waterman_file in _2d_not_performed_files:
+            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_not_performed_folder))
+
+for sub_folder in os.listdir(waterman_folder):
+    input_handle = open(waterman_folder + sub_folder + "waterman_stats", "w+")
+    for waterman_file in os.listdir(sub_folder):
+        status, score = commands.getstatusoutput(("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % (waterman_file)).format('"'))
+        status, similarity = commands.getstatusoutput(("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % (waterman_file)).format('"'))
+        status, identity = commands.getstatusoutput(("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % (waterman_file)).format('"'))
+        input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+    input_handle.close()
 
 
 """
