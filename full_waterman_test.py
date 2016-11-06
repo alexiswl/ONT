@@ -117,7 +117,7 @@ if not os.path.isdir(waterman_folder):
 
 # Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
-    combo_directory = waterman_folder + fasta_file_1 + "_" + fasta_file_2
+    combo_directory = waterman_folder + fasta_file_1.split("/")[-1] + "_" + fasta_file_2.split("/")[-1]
     if not os.path.isdir(combo_directory):
         os.mkdir(combo_directory)
     fasta_1_handle = open(fasta_file_1, "rU")
