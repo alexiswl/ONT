@@ -22,10 +22,10 @@ fasta_directory_2D = fasta_directory + "2D/2d/"
 fasta_directory_fwd = fasta_directory + "2D/fwd/"
 fasta_directory_rev = fasta_directory + "2D/rev/"
 
-fastq_directory = main_directory + "fastq/pass/"
-fastq_directory_2D = fastq_directory + "2D/2d/"
-fastq_directory_fwd = fastq_directory + "2D/fwd/"
-fastq_directory_rev = fastq_directory + "2D/rev/"
+fastq_directory = main_directory + "fastq/2D/"
+fastq_directory_2D = fastq_directory + "pass/2d/"
+fastq_directory_fwd = fastq_directory + "pass/fwd/"
+fastq_directory_rev = fastq_directory + "pass/rev/"
 
 metrichor_folders = {"2d": fastq_directory_2D, "fwd": fastq_directory_fwd, "rev": fastq_directory_rev}
 metrichor_fastq_files = {}
@@ -41,6 +41,7 @@ for type, folder in nanonetcall_folders.iteritems():
     os.system("cat %s* > %s" % (folder, concatenated_fasta_file))
     nanonetcall_fasta_files.update({type: concatenated_fasta_file})
 
+
 # Convert fastq file of metrichor into fasta files with correct names.
 metrichor_fasta_files = {}
 for type, fastq_file in metrichor_fastq_files.iteritems():
@@ -48,11 +49,14 @@ for type, fastq_file in metrichor_fastq_files.iteritems():
     metrichor_fasta_files.update({type: concatenated_fasta_file})
     input_handle = open(fastq_file, "rU")
     output_handle = open(concatenated_fasta_file, "w+")
-    for record in SeqIO.parse(input_handle, "fastq"):
-        output_handle.write(">" + record.description.split()[1] + "\n")
-        output_handle.write(str(record.seq) + "\n")
-    input_handle.close()
-    output_handle.close()
+    try:
+        for record in SeqIO.parse(input_handle, "fastq"):
+            output_handle.write(">" + record.description.split()[1] + "\n")
+            output_handle.write(str(record.seq) + "\n")
+        input_handle.close()
+        output_handle.close()
+    except ValueError:
+        print("No idea why this is happening")
 
 # Sort nanonetcall fasta files
 nanonetcall_fasta_files_sorted = {}
