@@ -74,7 +74,7 @@ for type, fasta_file in nanonetcall_fasta_files.iteritems():
 
 # Sort metrichor fasta files
 metrichor_fasta_files_sorted = {}
-for type, fasta_file in nanonetcall_fasta_files.iteritems():
+for type, fasta_file in metrichor_fasta_files.iteritems():
     sorted_fasta_file = fasta_file.split(".")[0] + ".sorted.fasta"
     metrichor_fasta_files_sorted.update({type: sorted_fasta_file})
     input_handle = open(fasta_file, "rU")
@@ -117,9 +117,11 @@ waterman_folder = main_directory + "waterman/"
 if not os.path.isdir(waterman_folder):
     os.mkdir(waterman_folder)
 
+intra_comparison_folder = waterman_folder + "intracomparison/"
+
 # Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
-    combo_directory = waterman_folder + fasta_file_1.split("/")[-1] + "_" + fasta_file_2.split("/")[-1]
+    combo_directory = intra_comparison_folder + fasta_file_1.split("/")[-1] + "_" + fasta_file_2.split("/")[-1]
     if not os.path.isdir(combo_directory):
         os.mkdir(combo_directory)
     fasta_1_handle = open(fasta_file_1, "rU")
@@ -163,33 +165,169 @@ for fast5_file in os.listdir(_2d_failed_quality_directory):
 for fast5_file in os.listdir(_2d_not_performed):
     _2d_not_performed_files.append(fast5_file.split("_")[-3] + "_" + fast5_file.split("_")[-2])
 
-waterman_pass_folder = waterman_folder + "pass/"
-if not os.listdir(waterman_pass_folder):
-    os.mkdir(waterman_pass_folder)
-waterman_failed_quality_folder = waterman_folder + "failed_quality/"
-if not os.listdir(waterman_failed_quality_folder):
-    os.mkdir(waterman_failed_quality_folder)
-waterman_not_performed_folder = waterman_folder + "not_performed"
-if not os.listdir(waterman_not_performed_folder):
-    os.mkdir(waterman_not_performed_folder)
+permuation_folders = [intra_comparison_folder + permutation_folder + "/" for permutation_folder in os.listdir(intra_comparison_folder)]
 
-for sub_folder in os.listdir(waterman_folder):
-    for waterman_file in os.listdir(sub_folder):
+for permutation_folder in permuation_folders:
+    waterman_pass_folder = permutation_folder + "pass/"
+    if not os.listdir(waterman_pass_folder):
+        os.mkdir(waterman_pass_folder)
+    waterman_failed_quality_folder = permutation_folder + "failed_quality/"
+    if not os.listdir(waterman_failed_quality_folder):
+        os.mkdir(waterman_failed_quality_folder)
+    waterman_not_performed_folder = permutation_folder + "not_performed"
+    if not os.listdir(waterman_not_performed_folder):
+        os.mkdir(waterman_not_performed_folder)
+    for waterman_file in os.listdir(permutation_folder):
         if waterman_file in pass_files:
-            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_pass_folder))
+            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_pass_folder))
         if waterman_file in _2d_failed_files:
-            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_failed_quality_folder))
+            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_failed_quality_folder))
         if waterman_file in _2d_not_performed_files:
-            os.system("mv %s%s %s" % (waterman_folder, waterman_file, waterman_not_performed_folder))
+            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_not_performed_folder))
 
-for sub_folder in os.listdir(waterman_folder):
-    input_handle = open(waterman_folder + sub_folder + "waterman_stats", "w+")
-    for waterman_file in os.listdir(sub_folder):
-        status, score = commands.getstatusoutput(("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % (waterman_file)).format('"'))
-        status, similarity = commands.getstatusoutput(("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % (waterman_file)).format('"'))
-        status, identity = commands.getstatusoutput(("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % (waterman_file)).format('"'))
-        input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
-    input_handle.close()
+for permutation_folder in permuation_folders:
+    porf_folders = [permutation_folder + porf_folder for porf_folder in os.listdir(permutation_folder)]
+    for porf_folder in porf_folders:
+        input_handle = open(porf_folder + "waterman_stats", "w+")
+        for waterman_file in os.listdir(porf_folder):
+            status, score = commands.getstatusoutput(("cat %s%s | grep '^# Score' | cut -d {0} {0} -f 3" % (porf_folder, waterman_file)).format('"'))
+            status, similarity = commands.getstatusoutput(("cat %s%s | grep '^# Similarity' | cut -d {0} {0} -f 5" % (porf_folder, waterman_file)).format('"'))
+            status, identity = commands.getstatusoutput(("cat %s%s | grep '^# Identity' | cut -d {0} {0} -f 7" % (porf_folder, waterman_file)).format('"'))
+            input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+        input_handle.close()
+
+# Now to see if there are any differences between the 2D nanonet and the 2D metrichor for the metrichor pass files:
+# We will also see if there is any difference between the nanonet template and the metrichor template to
+# determine the necessity for metrichor on 1D reads.
+
+# 2D testing
+# First ensure that reads are mutually inclusive
+pass_id_list = []
+input_handle = open(metrichor_fasta_files_sorted["2d"], "rU")
+for record in SeqIO.parse(input_handle, "fasta"):
+    pass_id_list.append(record.id)
+input_handle.close()
+
+input_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
+output_handle = open(nanonetcall_fasta_files_sorted["2d"] + ".tmp", "w+")
+
+for record in SeqIO.parse(input_handle, "fasta"):
+    if record.id in pass_id_list:
+        output_handle.write(">" + record.id + "\n")
+        output_handle.write(str(record.seq) + "\n")
+
+input_handle.close()
+output_handle.close()
+
+os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["2d"] + ".tmp", nanonetcall_fasta_files_sorted["2d"]))
+
+nanonet_id_list = []
+input_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
+for record in SeqIO.parse(input_handle, "fasta"):
+    pass_id_list.append(record.id)
+input_handle.close()
+
+input_handle = open(metrichor_fasta_files_sorted["2d"], "rU")
+output_handle = open(metrichor_fasta_files_sorted["2d"] + ".tmp", "w+")
+
+for record in SeqIO.parse(input_handle, "fasta"):
+    if record.id in nanonet_id_list:
+        output_handle.write(">" + record.id + "\n")
+        output_handle.write(str(record.seq) + "\n")
+
+input_handle.close()
+output_handle.close()
+
+os.system("mv %s %s" % (metrichor_fasta_files_sorted["2d"] + ".tmp", metrichor_fasta_files_sorted["2d"]))
+
+# Now another waterman test between the two!
+cross_comparison_directory = waterman_folder + "cross_comparison/"
+
+fasta_1_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
+fasta_2_handle = open(metrichor_fasta_files_sorted["2d"], "rU")
+
+fasta_1_rec = list(SeqIO.parse(fasta_1_handle, "fasta"))
+fasta_2_rec = list(SeqIO.parse(fasta_2_handle, "fasta"))
+
+for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
+    afile = "tmp_a_file.fasta"
+    bfile = "tmp_b_file.fasta"
+    a_output_handle = open(afile, "w+")
+    SeqIO.write(afasta, a_output_handle, "fasta")
+    b_output_handle = open(bfile, "w+")
+    SeqIO.write(bfasta, b_output_handle, "fasta")
+    a_output_handle.close()
+    b_output_handle.close()
+
+    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+    water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
+                    (afile, bfile, outfile)
+    os.system(water_command)
+    os.system("rm %s %s" % (afile, bfile))
+
+
+# 1D testing
+# First ensure that reads are mutually inclusive
+pass_id_list = []
+input_handle = open(metrichor_fasta_files_sorted["fwd"], "rU")
+for record in SeqIO.parse(input_handle, "fasta"):
+    pass_id_list.append(record.id)
+input_handle.close()
+
+input_handle = open(nanonetcall_fasta_files_sorted["fwd"], "rU")
+output_handle = open(nanonetcall_fasta_files_sorted["fwd"] + ".tmp", "w+")
+
+for record in SeqIO.parse(input_handle, "fasta"):
+    if record.id in pass_id_list:
+        output_handle.write(">" + record.id + "\n")
+        output_handle.write(str(record.seq) + "\n")
+
+input_handle.close()
+output_handle.close()
+
+os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["fwd"] + ".tmp", nanonetcall_fasta_files_sorted["fwd"]))
+
+nanonet_id_list = []
+input_handle = open(nanonetcall_fasta_files_sorted["fwd"], "rU")
+for record in SeqIO.parse(input_handle, "fasta"):
+    pass_id_list.append(record.id)
+input_handle.close()
+
+input_handle = open(metrichor_fasta_files_sorted["fwd"], "rU")
+output_handle = open(metrichor_fasta_files_sorted["fwd"] + ".tmp", "w+")
+
+for record in SeqIO.parse(input_handle, "fasta"):
+    if record.id in nanonet_id_list:
+        output_handle.write(">" + record.id + "\n")
+        output_handle.write(str(record.seq) + "\n")
+
+input_handle.close()
+output_handle.close()
+
+os.system("mv %s %s" % (metrichor_fasta_files_sorted["fwd"] + ".tmp", metrichor_fasta_files_sorted["fwd"]))
+
+# Now another waterman test between the two!
+fasta_1_handle = open(nanonetcall_fasta_files_sorted["fwd"], "rU")
+fasta_2_handle = open(metrichor_fasta_files_sorted["fwd"], "rU")
+
+fasta_1_rec = list(SeqIO.parse(fasta_1_handle, "fasta"))
+fasta_2_rec = list(SeqIO.parse(fasta_2_handle, "fasta"))
+
+for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
+    afile = "tmp_a_file.fasta"
+    bfile = "tmp_b_file.fasta"
+    a_output_handle = open(afile, "w+")
+    SeqIO.write(afasta, a_output_handle, "fasta")
+    b_output_handle = open(bfile, "w+")
+    SeqIO.write(bfasta, b_output_handle, "fasta")
+    a_output_handle.close()
+    b_output_handle.close()
+
+    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+    water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
+                    (afile, bfile, outfile)
+    os.system(water_command)
+    os.system("rm %s %s" % (afile, bfile))
 
 
 """
