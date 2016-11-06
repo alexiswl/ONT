@@ -96,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="185" column="42" selection-start-line="185" selection-start-column="42" selection-end-line="185" selection-end-column="42" />
+            <state relative-caret-position="329">
+              <caret line="323" column="27" selection-start-line="323" selection-start-column="27" selection-end-line="323" selection-end-column="27" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -436,20 +436,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00029" summary="Catching a KeyError in the requests stage. Not sure what the problem is.">
-      <created>1475892882764</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1475892882764</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Catching a KeyError in the requests stage. Not sure what the problem is.">
-      <created>1475894394329</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1475894394329</updated>
-    </task>
     <task id="LOCAL-00031" summary="Catching a KeyError in the requests stage. Not sure what the problem is.">
       <created>1475894985824</created>
       <option name="number" value="00031" />
@@ -779,7 +765,21 @@
       <option name="project" value="LOCAL" />
       <updated>1478403363729</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Now can compare the outputs of the nanonet2d 2d, template and complement sequences.">
+      <created>1478412377718</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1478412377718</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!">
+      <created>1478416059535</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1478416059535</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -836,8 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bug for end log for printing total number of reads analysed in completion log." />
-    <MESSAGE value="Added dot to between run name and read type in fastq files." />
     <MESSAGE value="Fixed up syntax error regarding iterating through dictionaries." />
     <MESSAGE value="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype" />
     <MESSAGE value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
@@ -861,11 +859,13 @@
     <MESSAGE value="Add try catch, silly biopython cannot convert fastq to fasta" />
     <MESSAGE value="change waterman directory&#10;" />
     <MESSAGE value="combo directory assignment error. classic!" />
-    <option name="LAST_COMMIT_MESSAGE" value="combo directory assignment error. classic!" />
+    <MESSAGE value="Now can compare the outputs of the nanonet2d 2d, template and complement sequences." />
+    <MESSAGE value="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="185" column="42" selection-start-line="185" selection-start-column="42" selection-end-line="185" selection-end-column="42" />
+        <state relative-caret-position="329">
+          <caret line="323" column="27" selection-start-line="323" selection-start-column="27" selection-end-line="323" selection-end-column="27" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
