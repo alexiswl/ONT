@@ -96,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
+            <state relative-caret-position="1264">
+              <caret line="193" column="57" selection-start-line="193" selection-start-column="57" selection-end-line="193" selection-end-column="57" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -436,13 +436,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00033" summary="Hard coded some directories to debug on data. Will convert to wrapper later in the week.">
-      <created>1476084552213</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1476084552213</updated>
-    </task>
     <task id="LOCAL-00034" summary="Added waterman test, checking to see the difference between fasta files in nanonet call and metrichor pass reads.">
       <created>1476153514958</created>
       <option name="number" value="00034" />
@@ -779,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478480257568</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet.">
+      <created>1478509240866</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1478509240866</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -836,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
     <MESSAGE value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
     <MESSAGE value="Recursively add subdirectories to fastq folder." />
     <MESSAGE value="Error fix - update fastq output." />
@@ -861,7 +860,8 @@
     <MESSAGE value="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!" />
     <MESSAGE value="Removed unnecessary block of code." />
     <MESSAGE value="A little more general debugging." />
-    <option name="LAST_COMMIT_MESSAGE" value="A little more general debugging." />
+    <MESSAGE value="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
+        <state relative-caret-position="1264">
+          <caret line="193" column="57" selection-start-line="193" selection-start-column="57" selection-end-line="193" selection-end-column="57" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
