@@ -5,6 +5,7 @@ from operator import attrgetter
 import os
 import itertools
 import commands
+import re
 
 # This is a function to test the differences between the reads coming down from metrichor against those
 # produced by nanonetcall. This is important to see the importance of whether it is important to send data to
@@ -135,7 +136,8 @@ intra_comparison_folder = waterman_folder + "intracomparison/"
 
 # Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
-    combo_directory = intra_comparison_folder + fasta_file_1.split("/")[-1] + "_" + fasta_file_2.split("/")[-1]
+    combo_directory = intra_comparison_folder + re.split("/ |_ ", fasta_file_1)[-2] + "_" + \
+                      re.split("/ |_ ",fasta_file_2)[-2]
     if not os.path.isdir(combo_directory):
         os.mkdir(combo_directory)
     fasta_1_handle = open(fasta_file_1, "rU")

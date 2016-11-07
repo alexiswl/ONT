@@ -96,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
+            <state relative-caret-position="255">
+              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -179,8 +179,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-40" />
-    <option name="y" value="59" />
+    <option name="x" value="41" />
+    <option name="y" value="96" />
     <option name="width" value="1426" />
     <option name="height" value="897" />
   </component>
@@ -435,13 +435,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Added hdf5 dataset breakdown folder.">
-      <created>1476170079565</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1476170079565</updated>
     </task>
     <task id="LOCAL-00036" summary="Added hdf5 dataset breakdown folder.">
       <created>1476170203684</created>
@@ -779,11 +772,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478509252948</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="concatenated fasta / fastq files are placed in the waterman directory now.">
+      <created>1478509834088</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1478509834088</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-40" y="59" width="1426" height="897" extended-state="0" />
+    <frame x="41" y="96" width="1426" height="897" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -836,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
     <MESSAGE value="Recursively add subdirectories to fastq folder." />
     <MESSAGE value="Error fix - update fastq output." />
     <MESSAGE value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
@@ -861,7 +860,8 @@
     <MESSAGE value="Removed unnecessary block of code." />
     <MESSAGE value="A little more general debugging." />
     <MESSAGE value="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet." />
+    <MESSAGE value="concatenated fasta / fastq files are placed in the waterman directory now." />
+    <option name="LAST_COMMIT_MESSAGE" value="concatenated fasta / fastq files are placed in the waterman directory now." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
+        <state relative-caret-position="255">
+          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
