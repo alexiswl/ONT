@@ -140,7 +140,7 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle.close()
         b_output_handle.close()
 
-        outfile = combo_directory + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+        outfile = combo_directory + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
         water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                   (afile, bfile, outfile)
         os.system(water_command)
@@ -179,14 +179,19 @@ for permutation_folder in permutation_folders:
     waterman_not_performed_folder = permutation_folder + "not_performed"
     if not os.listdir(waterman_not_performed_folder):
         os.mkdir(waterman_not_performed_folder)
+    other_folder = permutation_folder + "other"
+    if not os.listdir(other_folder):
+        os.mkdir(other_folder)
     waterman_files = [permutation_folder + waterman_file for waterman_file in permutation_folder]
     for waterman_file in waterman_files:
         if waterman_file in pass_files:
             os.system("mv %s %s" % (waterman_file, waterman_pass_folder))
-        if waterman_file in _2d_failed_files:
+        elif waterman_file in _2d_failed_files:
             os.system("mv %s %s" % (waterman_file, waterman_failed_quality_folder))
-        if waterman_file in _2d_not_performed_files:
+        elif waterman_file in _2d_not_performed_files:
             os.system("mv %s %s" % (waterman_file, waterman_not_performed_folder))
+        else:
+            os.system("mv %s %s" % (waterman_file, other_folder))
 
 for permutation_folder in permutation_folders:
     porf_folders = [permutation_folder + porf_folder for porf_folder in os.listdir(permutation_folder)
@@ -274,7 +279,7 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
     a_output_handle.close()
     b_output_handle.close()
 
-    outfile = cross_comparison_directory_2D + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+    outfile = cross_comparison_directory_2D + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
     water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                     (afile, bfile, outfile)
     os.system(water_command)
@@ -355,7 +360,7 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
     a_output_handle.close()
     b_output_handle.close()
 
-    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
     water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                     (afile, bfile, outfile)
     os.system(water_command)

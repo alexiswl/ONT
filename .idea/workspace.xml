@@ -97,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
-              <caret line="323" column="27" selection-start-line="323" selection-start-column="27" selection-end-line="323" selection-end-column="27" />
+              <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -128,8 +128,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1602">
-              <caret line="256" column="60" selection-start-line="256" selection-start-column="56" selection-end-line="256" selection-end-column="60" />
+            <state relative-caret-position="81">
+              <caret line="297" column="28" selection-start-line="297" selection-start-column="28" selection-end-line="297" selection-end-column="28" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -179,8 +179,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="11" />
-    <option name="y" value="130" />
+    <option name="x" value="1245" />
+    <option name="y" value="115" />
     <option name="width" value="1426" />
     <option name="height" value="897" />
   </component>
@@ -435,20 +435,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Catching a KeyError in the requests stage. Not sure what the problem is.">
-      <created>1475894985824</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1475894985824</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added input type to metaphlan run">
-      <created>1475895234569</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1475895234569</updated>
     </task>
     <task id="LOCAL-00033" summary="Hard coded some directories to debug on data. Will convert to wrapper later in the week.">
       <created>1476084552213</created>
@@ -779,11 +765,25 @@
       <option name="project" value="LOCAL" />
       <updated>1478416059535</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Removed unnecessary block of code.">
+      <created>1478420179731</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1478420179731</updated>
+    </task>
+    <task id="LOCAL-00081" summary="A little more general debugging.">
+      <created>1478480257568</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1478480257568</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="130" width="1426" height="897" extended-state="0" />
+    <frame x="1245" y="115" width="1426" height="897" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -836,8 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed up syntax error regarding iterating through dictionaries." />
-    <MESSAGE value="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype" />
     <MESSAGE value="Changes 2D to 2d ins SUBFOLDERS_2D global tuple." />
     <MESSAGE value="Turned old_fast5_file dict variable into a default dict so it can hand lists." />
     <MESSAGE value="Recursively add subdirectories to fastq folder." />
@@ -861,7 +859,9 @@
     <MESSAGE value="combo directory assignment error. classic!" />
     <MESSAGE value="Now can compare the outputs of the nanonet2d 2d, template and complement sequences." />
     <MESSAGE value="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cross comparison test too! Still a little glitch, fwd files of nanonet won't exist if the 2D file does not exist. Otherwise is fine!" />
+    <MESSAGE value="Removed unnecessary block of code." />
+    <MESSAGE value="A little more general debugging." />
+    <option name="LAST_COMMIT_MESSAGE" value="A little more general debugging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1209,32 +1209,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/waterman_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
-          <folding>
-            <element signature="e#23#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5950">
           <caret line="350" column="48" selection-start-line="350" selection-start-column="48" selection-end-line="350" selection-end-column="48" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1602">
-          <caret line="256" column="60" selection-start-line="256" selection-start-column="56" selection-end-line="256" selection-end-column="60" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1247,10 +1227,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/waterman_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+          <folding>
+            <element signature="e#23#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="297" column="28" selection-start-line="297" selection-start-column="28" selection-end-line="297" selection-end-column="28" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
-          <caret line="323" column="27" selection-start-line="323" selection-start-column="27" selection-end-line="323" selection-end-column="27" />
+          <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
