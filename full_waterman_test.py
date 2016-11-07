@@ -165,9 +165,11 @@ for fast5_file in os.listdir(_2d_failed_quality_directory):
 for fast5_file in os.listdir(_2d_not_performed):
     _2d_not_performed_files.append(fast5_file.split("_")[-3] + "_" + fast5_file.split("_")[-2])
 
-permuation_folders = [intra_comparison_folder + permutation_folder + "/" for permutation_folder in os.listdir(intra_comparison_folder)]
+permutation_folders = [intra_comparison_folder + permutation_folder + "/"
+                       for permutation_folder in os.listdir(intra_comparison_folder)
+                       if os.path.isdir(permutation_folder)]
 
-for permutation_folder in permuation_folders:
+for permutation_folder in permutation_folders:
     waterman_pass_folder = permutation_folder + "pass/"
     if not os.listdir(waterman_pass_folder):
         os.mkdir(waterman_pass_folder)
@@ -177,23 +179,30 @@ for permutation_folder in permuation_folders:
     waterman_not_performed_folder = permutation_folder + "not_performed"
     if not os.listdir(waterman_not_performed_folder):
         os.mkdir(waterman_not_performed_folder)
-    for waterman_file in os.listdir(permutation_folder):
+    waterman_files = [permutation_folder + waterman_file for waterman_file in permutation_folder]
+    for waterman_file in waterman_files:
         if waterman_file in pass_files:
-            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_pass_folder))
+            os.system("mv %s %s" % (waterman_file, waterman_pass_folder))
         if waterman_file in _2d_failed_files:
-            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_failed_quality_folder))
+            os.system("mv %s %s" % (waterman_file, waterman_failed_quality_folder))
         if waterman_file in _2d_not_performed_files:
-            os.system("mv %s%s %s" % (permutation_folder, waterman_file, waterman_not_performed_folder))
+            os.system("mv %s %s" % (waterman_file, waterman_not_performed_folder))
 
-for permutation_folder in permuation_folders:
-    porf_folders = [permutation_folder + porf_folder for porf_folder in os.listdir(permutation_folder)]
+for permutation_folder in permutation_folders:
+    porf_folders = [permutation_folder + porf_folder for porf_folder in os.listdir(permutation_folder)
+                    if os.path.isdir(porf_folder)]
     for porf_folder in porf_folders:
         input_handle = open(porf_folder + "waterman_stats", "w+")
-        for waterman_file in os.listdir(porf_folder):
-            status, score = commands.getstatusoutput(("cat %s%s | grep '^# Score' | cut -d {0} {0} -f 3" % (porf_folder, waterman_file)).format('"'))
-            status, similarity = commands.getstatusoutput(("cat %s%s | grep '^# Similarity' | cut -d {0} {0} -f 5" % (porf_folder, waterman_file)).format('"'))
-            status, identity = commands.getstatusoutput(("cat %s%s | grep '^# Identity' | cut -d {0} {0} -f 7" % (porf_folder, waterman_file)).format('"'))
-            input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+        waterman_files = [porf_folder + waterman_file for waterman_file in os.listdir(porf_folder)]
+        for waterman_file in waterman_files:
+            status, score = commands.getstatusoutput(("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" %
+                                                      waterman_file).format('"'))
+            status, similarity = commands.getstatusoutput(("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" %
+                                                           waterman_file).format('"'))
+            status, identity = commands.getstatusoutput(("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" %
+                                                         waterman_file).format('"'))
+            input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" +
+                               identity.strip("()"))
         input_handle.close()
 
 # Now to see if there are any differences between the 2D nanonet and the 2D metrichor for the metrichor pass files:
@@ -242,6 +251,12 @@ os.system("mv %s %s" % (metrichor_fasta_files_sorted["2d"] + ".tmp", metrichor_f
 
 # Now another waterman test between the two!
 cross_comparison_directory = waterman_folder + "cross_comparison/"
+if not os.path.isdir(cross_comparison_directory):
+    os.mkdir(cross_comparison_directory)
+
+cross_comparison_directory_2D = waterman_folder + "cross_comparison/2D"
+if not os.path.isdir(cross_comparison_directory_2D):
+    os.mkdir(cross_comparison_directory_2D)
 
 fasta_1_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
 fasta_2_handle = open(metrichor_fasta_files_sorted["2d"], "rU")
@@ -259,11 +274,24 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
     a_output_handle.close()
     b_output_handle.close()
 
-    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
+    outfile = cross_comparison_directory_2D + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2]
     water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                     (afile, bfile, outfile)
     os.system(water_command)
     os.system("rm %s %s" % (afile, bfile))
+
+input_handle = open(cross_comparison_directory + "2D_waterman_stats", "w+")
+waterman_files = [cross_comparison_directory_2D + waterman_file for waterman_file in os.listdir(cross_comparison_directory_2D)]
+for waterman_file in waterman_files:
+    status, score = commands.getstatusoutput(
+        ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
+    status, similarity = commands.getstatusoutput(
+        ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
+    status, identity = commands.getstatusoutput(
+        ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
+    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+input_handle.close()
+
 
 
 # 1D testing
@@ -307,6 +335,10 @@ output_handle.close()
 os.system("mv %s %s" % (metrichor_fasta_files_sorted["fwd"] + ".tmp", metrichor_fasta_files_sorted["fwd"]))
 
 # Now another waterman test between the two!
+cross_comparison_directory_1D = cross_comparison_directory + "1D/"
+if not os.path.isdir(cross_comparison_directory_1D):
+    os.mkdir(cross_comparison_directory_1D)
+
 fasta_1_handle = open(nanonetcall_fasta_files_sorted["fwd"], "rU")
 fasta_2_handle = open(metrichor_fasta_files_sorted["fwd"], "rU")
 
@@ -328,3 +360,16 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
                     (afile, bfile, outfile)
     os.system(water_command)
     os.system("rm %s %s" % (afile, bfile))
+
+
+input_handle = open(cross_comparison_directory + "1D_waterman_stats", "w+")
+waterman_files = [cross_comparison_directory_1D + waterman_file for waterman_file in os.listdir(cross_comparison_directory_1D)]
+for waterman_file in waterman_files:
+    status, score = commands.getstatusoutput(
+        ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
+    status, similarity = commands.getstatusoutput(
+        ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
+    status, identity = commands.getstatusoutput(
+        ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
+    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+input_handle.close()
