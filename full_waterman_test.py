@@ -138,8 +138,8 @@ if not os.path.isdir(intra_comparison_folder):
 
 # Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
-    combo_directory = intra_comparison_folder + re.split("/ |_ ", fasta_file_1)[-2] + "_" + \
-                      re.split("/ |_ ",fasta_file_2)[-2]
+    combo_directory = intra_comparison_folder + re.split("/|_", fasta_file_1)[-2] + "_" + \
+                      re.split("/|_",fasta_file_2)[-2] + "/"
     if not os.path.isdir(combo_directory):
         os.mkdir(combo_directory)
     fasta_1_handle = open(fasta_file_1, "rU")
