@@ -133,6 +133,8 @@ if not os.path.isdir(waterman_folder):
     os.mkdir(waterman_folder)
 
 intra_comparison_folder = waterman_folder + "intracomparison/"
+if not os.path.isdir(intra_comparison_folder):
+    os.mkdir(intra_comparison_folder)
 
 # Now run the waterman aligner three times (for each different combination)
 for (fasta_file_1, fasta_file_2) in fasta_file_combinations:

@@ -96,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="300" column="97" selection-start-line="300" selection-start-column="97" selection-end-line="300" selection-end-column="97" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -436,13 +436,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00036" summary="Added hdf5 dataset breakdown folder.">
-      <created>1476170203684</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1476170203684</updated>
-    </task>
     <task id="LOCAL-00037" summary="Updated waterman_test file to an executible script.">
       <created>1476170442652</created>
       <option name="number" value="00037" />
@@ -779,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478509834088</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Error fixed when generating combo_directory.">
+      <created>1478510466641</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1478510466641</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -788,9 +788,9 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2696477" sideWeight="0.50476193" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20653595" sideWeight="0.5079251" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20653595" sideWeight="0.4952381" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20653595" sideWeight="0.49207494" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25822368" sideWeight="0.48039216" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -836,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Recursively add subdirectories to fastq folder." />
     <MESSAGE value="Error fix - update fastq output." />
     <MESSAGE value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
     <MESSAGE value="Fixed bug in get_taxid_translator, adds fasta directory paths if not yet existent." />
@@ -861,7 +860,8 @@
     <MESSAGE value="A little more general debugging." />
     <MESSAGE value="Created &quot;other folder&quot; for full_waterman_ test. May contain calibration strands. Not sure yet." />
     <MESSAGE value="concatenated fasta / fastq files are placed in the waterman directory now." />
-    <option name="LAST_COMMIT_MESSAGE" value="concatenated fasta / fastq files are placed in the waterman directory now." />
+    <MESSAGE value="Error fixed when generating combo_directory." />
+    <option name="LAST_COMMIT_MESSAGE" value="Error fixed when generating combo_directory." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="200">
+          <caret line="300" column="97" selection-start-line="300" selection-start-column="97" selection-end-line="300" selection-end-column="97" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
