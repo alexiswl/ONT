@@ -28,17 +28,31 @@ fastq_directory_2D = fastq_directory + "pass/2d/"
 fastq_directory_fwd = fastq_directory + "pass/fwd/"
 fastq_directory_rev = fastq_directory + "pass/rev/"
 
+waterman_folder = main_directory + "waterman/"
+if not os.path.isdir(waterman_folder):
+    os.mkdir(waterman_folder)
+
+tmp_fasta_directory = waterman_folder + "fasta/"
+if not os.path.isdir(tmp_fasta_directory):
+    os.mkdir(tmp_fasta_directory)
+
+tmp_fastq_directory = waterman_folder + "fastq/"
+if not os.path.isdir(tmp_fastq_directory):
+    os.mkdir(tmp_fastq_directory)
+
+
+
 metrichor_folders = {"2d": fastq_directory_2D, "fwd": fastq_directory_fwd, "rev": fastq_directory_rev}
 metrichor_fastq_files = {}
 nanonetcall_fasta_files = {}
 for type, folder in metrichor_folders.iteritems():
-    concatenated_file = folder + "concatenated.fastq"
+    concatenated_file = tmp_fastq_directory + type + "_concatenated.fastq"
     os.system("cat %s* > %s" % (folder, concatenated_file))
     metrichor_fastq_files.update({type: concatenated_file})
 
 nanonetcall_folders = {"2d": fasta_directory_2D, "fwd": fasta_directory_fwd, "rev": fasta_directory_rev}
 for type, folder in nanonetcall_folders.iteritems():
-    concatenated_fasta_file = folder + "concatenated.fasta"
+    concatenated_fasta_file = tmp_fasta_directory + type + "_concatenated.fasta"
     os.system("cat %s* > %s" % (folder, concatenated_fasta_file))
     nanonetcall_fasta_files.update({type: concatenated_fasta_file})
 
@@ -46,7 +60,7 @@ for type, folder in nanonetcall_folders.iteritems():
 # Convert fastq file of metrichor into fasta files with correct names.
 metrichor_fasta_files = {}
 for type, fastq_file in metrichor_fastq_files.iteritems():
-    concatenated_fasta_file = fastq_file.split(".")[0] + "concatenated.fasta"
+    concatenated_fasta_file = fastq_file.split(".")[0] + ".fasta"
     metrichor_fasta_files.update({type: concatenated_fasta_file})
     input_handle = open(fastq_file, "rU")
     output_handle = open(concatenated_fasta_file, "w+")
