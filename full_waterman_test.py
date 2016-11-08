@@ -158,7 +158,7 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle.close()
         b_output_handle.close()
 
-        outfile = combo_directory + "waterman" + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
+        outfile = combo_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
         water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                   (afile, bfile, outfile)
         os.system(water_command)
@@ -185,7 +185,7 @@ for fast5_file in os.listdir(_2d_not_performed):
 
 permutation_folders = [intra_comparison_folder + permutation_folder + "/"
                        for permutation_folder in os.listdir(intra_comparison_folder)
-                       if os.path.isdir(permutation_folder)]
+                       if os.path.isdir(intra_comparison_folder + permutation_folder)]
 
 for permutation_folder in permutation_folders:
     waterman_pass_folder = permutation_folder + "pass/"
@@ -202,18 +202,19 @@ for permutation_folder in permutation_folders:
         os.mkdir(other_folder)
     waterman_files = [permutation_folder + waterman_file for waterman_file in permutation_folder]
     for waterman_file in waterman_files:
-        if waterman_file in pass_files:
+        waterman_file_key = re.split('\/|\.|_', waterman_file)[-4] + "_" + re.split('\.|_', waterman_file)[-3]
+        if waterman_file_key in pass_files:
             os.system("mv %s %s" % (waterman_file, waterman_pass_folder))
-        elif waterman_file in _2d_failed_files:
+        elif waterman_file_key in _2d_failed_files:
             os.system("mv %s %s" % (waterman_file, waterman_failed_quality_folder))
-        elif waterman_file in _2d_not_performed_files:
+        elif waterman_file_key in _2d_not_performed_files:
             os.system("mv %s %s" % (waterman_file, waterman_not_performed_folder))
         else:
             os.system("mv %s %s" % (waterman_file, other_folder))
 
 for permutation_folder in permutation_folders:
     porf_folders = [permutation_folder + porf_folder for porf_folder in os.listdir(permutation_folder)
-                    if os.path.isdir(porf_folder)]
+                    if os.path.isdir(permutation_folder + porf_folder)]
     for porf_folder in porf_folders:
         input_handle = open(porf_folder + "waterman_stats", "w+")
         waterman_files = [porf_folder + waterman_file for waterman_file in os.listdir(porf_folder)]
