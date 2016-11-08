@@ -294,8 +294,8 @@ fasta_1_rec = list(SeqIO.parse(fasta_1_handle, "fasta"))
 fasta_2_rec = list(SeqIO.parse(fasta_2_handle, "fasta"))
 
 for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
-    afile = cross_comparison_directory + "tmp_a_file.fasta"
-    bfile = cross_comparison_directory + "tmp_b_file.fasta"
+    afile = cross_comparison_directory_2D + "tmp_a_file.fasta"
+    bfile = cross_comparison_directory_2D + "tmp_b_file.fasta"
     a_output_handle = open(afile, "w+")
     SeqIO.write(afasta, a_output_handle, "fasta")
     b_output_handle = open(bfile, "w+")
@@ -310,7 +310,8 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
     os.system("rm %s %s" % (afile, bfile))
 
 input_handle = open(cross_comparison_directory + "2D_waterman_stats", "w+")
-waterman_files = [cross_comparison_directory_2D + waterman_file for waterman_file in os.listdir(cross_comparison_directory_2D)]
+waterman_files = [cross_comparison_directory_2D + waterman_file
+                  for waterman_file in os.listdir(cross_comparison_directory_2D)]
 for waterman_file in waterman_files:
     status, score = commands.getstatusoutput(
         ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
@@ -318,10 +319,8 @@ for waterman_file in waterman_files:
         ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
     status, identity = commands.getstatusoutput(
         ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
-    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()") + "\n")
 input_handle.close()
-
-
 
 # 1D testing
 # First ensure that reads are mutually inclusive
@@ -375,8 +374,8 @@ fasta_1_rec = list(SeqIO.parse(fasta_1_handle, "fasta"))
 fasta_2_rec = list(SeqIO.parse(fasta_2_handle, "fasta"))
 
 for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
-    afile = "tmp_a_file.fasta"
-    bfile = "tmp_b_file.fasta"
+    afile = cross_comparison_directory_1D + "tmp_a_file.fasta"
+    bfile = cross_comparison_directory_1D + "tmp_b_file.fasta"
     a_output_handle = open(afile, "w+")
     SeqIO.write(afasta, a_output_handle, "fasta")
     b_output_handle = open(bfile, "w+")
@@ -392,7 +391,8 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
 
 
 input_handle = open(cross_comparison_directory + "1D_waterman_stats", "w+")
-waterman_files = [cross_comparison_directory_1D + waterman_file for waterman_file in os.listdir(cross_comparison_directory_1D)]
+waterman_files = [cross_comparison_directory_1D + waterman_file
+                  for waterman_file in os.listdir(cross_comparison_directory_1D)]
 for waterman_file in waterman_files:
     status, score = commands.getstatusoutput(
         ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
@@ -400,5 +400,5 @@ for waterman_file in waterman_files:
         ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
     status, identity = commands.getstatusoutput(
         ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
-    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()"))
+    input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()") + "\n")
 input_handle.close()

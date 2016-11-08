@@ -96,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
+            <state relative-caret-position="3611">
+              <caret line="394" column="18" selection-start-line="394" selection-start-column="18" selection-end-line="394" selection-end-column="18" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -436,13 +436,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00040" summary="Added 2D support for nanonet wrapper.">
-      <created>1477190509400</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1477190509400</updated>
-    </task>
     <task id="LOCAL-00041" summary="Added 2D support for nanonet wrapper.">
       <created>1477190610575</created>
       <option name="number" value="00041" />
@@ -779,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478575935405</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Further debugging of full_waterman_test script. I have a new proposal for listing file, not in file but in dictionary, for name and path. Thoughts - future me?">
+      <created>1478645748527</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1478645748527</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -836,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="--IS_1D to --1D for consistency with other running scripts." />
     <MESSAGE value="Change back to str not array for get_lineage function.&#10;" />
     <MESSAGE value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
     <MESSAGE value="End log bug fix." />
@@ -861,7 +860,8 @@
     <MESSAGE value="debug - didn't create the intra_comparison directory." />
     <MESSAGE value="Fixed glitch with poretools-wrapper and generating the reverse strand." />
     <MESSAGE value="Glitch in full_waterman_test. Still in debugging stage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Glitch in full_waterman_test. Still in debugging stage." />
+    <MESSAGE value="Further debugging of full_waterman_test script. I have a new proposal for listing file, not in file but in dictionary, for name and path. Thoughts - future me?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Further debugging of full_waterman_test script. I have a new proposal for listing file, not in file but in dictionary, for name and path. Thoughts - future me?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
+        <state relative-caret-position="3611">
+          <caret line="394" column="18" selection-start-line="394" selection-start-column="18" selection-end-line="394" selection-end-column="18" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
