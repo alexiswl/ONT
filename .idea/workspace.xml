@@ -4,7 +4,6 @@
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/full_waterman_test.py" afterPath="$PROJECT_DIR$/full_waterman_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,8 +96,8 @@
       <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+            <state relative-caret-position="415">
+              <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -109,8 +108,8 @@
       <file leaf-file-name="metrichor-cli-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-850">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+            <state relative-caret-position="289">
+              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -129,8 +128,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="359" column="89" selection-start-line="359" selection-start-column="89" selection-end-line="359" selection-end-column="89" />
+            <state relative-caret-position="183">
+              <caret line="103" column="24" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="24" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -174,16 +173,16 @@
         <option value="$PROJECT_DIR$/needleman_test.py" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
-        <option value="$PROJECT_DIR$/full_waterman_test.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
+        <option value="$PROJECT_DIR$/full_waterman_test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="134" />
-    <option name="width" value="1426" />
-    <option name="height" value="897" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -436,20 +435,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;&#10;">
-      <created>1476229642714</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1476229642714</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Adjusted calibration strand detection. Now exists subfolders for calibration strand for subsequent analysis. Also added compatibiltiy for 1D with calibration strand.&#10;(Actually works now).&#10;">
-      <created>1476270611966</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1476270611966</updated>
     </task>
     <task id="LOCAL-00040" summary="Added 2D support for nanonet wrapper.">
       <created>1477190509400</created>
@@ -780,18 +765,32 @@
       <option name="project" value="LOCAL" />
       <updated>1478513022697</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Fixed glitch with poretools-wrapper and generating the reverse strand.">
+      <created>1478513685735</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1478513685735</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Glitch in full_waterman_test. Still in debugging stage.">
+      <created>1478575935405</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1478575935405</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="134" width="1426" height="897" extended-state="0" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12559618" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20653595" sideWeight="0.5079251" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18202765" sideWeight="0.5079491" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20653595" sideWeight="0.49207494" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18202765" sideWeight="0.4920509" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25822368" sideWeight="0.48039216" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -837,8 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories." />
-    <MESSAGE value="Fixed bug in get_taxid_translator, adds fasta directory paths if not yet existent." />
     <MESSAGE value="--IS_1D to --1D for consistency with other running scripts." />
     <MESSAGE value="Change back to str not array for get_lineage function.&#10;" />
     <MESSAGE value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
@@ -862,7 +859,9 @@
     <MESSAGE value="concatenated fasta / fastq files are placed in the waterman directory now." />
     <MESSAGE value="Error fixed when generating combo_directory." />
     <MESSAGE value="debug - didn't create the intra_comparison directory." />
-    <option name="LAST_COMMIT_MESSAGE" value="debug - didn't create the intra_comparison directory." />
+    <MESSAGE value="Fixed glitch with poretools-wrapper and generating the reverse strand." />
+    <MESSAGE value="Glitch in full_waterman_test. Still in debugging stage." />
+    <option name="LAST_COMMIT_MESSAGE" value="Glitch in full_waterman_test. Still in debugging stage." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1220,14 +1219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
@@ -1238,10 +1229,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/metrichor-cli-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="359" column="89" selection-start-line="359" selection-start-column="89" selection-end-line="359" selection-end-column="89" />
+        <state relative-caret-position="183">
+          <caret line="103" column="24" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="24" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
@@ -1250,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+        <state relative-caret-position="415">
+          <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>
