@@ -36,7 +36,7 @@ RUN_NAME = ""
 LOGFILE = ""
 COMPLETION_FILE = ""
 WATCH = 0
-
+IS_1D = False
 
 def get_commandline_params():
     help_descriptor = "This is a script designed to take a fasta directory as input and produce a set" + \
@@ -56,6 +56,8 @@ def get_commandline_params():
     parser.add_argument("--fasta_directory", nargs='?', dest="FASTA_DIRECTORY", type=str,
                         help="The directory with the fasta files within them. If not specified, this will be:" +
                              "<run_directory>/fasta")
+    parser.add_argument("--1D", action='store_true', dest="IS_1D", default=False,
+                        help="Fasta directory is split between 1D and 2D reads. Did nanonet use 1D or 2D nanonet call?")
     parser.add_argument("--kraken_database", nargs='?', dest="KRAKEN_DATABASE", type=str,
                         help="The database used in kraken", required=True)
     parser.add_argument("--watch", nargs='?', dest="WATCH", type=int,
@@ -80,6 +82,7 @@ def set_commandline_variables(args):
     THREAD_COUNT = args.THREAD_COUNT
     WATCH = args.WATCH
     LOGFILE = args.LOGFILE
+    IS_1D = args.IS_1D
 
 
 def set_directories():
@@ -100,6 +103,14 @@ def set_directories():
             sys.exit(error_message)
     else:
         FASTA_DIRECTORY = RUN_DIRECTORY + "fasta/"
+        if not os.path.isdir(FASTA_DIRECTORY):
+            os.mkdir(FASTA_DIRECTORY)
+        if IS_1D:
+            FASTA_DIRECTORY += "1D/"
+        else:
+            FASTA_DIRECTORY += "2D/"
+        if not os.path.isdir(FASTA_DIRECTORY):
+            os.mkdir(FASTA_DIRECTORY)
     FASTA_DIRECTORY = os.path.abspath(FASTA_DIRECTORY) + "/"
 
     if not os.path.isdir(KRAKEN_DATABASE):
