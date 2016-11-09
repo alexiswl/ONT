@@ -72,7 +72,7 @@ def get_commandline_params():
 
 
 def set_commandline_variables(args):
-    global RUN_NAME, RUN_DIRECTORY, FASTA_DIRECTORY, KRAKEN_DATABASE, WATCH
+    global RUN_NAME, RUN_DIRECTORY, FASTA_DIRECTORY, KRAKEN_DATABASE, WATCH, IS_1D
     global THREAD_COUNT, LOGFILE, KRAKEN_DIRECTORY, KRONA_DIRECTORY, COMPLETION_FILE
     # Assign inputs
     RUN_NAME = args.RUN_NAME

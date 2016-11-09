@@ -204,7 +204,6 @@ for permutation_folder in permutation_folders:
                       if waterman_file.endswith(".waterman")]
     for waterman_file in waterman_files:
         waterman_file_key = re.split('\/|\.|_', waterman_file)[-3] + "_" + re.split('\/|\.|_', waterman_file)[-2]
-        print waterman_file_key
         if waterman_file_key in pass_files:
             os.system("mv %s %s" % (waterman_file, waterman_pass_folder))
         elif waterman_file_key in _2d_failed_files:
@@ -222,13 +221,13 @@ for permutation_folder in permutation_folders:
 
     for porf_folder_name, porf_folder_path in porf_folders.iteritems():
         input_handle = open(permutation_folder + porf_folder_name + "_waterman_stats", "w+")
-        waterman_files = [porf_folder_path + waterman_file for waterman_file in os.listdir(porf_folder_name)]
+        waterman_files = [porf_folder_path + waterman_file for waterman_file in os.listdir(porf_folder_path)]
         for waterman_file in waterman_files:
-            status, score = commands.getstatusoutput(("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" %
+            status, score = commands.getstatusoutput(("cat %s | grep '^# Score' | rev | cut -d {0} {0} -f 1 | rev " %
                                                       waterman_file).format('"'))
-            status, similarity = commands.getstatusoutput(("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" %
+            status, similarity = commands.getstatusoutput(("cat %s | grep '^# Similarity' | rev | cut -d {0} {0} -f 1 | rev" %
                                                            waterman_file).format('"'))
-            status, identity = commands.getstatusoutput(("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" %
+            status, identity = commands.getstatusoutput(("cat %s | grep '^# Identity' | rev | cut -d {0} {0} -f 1 | rev" %
                                                          waterman_file).format('"'))
             input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" +
                                identity.strip("()") + "\n")
