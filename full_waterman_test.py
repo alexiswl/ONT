@@ -65,14 +65,11 @@ for type, fastq_file in metrichor_fastq_files.iteritems():
     metrichor_fasta_files.update({type: concatenated_fasta_file})
     input_handle = open(fastq_file, "rU")
     output_handle = open(concatenated_fasta_file, "w+")
-    try:
-        for record in SeqIO.parse(input_handle, "fastq"):
-            output_handle.write(">" + record.description.split()[1] + "\n")
-            output_handle.write(str(record.seq) + "\n")
-        input_handle.close()
-        output_handle.close()
-    except ValueError:
-        print("No idea why this is happening")
+    for record in SeqIO.parse(input_handle, "fastq"):
+        output_handle.write(">" + record.description.split()[1] + "\n")
+        output_handle.write(str(record.seq) + "\n")
+    input_handle.close()
+    output_handle.close()
 
 # Sort nanonetcall fasta files
 nanonetcall_fasta_files_sorted = {}
@@ -261,7 +258,7 @@ os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["2d"] + ".tmp", nanonetca
 nanonet_id_list = []
 input_handle = open(nanonetcall_fasta_files_sorted["2d"], "rU")
 for record in SeqIO.parse(input_handle, "fasta"):
-    pass_id_list.append(record.id)
+    nanonet_id_list.append(record.id)
 input_handle.close()
 
 input_handle = open(metrichor_fasta_files_sorted["2d"], "rU")
@@ -282,7 +279,7 @@ cross_comparison_directory = waterman_folder + "cross_comparison/"
 if not os.path.isdir(cross_comparison_directory):
     os.mkdir(cross_comparison_directory)
 
-cross_comparison_directory_2D = waterman_folder + "cross_comparison/2D"
+cross_comparison_directory_2D = waterman_folder + "cross_comparison/2D/"
 if not os.path.isdir(cross_comparison_directory_2D):
     os.mkdir(cross_comparison_directory_2D)
 
@@ -310,14 +307,15 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
 
 input_handle = open(cross_comparison_directory + "2D_waterman_stats", "w+")
 waterman_files = [cross_comparison_directory_2D + waterman_file
-                  for waterman_file in os.listdir(cross_comparison_directory_2D)]
+                  for waterman_file in os.listdir(cross_comparison_directory_2D)
+                  if waterman_file.endswith(".waterman")]
 for waterman_file in waterman_files:
     status, score = commands.getstatusoutput(
-        ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
+        ("cat %s | grep '^# Score' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     status, similarity = commands.getstatusoutput(
-        ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
+        ("cat %s | grep '^# Similarity' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     status, identity = commands.getstatusoutput(
-        ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
+        ("cat %s | grep '^# Identity' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()") + "\n")
 input_handle.close()
 
@@ -345,7 +343,7 @@ os.system("mv %s %s" % (nanonetcall_fasta_files_sorted["fwd"] + ".tmp", nanonetc
 nanonet_id_list = []
 input_handle = open(nanonetcall_fasta_files_sorted["fwd"], "rU")
 for record in SeqIO.parse(input_handle, "fasta"):
-    pass_id_list.append(record.id)
+    nanonet_id_list.append(record.id)
 input_handle.close()
 
 input_handle = open(metrichor_fasta_files_sorted["fwd"], "rU")
@@ -391,13 +389,14 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
 
 input_handle = open(cross_comparison_directory + "1D_waterman_stats", "w+")
 waterman_files = [cross_comparison_directory_1D + waterman_file
-                  for waterman_file in os.listdir(cross_comparison_directory_1D)]
+                  for waterman_file in os.listdir(cross_comparison_directory_1D)
+                  if waterman_file.endswith(".waterman")]
 for waterman_file in waterman_files:
     status, score = commands.getstatusoutput(
-        ("cat %s | grep '^# Score' | cut -d {0} {0} -f 3" % waterman_file).format('"'))
+        ("cat %s | grep '^# Score' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     status, similarity = commands.getstatusoutput(
-        ("cat %s | grep '^# Similarity' | cut -d {0} {0} -f 5" % waterman_file).format('"'))
+        ("cat %s | grep '^# Similarity' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     status, identity = commands.getstatusoutput(
-        ("cat %s | grep '^# Identity' | cut -d {0} {0} -f 7" % waterman_file).format('"'))
+        ("cat %s | grep '^# Identity' | rev | cut -d {0} {0} -f 1 | rev" % waterman_file).format('"'))
     input_handle.write(waterman_file + "\t" + score + "\t" + similarity.strip("()") + "\t" + identity.strip("()") + "\n")
 input_handle.close()
