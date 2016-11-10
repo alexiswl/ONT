@@ -35,6 +35,7 @@ SERVER_NAME = ""
 USER_NAME = ""
 READS_PER_SCP_TRANSFER = 100
 
+
 def get_commandline_params():
     help_descriptor = "This is a script designed to remove fast5 files from a laptop onto a server." + \
                       "There is not currently any support for FTP or for scp commands. This script only" + \
@@ -50,7 +51,7 @@ def get_commandline_params():
                              "files? User_Date_FlowcellID_MinIONID_sequencing_run_<RUNNAME>_5DigitBarcode_Channel_Read",
                         required=True)
     parser.add_argument("--connection_type", nargs='?', dest="CONNECTION_TYPE", type=str,
-                         help="Are you mapping through a Windows network drive or an scp to a server?", required=True)
+                        help="Are you mapping through a Windows network drive or an scp to a server?", required=True)
     parser.add_argument("--reads_directory", nargs='?', dest="READS_DIRECTORY", type=str,
                         help="This is the directory that contains the fast5 files produced by MinKNOW.",
                         required="True")
@@ -83,7 +84,7 @@ def get_commandline_params():
 
 def set_commandline_variables(args):
     global READS_DIRECTORY, SERVER_DIRECTORY, RUN_DIRECTORY, DUMP_DIRECTORY
-    global RUN_NAME, WATCH, LOGFILE, CONNECTION_TYPE
+    global RUN_NAME, WATCH, LOGFILE, CONNECTION_TYPE, USER_NAME, SERVER_NAME
 
     RUN_NAME = args.RUN_NAME
     READS_DIRECTORY = args.READS_DIRECTORY
@@ -97,6 +98,7 @@ def set_commandline_variables(args):
 
     USER_NAME = args.USER_NAME
     SERVER_NAME = args.SERVER_NAME
+
 
 def check_valid_symbols(string):
     for s in string:
@@ -130,7 +132,7 @@ def set_directories():
             error_message = "Error: Server directory does not exist."
             sys.exit(error_message)
         get_server_full_path_command = "ssh %s@%s 'readlink -e %s" % \
-                           (USER_NAME, SERVER_NAME, SERVER_DIRECTORY)
+                                       (USER_NAME, SERVER_NAME, SERVER_DIRECTORY)
         status, output = commands.getstatusoutput(get_server_full_path_command)
         SERVER_DIRECTORY = output + "/"
 
@@ -164,7 +166,7 @@ def set_directories():
             general_message = "Run directory not specified. Using %s" % RUN_DIRECTORY
             print(general_message)
             create_run_directory_command = "ssh %s@%s 'test -d %s || mkdir %s'" % \
-                                             (USER_NAME, SERVER_NAME, RUN_DIRECTORY)
+                                           (USER_NAME, SERVER_NAME, RUN_DIRECTORY, RUN_DIRECTORY)
             os.system(create_run_directory_command)
 
     # Checking to ensure that the dump directory exists.
@@ -189,13 +191,13 @@ def set_directories():
                 error_message = "Error, dump directory specified but does not exist"
                 sys.exit(error_message)
             get_dump_directory_full_path_command = "ssh %s@%s 'readlink -e %s" % \
-                                                  (USER_NAME, SERVER_NAME, DUMP_DIRECTORY)
+                                                   (USER_NAME, SERVER_NAME, DUMP_DIRECTORY)
             status, output = commands.getstatusoutput(get_dump_directory_full_path_command)
             DUMP_DIRECTORY = output + "/"
         else:
             DUMP_DIRECTORY = RUN_DIRECTORY + "dump/"
             create_dump_directory_command = "ssh %s@%s 'test -d %s || mkdir %s'" % \
-                                             (USER_NAME, SERVER_NAME, RUN_DIRECTORY)
+                                            (USER_NAME, SERVER_NAME, RUN_DIRECTORY, RUN_DIRECTORY)
             os.system(create_dump_directory_command)
 
     if not WATCH:
@@ -317,10 +319,8 @@ def commence_transfer():
                 if int(status) == 0:
                     for fast5_file_for_scp in fast5_files_for_scp:
                         os.system("rm %s" % fast5_file_for_scp)
-                    fast5_files_for_scp = []
                 else:
                     print "Warning, transfer of files was unsucessful. Files were not delected from the laptop."
-
 
 
 def main():
