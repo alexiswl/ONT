@@ -44,7 +44,7 @@ WATCH = 0
 DATE_PREFIX = str(time.strftime("%Y-%m-%d"))
 POST_SPLIT = False
 IS_1D = False
-POTENTIALLY_CORRUPTED_FILES = []
+
 
 def get_commandline_params():
     help_descriptor = "This is a comprehensive script which analyses files through the poretools." + \
@@ -407,14 +407,10 @@ def split_reads_by_attribute(new_fast5_files):
         try:
             f = h5py.File(fast5_file, 'r')
         except IOError:
-            if fast5_file in POTENTIALLY_CORRUPTED_FILES:
-                print("Already had one chance - it's going in the corrupted files section now!")
-                os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
-                POTENTIALLY_CORRUPTED_FILES.remove(fast5_file)
+            if still_writing(fast5_file):
+                print("Fast5 file still being written to. Removing file from set of fasta files")
             else:
-                POTENTIALLY_CORRUPTED_FILES.append(fast5_file)
-
-            # File may still be being written to. Will try in the next round.
+                os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
             continue
         # File not corrupt, move to folders accordingly.
         try:

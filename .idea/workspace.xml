@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/full_waterman_test.py" afterPath="$PROJECT_DIR$/full_waterman_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
@@ -131,8 +130,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="354" column="58" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
+            <state relative-caret-position="191">
+              <caret line="405" column="28" selection-start-line="405" selection-start-column="28" selection-end-line="405" selection-end-column="28" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -182,8 +181,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1220" />
-    <option name="y" value="67" />
+    <option name="x" value="102" />
+    <option name="y" value="81" />
     <option name="width" value="1426" />
     <option name="height" value="856" />
   </component>
@@ -552,13 +551,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00044" summary="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis.">
-      <created>1477196750459</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1477196750459</updated>
-    </task>
     <task id="LOCAL-00045" summary="Renamed to respect the output of poretools. 2D, fwd, rev for template and reverse strands.">
       <created>1477197486117</created>
       <option name="number" value="00045" />
@@ -895,11 +887,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478666822823</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="forward and reverse were switched around when splitting template and complement stands of 2D reads.">
+      <created>1478742815816</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1478742815816</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1220" y="67" width="1426" height="856" extended-state="0" />
+    <frame x="102" y="81" width="1426" height="856" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -952,7 +951,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="End log bug fix." />
     <MESSAGE value="Fixed major bug that would over concatentate fastq files." />
     <MESSAGE value="Files that may not be corrupted are sometimes moved to the corrupted folder. Added a condition that gives a file one chance to produce an IOerror before being move to the corrupted folder." />
     <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
@@ -977,7 +975,8 @@
     <MESSAGE value="Further debugging of full_waterman_test script. I have a new proposal for listing file, not in file but in dictionary, for name and path. Thoughts - future me?" />
     <MESSAGE value="Reverse the text in score identity extraction. Enables more robust text extraction." />
     <MESSAGE value="Fixed up the 2D vs 2d bit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed up the 2D vs 2d bit." />
+    <MESSAGE value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
+    <option name="LAST_COMMIT_MESSAGE" value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1367,8 +1366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="354" column="58" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
+        <state relative-caret-position="191">
+          <caret line="405" column="28" selection-start-line="405" selection-start-column="28" selection-end-line="405" selection-end-column="28" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
