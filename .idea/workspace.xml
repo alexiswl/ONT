@@ -4,6 +4,7 @@
     <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/full_waterman_test.py" afterPath="$PROJECT_DIR$/full_waterman_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="full_waterman_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="313" column="71" selection-start-line="313" selection-start-column="71" selection-end-line="313" selection-end-column="71" />
+            <state relative-caret-position="152">
+              <caret line="80" column="54" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -127,19 +128,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="103" column="24" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="24" />
+            <state relative-caret-position="310">
+              <caret line="354" column="58" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
-                <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-                <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-                <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-                <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-                <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-                <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
               </folding>
             </state>
           </provider>
@@ -180,15 +175,15 @@
         <option value="$PROJECT_DIR$/needleman_test.py" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
-        <option value="$PROJECT_DIR$/poretools-wrapper.py" />
         <option value="$PROJECT_DIR$/kraken-wrapper.py" />
         <option value="$PROJECT_DIR$/full_waterman_test.py" />
+        <option value="$PROJECT_DIR$/poretools-wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="27" />
+    <option name="x" value="1220" />
+    <option name="y" value="67" />
     <option name="width" value="1426" />
     <option name="height" value="856" />
   </component>
@@ -557,13 +552,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00043" summary="Poretools wrapper now analyses and spits out failed files too (only those that have failed 2D quality).">
-      <created>1477196705933</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1477196705933</updated>
-    </task>
     <task id="LOCAL-00044" summary="Poretools wrapper also splits the fastq files into 2D, template, and complement for more in-depth analysis.">
       <created>1477196750459</created>
       <option name="number" value="00044" />
@@ -900,11 +888,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478661157201</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Fixed up the 2D vs 2d bit.">
+      <created>1478666822822</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1478666822823</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="27" width="1426" height="856" extended-state="0" />
+    <frame x="1220" y="67" width="1426" height="856" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -957,7 +952,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added busy error to onecodex wrapper. Onecodex appears to be having server load issues. Waits until they're cleared up." />
     <MESSAGE value="End log bug fix." />
     <MESSAGE value="Fixed major bug that would over concatentate fastq files." />
     <MESSAGE value="Files that may not be corrupted are sometimes moved to the corrupted folder. Added a condition that gives a file one chance to produce an IOerror before being move to the corrupted folder." />
@@ -982,7 +976,8 @@
     <MESSAGE value="Glitch in full_waterman_test. Still in debugging stage." />
     <MESSAGE value="Further debugging of full_waterman_test script. I have a new proposal for listing file, not in file but in dictionary, for name and path. Thoughts - future me?" />
     <MESSAGE value="Reverse the text in score identity extraction. Enables more robust text extraction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reverse the text in score identity extraction. Enables more robust text extraction." />
+    <MESSAGE value="Fixed up the 2D vs 2d bit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed up the 2D vs 2d bit." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1007,12 +1002,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1033,12 +1022,6 @@
           <caret line="257" column="47" selection-start-line="257" selection-start-column="47" selection-end-line="257" selection-end-column="47" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1059,12 +1042,6 @@
           <caret line="257" column="47" selection-start-line="257" selection-start-column="47" selection-end-line="257" selection-end-column="47" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1124,12 +1101,6 @@
           <caret line="402" column="0" selection-start-line="402" selection-start-column="0" selection-end-line="402" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1183,12 +1154,6 @@
           <caret line="402" column="21" selection-start-line="402" selection-start-column="21" selection-end-line="402" selection-end-column="21" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1215,12 +1180,6 @@
           <caret line="402" column="21" selection-start-line="402" selection-start-column="21" selection-end-line="402" selection-end-column="21" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1246,12 +1205,6 @@
           <caret line="402" column="21" selection-start-line="402" selection-start-column="21" selection-end-line="402" selection-end-column="21" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1382,22 +1335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="103" column="24" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-            <marker date="1478513632119" expanded="true" signature="10710:12899" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11582:12470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="11906:12200" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16856:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="16895:21470" ph="..." />
-            <marker date="1478513632119" expanded="true" signature="17153:17403" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -1420,10 +1357,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/full_waterman_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="313" column="71" selection-start-line="313" selection-start-column="71" selection-end-line="313" selection-end-column="71" />
+        <state relative-caret-position="152">
+          <caret line="80" column="54" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
           <folding>
             <element signature="e#23#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="354" column="58" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

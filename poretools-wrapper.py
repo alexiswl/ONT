@@ -355,10 +355,10 @@ def split_fastq_by_readtype(porf, fastq_midfix):
                (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
     os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
     # Get complement fastq
     os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==0) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
 
 
 def run_poretools_wrapper():

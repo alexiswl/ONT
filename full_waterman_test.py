@@ -155,6 +155,7 @@ for (fasta_file_1, fasta_file_2) in fasta_file_combinations:
         a_output_handle.close()
         b_output_handle.close()
 
+
         outfile = combo_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
         water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                   (afile, bfile, outfile)
@@ -380,12 +381,11 @@ for afasta, bfasta in zip(fasta_1_rec, fasta_2_rec):
     a_output_handle.close()
     b_output_handle.close()
 
-    outfile = cross_comparison_directory + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
+    outfile = cross_comparison_directory_1D + afasta.id.split("_")[-3] + "_" + afasta.id.split('_')[-2] + ".waterman"
     water_command = "water -asequence %s -sformat1 fasta -bsequence %s -sformat2 fasta -outfile %s -auto" % \
                     (afile, bfile, outfile)
     os.system(water_command)
     os.system("rm %s %s" % (afile, bfile))
-
 
 input_handle = open(cross_comparison_directory + "1D_waterman_stats", "w+")
 waterman_files = [cross_comparison_directory_1D + waterman_file
