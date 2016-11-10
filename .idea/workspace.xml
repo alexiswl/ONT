@@ -130,8 +130,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="362" column="28" selection-start-line="362" selection-start-column="28" selection-end-line="362" selection-end-column="28" />
+            <state relative-caret-position="118">
+              <caret line="511" column="21" selection-start-line="511" selection-start-column="21" selection-end-line="511" selection-end-column="21" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -181,8 +181,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="102" />
-    <option name="y" value="81" />
+    <option name="x" value="29" />
+    <option name="y" value="134" />
     <option name="width" value="1426" />
     <option name="height" value="856" />
   </component>
@@ -551,13 +551,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00046" summary="Now moves fasta files into respective folders as soon as the fasta file has been completed for 2D runs.">
-      <created>1477207924946</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1477207924946</updated>
-    </task>
     <task id="LOCAL-00047" summary="Log file now prints out the total number of reads processed.">
       <created>1477208921680</created>
       <option name="number" value="00047" />
@@ -894,11 +887,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478748358656</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder.">
+      <created>1478748445725</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1478748445725</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="102" y="81" width="1426" height="856" extended-state="0" />
+    <frame x="29" y="134" width="1426" height="856" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1366,8 +1366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="362" column="28" selection-start-line="362" selection-start-column="28" selection-end-line="362" selection-end-column="28" />
+        <state relative-caret-position="118">
+          <caret line="511" column="21" selection-start-line="511" selection-start-column="21" selection-end-line="511" selection-end-column="21" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
