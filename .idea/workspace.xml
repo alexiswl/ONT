@@ -25,8 +25,8 @@
             <file leaf-file-name="laptop-to-server.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/laptop-to-server.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="266">
-                    <caret line="313" column="47" selection-start-line="313" selection-start-column="47" selection-end-line="313" selection-end-column="47" />
+                  <state relative-caret-position="232">
+                    <caret line="305" column="44" selection-start-line="305" selection-start-column="44" selection-end-line="305" selection-end-column="44" />
                     <folding>
                       <element signature="e#22#31#0" expanded="true" />
                     </folding>
@@ -74,8 +74,8 @@
       <file leaf-file-name="nanonet-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-361">
-              <caret line="309" column="17" selection-start-line="309" selection-start-column="17" selection-end-line="309" selection-end-column="17" />
+            <state relative-caret-position="-460">
+              <caret line="348" column="0" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -563,13 +563,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00048" summary="Fixed bug for end log for printing total number of reads analysed in completion log.">
-      <created>1477290943515</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1477290943515</updated>
-    </task>
     <task id="LOCAL-00049" summary="Fixed bug for end log for printing total number of reads analysed in completion log.">
       <created>1477291026319</created>
       <option name="number" value="00049" />
@@ -906,7 +899,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478748605385</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Updated laptop-to-server.py script to allow for scp transfer of files to a server.">
+      <created>1478760926611</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1478760926611</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -963,7 +963,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Files that may not be corrupted are sometimes moved to the corrupted folder. Added a condition that gives a file one chance to produce an IOerror before being move to the corrupted folder." />
     <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
     <MESSAGE value="Uploading the first component of the full waterman test." />
     <MESSAGE value="Going to do a waterman test, not needleman test!" />
@@ -988,7 +987,8 @@
     <MESSAGE value="Fixed up the 2D vs 2d bit." />
     <MESSAGE value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
     <MESSAGE value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
+    <MESSAGE value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1370,8 +1370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nanonet-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="309" column="17" selection-start-line="309" selection-start-column="17" selection-end-line="309" selection-end-column="17" />
+        <state relative-caret-position="-460">
+          <caret line="348" column="0" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>
@@ -1380,8 +1380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laptop-to-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="313" column="47" selection-start-line="313" selection-start-column="47" selection-end-line="313" selection-end-column="47" />
+        <state relative-caret-position="232">
+          <caret line="305" column="44" selection-start-line="305" selection-start-column="44" selection-end-line="305" selection-end-column="44" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
           </folding>

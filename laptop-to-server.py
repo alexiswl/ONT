@@ -303,6 +303,7 @@ def commence_transfer():
                     status, output = commands.getstatusoutput(scp_command)
                     if int(status) == 0:  # if successful, remove files from the laptop.
                         for fast5_file_for_scp in fast5_files_for_scp:
+                            files_moved += 1
                             os.system("rm %s" % fast5_file_for_scp)
                         fast5_files_for_scp = []
                     else:
