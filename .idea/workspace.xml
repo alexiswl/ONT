@@ -130,8 +130,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="405" column="28" selection-start-line="405" selection-start-column="28" selection-end-line="405" selection-end-column="28" />
+            <state relative-caret-position="271">
+              <caret line="362" column="28" selection-start-line="362" selection-start-column="28" selection-end-line="362" selection-end-column="28" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -551,13 +551,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00045" summary="Renamed to respect the output of poretools. 2D, fwd, rev for template and reverse strands.">
-      <created>1477197486117</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1477197486117</updated>
-    </task>
     <task id="LOCAL-00046" summary="Now moves fasta files into respective folders as soon as the fasta file has been completed for 2D runs.">
       <created>1477207924946</created>
       <option name="number" value="00046" />
@@ -894,7 +887,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478742815816</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder.">
+      <created>1478748358656</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1478748358656</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -951,7 +951,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed major bug that would over concatentate fastq files." />
     <MESSAGE value="Files that may not be corrupted are sometimes moved to the corrupted folder. Added a condition that gives a file one chance to produce an IOerror before being move to the corrupted folder." />
     <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
     <MESSAGE value="Uploading the first component of the full waterman test." />
@@ -976,7 +975,8 @@
     <MESSAGE value="Reverse the text in score identity extraction. Enables more robust text extraction." />
     <MESSAGE value="Fixed up the 2D vs 2d bit." />
     <MESSAGE value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
-    <option name="LAST_COMMIT_MESSAGE" value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
+    <MESSAGE value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1366,8 +1366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="405" column="28" selection-start-line="405" selection-start-column="28" selection-end-line="405" selection-end-column="28" />
+        <state relative-caret-position="271">
+          <caret line="362" column="28" selection-start-line="362" selection-start-column="28" selection-end-line="362" selection-end-column="28" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>

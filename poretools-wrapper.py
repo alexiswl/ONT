@@ -305,7 +305,6 @@ def run_poretools_fastq():
             completion_file_h.write(fast5_file + "\n")
         completion_file_h.close()
 
-
         logger = open(LOG_FILE, 'a+')
         logger.write("Completed extracting fastq from %s directory, on %d files.\n" %
                      (PORF_FAST5_DIRECTORY[porf], len(new_fast5_files[porf])))
@@ -352,13 +351,13 @@ def split_fastq_by_readtype(porf, fastq_midfix):
 
     # Get 2D fastq
     os.system(("cat %s | awk '{{if(NR{0}12==1 || NR{0}12==2 || NR{0}12==3 || NR{0}12==4) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'2d'] + fastq_midfix + ".2d.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf, '2d'] + fastq_midfix + ".2d.fastq")).format('%'))
     # Get template fastq
     os.system(("cat %s | awk '{{if(NR{0}12==5 || NR{0}12==6 || NR{0}12==7 || NR{0}12==8) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf, 'rev'] + fastq_midfix + ".rev.fastq")).format('%'))
     # Get complement fastq
     os.system(("cat %s | awk '{{if(NR{0}12==9 || NR{0}12==10 || NR{0}12==11 || NR{0}12==0) print;}}' >> %s" %
-               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf,'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
+               (fastq_file_all_tmp, FASTQ_SUB_FOLDERS[porf, 'fwd'] + fastq_midfix + ".fwd.fastq")).format('%'))
 
 
 def run_poretools_wrapper():
@@ -409,6 +408,7 @@ def split_reads_by_attribute(new_fast5_files):
         except IOError:
             if still_writing(fast5_file):
                 print("Fast5 file still being written to. Removing file from set of fasta files")
+                new_fast5_files.remove(fast5_file)  # Otherwise won't be picked up again.
             else:
                 os.system("mv %s %s" % (fast5_file, FAIL_SUB_FOLDERS["Corrupted_files"]))
             continue
