@@ -166,7 +166,7 @@ def set_directories():
 
     for porf in PORF:
         if IS_1D:
-            FASTQ_SUB_FOLDERS[porf] = FASTQ_DIRECTORY + "1D/" + porf
+            FASTQ_SUB_FOLDERS[porf] = FASTQ_DIRECTORY + "1D/" + porf + "/"
             try:
                 os.makedirs(FASTQ_SUB_FOLDERS[porf])
             except OSError:
