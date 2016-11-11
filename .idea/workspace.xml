@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
+    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kraken-wrapper.py" afterPath="$PROJECT_DIR$/kraken-wrapper.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
@@ -127,11 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1737">
-              <caret line="74" column="82" selection-start-line="74" selection-start-column="82" selection-end-line="74" selection-end-column="82" />
+            <state relative-caret-position="388">
+              <caret line="346" column="24" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="24" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -139,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4353">
-              <caret line="168" column="73" selection-start-line="168" selection-start-column="73" selection-end-line="168" selection-end-column="73" />
+            <state relative-caret-position="373">
+              <caret line="338" column="36" selection-start-line="338" selection-start-column="36" selection-end-line="338" selection-end-column="36" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -185,16 +186,16 @@
         <option value="$PROJECT_DIR$/needleman_test.py" />
         <option value="$PROJECT_DIR$/nanonet-wrapper.py" />
         <option value="$PROJECT_DIR$/metrichor-cli-wrapper.py" />
-        <option value="$PROJECT_DIR$/kraken-wrapper.py" />
         <option value="$PROJECT_DIR$/full_waterman_test.py" />
         <option value="$PROJECT_DIR$/laptop-to-server.py" />
         <option value="$PROJECT_DIR$/poretools-wrapper.py" />
+        <option value="$PROJECT_DIR$/kraken-wrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="98" />
-    <option name="y" value="202" />
+    <option name="x" value="507" />
+    <option name="y" value="63" />
     <option name="width" value="1426" />
     <option name="height" value="856" />
   </component>
@@ -563,13 +564,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00051" summary="Fixed up syntax error regarding iterating through dictionaries.">
-      <created>1477291598675</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1477291598675</updated>
-    </task>
     <task id="LOCAL-00052" summary="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype">
       <created>1477292750490</created>
       <option name="number" value="00052" />
@@ -906,11 +900,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478763206440</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py">
+      <created>1478833271720</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1478833271720</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="98" y="202" width="1426" height="856" extended-state="0" />
+    <frame x="507" y="63" width="1426" height="856" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -963,7 +964,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit of needleman test - only a little bit to go with this, (and probably a lot of debugging). Fixed a minor bug in poretools wrapper." />
     <MESSAGE value="Uploading the first component of the full waterman test." />
     <MESSAGE value="Going to do a waterman test, not needleman test!" />
     <MESSAGE value="Adjusted nanonet subdirectory names" />
@@ -988,7 +988,8 @@
     <MESSAGE value="forward and reverse were switched around when splitting template and complement stands of 2D reads." />
     <MESSAGE value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
     <MESSAGE value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
+    <MESSAGE value="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1304,16 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1737">
-          <caret line="74" column="82" selection-start-line="74" selection-start-column="82" selection-end-line="74" selection-end-column="82" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laptop-to-server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -1380,8 +1371,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4353">
-          <caret line="168" column="73" selection-start-line="168" selection-start-column="73" selection-end-line="168" selection-end-column="73" />
+        <state relative-caret-position="373">
+          <caret line="338" column="36" selection-start-line="338" selection-start-column="36" selection-end-line="338" selection-end-column="36" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="346" column="24" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="24" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>

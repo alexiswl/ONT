@@ -340,7 +340,11 @@ def create_taxa_tree(freq_output, taxa_output):
         for line in f:
             line = line.rstrip()
             tax_id, freq = line.split("\t")
-            lineage = ncbi.get_lineage(tax_id)
+            try:
+                lineage = ncbi.get_lineage(tax_id)
+            except ValueError:
+                print("Error: %s not found in database" % tax_id)
+                continue
             names = ncbi.get_taxid_translator(lineage)
             lineage_names = [names[taxid] for taxid in lineage]
             taxa_h.write(freq + "\t" + "\t".join(lineage_names[1:]) + "\n")

@@ -277,7 +277,7 @@ def run_poretools_fastq():
         logger.close()
         extract_fastq_options = ["fastq"]
         if IS_1D:
-            fastq_file = FASTQ_SUB_FOLDERS[porf] + DATE_PREFIX + "_" + RUN_NAME + porf + ".fastq"
+            fastq_file = FASTQ_SUB_FOLDERS[porf] + DATE_PREFIX + "_" + RUN_NAME + "." + porf + ".fastq"
             for fast5_file in new_fast5_files[porf]:
                 extract_fastq_command = "poretools %s %s 1>> %s 2>> %s" % \
                                         (' '.join(extract_fastq_options), fast5_file, fastq_file, LOG_FILE)
