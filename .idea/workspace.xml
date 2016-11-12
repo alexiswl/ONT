@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py">
+    <list default="true" id="dd31497d-3348-4dc5-9313-f3f1526340fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kraken-wrapper.py" afterPath="$PROJECT_DIR$/kraken-wrapper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poretools-wrapper.py" afterPath="$PROJECT_DIR$/poretools-wrapper.py" />
     </list>
     <ignored path="ONT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -131,8 +130,8 @@
       <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="346" column="24" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="24" />
+            <state relative-caret-position="351">
+              <caret line="283" column="31" selection-start-line="283" selection-start-column="31" selection-end-line="283" selection-end-column="31" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -194,8 +193,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="507" />
-    <option name="y" value="63" />
+    <option name="x" value="5" />
+    <option name="y" value="67" />
     <option name="width" value="1426" />
     <option name="height" value="856" />
   </component>
@@ -564,13 +563,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00052" summary="Fixed syntax error regarding splitting the fastq files into respective sub folders in split_fastq_by_readtype">
-      <created>1477292750490</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1477292750491</updated>
-    </task>
     <task id="LOCAL-00053" summary="Changes 2D to 2d ins SUBFOLDERS_2D global tuple.">
       <created>1477298385181</created>
       <option name="number" value="00053" />
@@ -907,11 +899,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478833271720</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Added try error component to Kraken wrapper for missing taxid values.">
+      <created>1478850752101</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1478850752101</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="507" y="63" width="1426" height="856" extended-state="0" />
+    <frame x="5" y="67" width="1426" height="856" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113832854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -964,7 +963,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Uploading the first component of the full waterman test." />
     <MESSAGE value="Going to do a waterman test, not needleman test!" />
     <MESSAGE value="Adjusted nanonet subdirectory names" />
     <MESSAGE value="needleman fix" />
@@ -989,7 +987,8 @@
     <MESSAGE value="Fixed corruption logic - not to be confused with  corrupted logic. If an IOError occurs, it retests if the file is still being written to. If so it skips it, otherwise it moves the file to a corrupted files folder." />
     <MESSAGE value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
     <MESSAGE value="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py" />
+    <MESSAGE value="Added try error component to Kraken wrapper for missing taxid values." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added try error component to Kraken wrapper for missing taxid values." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1381,8 +1380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="346" column="24" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="24" />
+        <state relative-caret-position="351">
+          <caret line="283" column="31" selection-start-line="283" selection-start-column="31" selection-end-line="283" selection-end-column="31" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>

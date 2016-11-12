@@ -265,23 +265,23 @@ def run_kraken_pipeline(fasta_files):
     for fasta_file in fasta_files:
         run_kraken(fasta_file, kraken_output)
 
-    # Check to ensure kraken command completed appropriately?
-    # If no reads return a match kraken will produce a blank file.
-    lines = check_kraken_file(kraken_output)
+        # Check to ensure kraken command completed appropriately?
+        # If no reads return a match kraken will produce a blank file.
+        lines = check_kraken_file(kraken_output)
 
-    if lines == 0:
-        print("Kraken completed but did not output anything.\n")
-        print("Skipping rest of the pipeline.\n")
-        return list()
+        if lines == 0:
+            print("Kraken completed but did not output anything.\n")
+            print("Skipping rest of the pipeline.\n")
+            return list()
 
-    # Run the compute frequencies command
-    summarise_kraken_output(kraken_output, freq_output)
+        # Run the compute frequencies command
+        summarise_kraken_output(kraken_output, freq_output)
 
-    # Run taxa tree command
-    create_taxa_tree(freq_output, taxa_output)
+        # Run taxa tree command
+        create_taxa_tree(freq_output, taxa_output)
 
-    # Run krona tools on the taxa files
-    run_krona(krona_output)
+        # Run krona tools on the taxa files
+        run_krona(krona_output)
 
     # Update and return to loop
     return fasta_files
