@@ -205,7 +205,7 @@ def kraken_wrapper():
         while len(fasta_files) == 0:
             # Find the new fasta files
             for filename in os.listdir(FASTA_DIRECTORY):
-                if filename.endswith((".fasta", ".fna", ".fa")) and FASTA_DIRECTORY + filename not in fasta_files_old:
+                if filename.endswith((".fasta", ".fna", ".fa", ".fastq")) and FASTA_DIRECTORY + filename not in fasta_files_old:
                     fasta_files.append(FASTA_DIRECTORY + filename)
             if len(fasta_files) != 0:
                 break
