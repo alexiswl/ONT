@@ -207,10 +207,8 @@ def kraken_wrapper():
             for filename in os.listdir(FASTA_DIRECTORY):
                 if filename.endswith((".fasta", ".fna", ".fa")) and FASTA_DIRECTORY + filename not in fasta_files_old:
                     fasta_files.append(FASTA_DIRECTORY + filename)
-
             if len(fasta_files) != 0:
                 break
-
             # Didn't pick anything up...
             # Have we exceeded the number of mini-sleeps?
             if patience_counter > WATCH:
@@ -224,6 +222,18 @@ def kraken_wrapper():
                       % (WATCH - patience_counter)
             time.sleep(60)
             patience_counter += 60
+        # Is latest file still being written to? Could be multiple files, generates recursive loop.
+        while True:
+            latest_fast5_file = fasta_files[len(fasta_file) - 1]
+            if not still_writing(latest_fast5_file):
+                break
+            print("Latest fast5 file still being written to. Removing file from set of fasta files")
+            fasta_files.remove(latest_fast5_file)
+            if len(fasta_files) == 0:
+                break
+        if len(fasta_files) == 0:
+            continue
+
 
         # Out of while loop, fast5 files found or run is exhausted.
         completed_fasta_files = run_kraken_pipeline(fasta_files)
@@ -283,6 +293,12 @@ def run_kraken_pipeline(fasta_files):
 
     # Update and return to loop
     return fasta_files
+
+
+def still_writing(filename):
+    lsof_command = "lsof | grep %s | wc -l" % filename
+    lsof_status, lsof_output = commands.getstatusoutput(lsof_command)
+    return int(lsof_output)
 
 
 def run_kraken(fasta_file, kraken_output):
