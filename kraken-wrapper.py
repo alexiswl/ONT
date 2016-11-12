@@ -236,33 +236,32 @@ def kraken_wrapper():
 
 
 def run_kraken_pipeline(fasta_files):
-
-    # Set the output files for each condition.
-    time_suffix = str(time.strftime("%Y-%m-%d-%H-%M-%S"))
-    kraken_output = KRAKEN_OUTPUT_DIRECTORY + RUN_NAME + "_" + time_suffix + ".kraken.txt"
-    freq_output = KRAKEN_FREQ_DIRECTORY + RUN_NAME + "_" + time_suffix + ".freq.txt"
-    taxa_output = KRAKEN_TAXA_DIRECTORY + RUN_NAME + "_" + time_suffix + ".taxa.txt"
-    krona_output = KRONA_DIRECTORY + RUN_NAME + "_" + time_suffix + ".krona.html"
-
-    # Sort the new fasta files. We need to ensure the latest fasta file is not currently being written to.
-    fasta_files.sort(key=lambda x: os.path.getmtime(x))
-
-    # Use lsof | grep latest fasta file to see if the last file is currently being written to.
-    # If so, remove it from the group.
-    latest_fasta_file = fasta_files[len(fasta_files)-1]
-    lsof_command = "lsof -w | grep %s | wc -l" % latest_fasta_file
-
-    # Run the system command through the commands module so we can obtain the output of the command.
-    lsof_status, lsof_output = commands.getstatusoutput(lsof_command)
-
-    # If the latest fasta file is being written to we will remove it from the set of analysed fasta files.
-    if int(lsof_output) != 0:
-        print("Latest fasta file still being written to. Removing file from set of fasta files")
-        fasta_files.remove(latest_fasta_file)
-        if len(fasta_files) == 0:
-            return list()
-
     for fasta_file in fasta_files:
+        # Set the output files for each condition.
+        time_suffix = str(time.strftime("%Y-%m-%d-%H-%M-%S"))
+        kraken_output = KRAKEN_OUTPUT_DIRECTORY + RUN_NAME + "_" + time_suffix + ".kraken.txt"
+        freq_output = KRAKEN_FREQ_DIRECTORY + RUN_NAME + "_" + time_suffix + ".freq.txt"
+        taxa_output = KRAKEN_TAXA_DIRECTORY + RUN_NAME + "_" + time_suffix + ".taxa.txt"
+        krona_output = KRONA_DIRECTORY + RUN_NAME + "_" + time_suffix + ".krona.html"
+
+        # Sort the new fasta files. We need to ensure the latest fasta file is not currently being written to.
+        fasta_files.sort(key=lambda x: os.path.getmtime(x))
+
+        # Use lsof | grep latest fasta file to see if the last file is currently being written to.
+        # If so, remove it from the group.
+        latest_fasta_file = fasta_files[len(fasta_files)-1]
+        lsof_command = "lsof -w | grep %s | wc -l" % latest_fasta_file
+
+        # Run the system command through the commands module so we can obtain the output of the command.
+        lsof_status, lsof_output = commands.getstatusoutput(lsof_command)
+
+        # If the latest fasta file is being written to we will remove it from the set of analysed fasta files.
+        if int(lsof_output) != 0:
+            print("Latest fasta file still being written to. Removing file from set of fasta files")
+            fasta_files.remove(latest_fasta_file)
+            if len(fasta_files) == 0:
+                return list()
+
         run_kraken(fasta_file, kraken_output)
 
         # Check to ensure kraken command completed appropriately?
@@ -272,7 +271,6 @@ def run_kraken_pipeline(fasta_files):
         if lines == 0:
             print("Kraken completed but did not output anything.\n")
             print("Skipping rest of the pipeline.\n")
-            return list()
 
         # Run the compute frequencies command
         summarise_kraken_output(kraken_output, freq_output)

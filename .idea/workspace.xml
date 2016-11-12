@@ -52,8 +52,8 @@
       <file leaf-file-name="onecodex-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
+            <state relative-caret-position="200">
+              <caret line="280" column="19" selection-start-line="280" selection-start-column="19" selection-end-line="280" selection-end-column="19" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
@@ -130,8 +130,8 @@
       <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="283" column="31" selection-start-line="283" selection-start-column="31" selection-end-line="283" selection-end-column="31" />
+            <state relative-caret-position="238">
+              <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -563,13 +563,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00053" summary="Changes 2D to 2d ins SUBFOLDERS_2D global tuple.">
-      <created>1477298385181</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1477298385181</updated>
-    </task>
     <task id="LOCAL-00054" summary="Turned old_fast5_file dict variable into a default dict so it can hand lists.">
       <created>1477308359017</created>
       <option name="number" value="00054" />
@@ -906,7 +899,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478850752101</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Kraken glitch, was only outputting first or last fasta file.">
+      <created>1478912520183</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1478912520183</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -963,7 +963,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Going to do a waterman test, not needleman test!" />
     <MESSAGE value="Adjusted nanonet subdirectory names" />
     <MESSAGE value="needleman fix" />
     <MESSAGE value="Updated metrichor command list." />
@@ -988,7 +987,8 @@
     <MESSAGE value="Updated laptop-to-server.py script to allow for scp transfer of files to a server." />
     <MESSAGE value="Minor glitch in creating fastq files for 1D reads in poretools wrapper.py" />
     <MESSAGE value="Added try error component to Kraken wrapper for missing taxid values." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added try error component to Kraken wrapper for missing taxid values." />
+    <MESSAGE value="Kraken glitch, was only outputting first or last fasta file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Kraken glitch, was only outputting first or last fasta file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,16 +1294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laptop-to-server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -1378,10 +1368,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="280" column="19" selection-start-line="280" selection-start-column="19" selection-end-line="280" selection-end-column="19" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="283" column="31" selection-start-line="283" selection-start-column="31" selection-end-line="283" selection-end-column="31" />
+        <state relative-caret-position="238">
+          <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
