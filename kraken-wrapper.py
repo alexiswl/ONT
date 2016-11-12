@@ -222,18 +222,19 @@ def kraken_wrapper():
                       % (WATCH - patience_counter)
             time.sleep(60)
             patience_counter += 60
+        fasta_files.sort(key=lambda x: os.path.getmtime(x))
+
         # Is latest file still being written to? Could be multiple files, generates recursive loop.
         while True:
-            latest_fast5_file = fasta_files[len(fasta_file) - 1]
-            if not still_writing(latest_fast5_file):
+            latest_fasta_file = fasta_files[len(fasta_files) - 1]
+            if not still_writing(latest_fasta_file):
                 break
             print("Latest fast5 file still being written to. Removing file from set of fasta files")
-            fasta_files.remove(latest_fast5_file)
+            fasta_files.remove(latest_fasta_file)
             if len(fasta_files) == 0:
                 break
         if len(fasta_files) == 0:
             continue
-
 
         # Out of while loop, fast5 files found or run is exhausted.
         completed_fasta_files = run_kraken_pipeline(fasta_files)
@@ -246,23 +247,6 @@ def kraken_wrapper():
 
 
 def run_kraken_pipeline(fasta_files):
-    # Sort the new fasta files. We need to ensure the latest fasta file is not currently being written to.
-    fasta_files.sort(key=lambda x: os.path.getmtime(x))
-
-    # Use lsof | grep latest fasta file to see if the last file is currently being written to.
-    # If so, remove it from the group.
-    latest_fasta_file = fasta_files[len(fasta_files) - 1]
-    lsof_command = "lsof -w | grep %s | wc -l" % latest_fasta_file
-
-    # Run the system command through the commands module so we can obtain the output of the command.
-    lsof_status, lsof_output = commands.getstatusoutput(lsof_command)
-
-    # If the latest fasta file is being written to we will remove it from the set of analysed fasta files.
-    if int(lsof_output) != 0:
-        print("Latest fasta file still being written to. Removing file from set of fasta files")
-        fasta_files.remove(latest_fasta_file)
-        if len(fasta_files) == 0:
-            return list()
 
     for fasta_file in fasta_files:
         # Set the output files for each condition.

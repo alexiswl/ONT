@@ -130,8 +130,8 @@
       <file leaf-file-name="kraken-wrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="230" column="21" selection-start-line="230" selection-start-column="21" selection-end-line="230" selection-end-column="21" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -142,8 +142,8 @@
       <file leaf-file-name="poretools-wrapper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="257" selection-end-column="27" />
+            <state relative-caret-position="169">
+              <caret line="375" column="13" selection-start-line="375" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
@@ -563,13 +563,6 @@
       <option name="presentableId" value="Default" />
       <updated>1474767580207</updated>
     </task>
-    <task id="LOCAL-00056" summary="Error fix - update fastq output.">
-      <created>1477351194904</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1477351194904</updated>
-    </task>
     <task id="LOCAL-00057" summary="Onecodex now accepts 1D argument. Since nanonet wrapper places fasta files into subdirectories.">
       <created>1477352080064</created>
       <option name="number" value="00057" />
@@ -906,7 +899,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478914943804</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Kraken glitch, was only outputting first or last fasta file.">
+      <created>1478915680851</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1478915680851</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -997,16 +997,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/onecodex-wrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1368,10 +1358,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/1951512797/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1250">
+          <caret line="2123" column="8" selection-start-line="2123" selection-start-column="8" selection-end-line="2123" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/poretools-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="257" selection-end-column="27" />
+        <state relative-caret-position="169">
+          <caret line="375" column="13" selection-start-line="375" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
@@ -1380,8 +1378,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kraken-wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="230" column="21" selection-start-line="230" selection-start-column="21" selection-end-line="230" selection-end-column="21" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
